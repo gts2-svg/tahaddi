@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تحدّي — مسابقة ثقافية</title>
+<meta name="theme-color" content="#0d1b2a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="تحدّي">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ============ الرئيسية / الإعداد ============ -->
+  <section id="screen-home" class="screen active">
+    <header class="hero">
+      <div class="logo">تحدّي</div>
+      <div class="tag">مسابقة ثقافية للفرق</div>
+    </header>
+
+    <div id="resume-box" class="card resume hidden">
+      <div>عندك مسابقة لم تكتمل</div>
+      <div class="row">
+        <button class="btn primary" id="btn-resume">متابعة</button>
+        <button class="btn ghost" id="btn-discard">تجاهل</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>الفرق</h2>
+      <div id="teams-list"></div>
+      <div class="row">
+        <button class="btn ghost sm" id="btn-add-team">+ فريق</button>
+        <button class="btn ghost sm" id="btn-remove-team">− فريق</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>الأقسام</h2>
+      <div id="cats-list" class="cats"></div>
+    </div>
+
+    <div class="card">
+      <h2>الإعدادات</h2>
+      <div class="setting">
+        <label>مستوى الأسئلة</label>
+        <div class="seg" data-key="difficulty">
+          <button data-v="0">مختلط</button><button data-v="1">سهل</button><button data-v="2">متوسط</button><button data-v="3">صعب</button>
+        </div>
+      </div>
+      <div class="setting">
+        <label>عدد الأسئلة لكل فريق</label>
+        <div class="seg" data-key="perTeam">
+          <button data-v="5">5</button><button data-v="10">10</button><button data-v="15">15</button><button data-v="20">20</button><button data-v="30">30</button>
+        </div>
+      </div>
+      <div class="setting">
+        <label>وقت السؤال</label>
+        <div class="seg" data-key="timer">
+          <button data-v="0">بلا</button><button data-v="15">15ث</button><button data-v="30">30ث</button><button data-v="45">45ث</button><button data-v="60">60ث</button>
+        </div>
+      </div>
+      <div class="setting toggle-row">
+        <label>السرقة: إذا أخطأ الفريق يجاوب غيره بنصف النقاط</label>
+        <input type="checkbox" class="switch" data-key="steal">
+      </div>
+      <div class="setting toggle-row">
+        <label>وسيلة «حذف إجابتين» مرة لكل فريق</label>
+        <input type="checkbox" class="switch" data-key="fifty">
+      </div>
+      <div class="setting toggle-row">
+        <label>الأصوات</label>
+        <input type="checkbox" class="switch" data-key="sound">
+      </div>
+      <p class="hint">النقاط: سهل 1 — متوسط 2 — صعب 3</p>
+    </div>
+
+    <button class="btn primary big" id="btn-start">ابدأ المسابقة</button>
+
+    <div class="footer-links">
+      <button class="link" id="btn-reports">الأسئلة المُبلَّغ عنها <span id="reports-count"></span></button>
+      <button class="link" id="btn-reset-used">تصفير الأسئلة المستعملة</button>
+    </div>
+    <div class="stats" id="stats"></div>
+    <div class="version">الإصدار <span class="ver"></span></div>
+  </section>
+
+  <!-- ============ اللعب ============ -->
+  <section id="screen-game" class="screen">
+    <div class="topbar">
+      <button class="icon-btn" id="btn-menu" aria-label="القائمة">☰</button>
+      <div class="progress">سؤال <span id="q-num">1</span> من <span id="q-total">10</span></div>
+      <div class="ver-mini">v<span class="ver"></span></div>
+    </div>
+    <div class="scoreboard" id="scoreboard"></div>
+
+    <div class="turn" id="turn"></div>
+
+    <div class="qcard" id="qcard">
+      <div class="qmeta">
+        <span class="badge" id="q-cat"></span>
+        <span class="badge diff" id="q-diff"></span>
+        <div class="timer hidden" id="timer"><svg viewBox="0 0 36 36"><circle class="track" cx="18" cy="18" r="16"/><circle class="bar" id="timer-bar" cx="18" cy="18" r="16"/></svg><span id="timer-num"></span></div>
+      </div>
+      <div class="question" id="q-text"></div>
+      <div class="options" id="options"></div>
+    </div>
+
+    <div class="tools" id="tools">
+      <button class="btn ghost sm" id="btn-fifty">½ حذف إجابتين</button>
+      <button class="btn ghost sm" id="btn-swap">تبديل السؤال</button>
+    </div>
+
+    <div class="after hidden" id="after">
+      <div class="verdict" id="verdict"></div>
+      <div class="steal hidden" id="steal">
+        <div class="steal-title">هل أجاب فريق آخر صح؟</div>
+        <div class="steal-btns" id="steal-btns"></div>
+      </div>
+      <div class="row">
+        <button class="btn primary" id="btn-next">التالي</button>
+        <button class="btn ghost sm" id="btn-report">⚑ فيه خطأ</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ النتيجة ============ -->
+  <section id="screen-result" class="screen">
+    <div class="confetti" id="confetti"></div>
+    <h1 class="winner" id="winner"></h1>
+    <div class="ranking" id="ranking"></div>
+    <div class="row col">
+      <button class="btn primary big" id="btn-again">مباراة جديدة بنفس الفرق</button>
+      <button class="btn ghost" id="btn-home">الرئيسية</button>
+    </div>
+  </section>
+
+  <!-- ============ نوافذ ============ -->
+  <div class="modal hidden" id="modal">
+    <div class="modal-box">
+      <div id="modal-body"></div>
+      <div class="row" id="modal-actions"></div>
+    </div>
+  </div>
+  <div class="toast hidden" id="toast"></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
