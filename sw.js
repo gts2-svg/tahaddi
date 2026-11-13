@@ -1,6 +1,7 @@
-const CACHE = 'tahaddi-v1.0.0';
+const CACHE = 'tahaddi-v1.1.0';
 const CORE = ['./', 'index.html', 'style.css', 'app.js', 'manifest.json',
-  'data/religion.txt', 'data/history.txt', 'data/geography.txt', 'data/poetry.txt',
+  'data/religion.txt', 'data/seerah.txt', 'data/history.txt', 'data/geography.txt', 'data/poetry.txt',
+  'data/arabic.txt', 'data/saudi.txt', 'data/whoami.txt',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-180.png'];
 
 self.addEventListener('install', e => {

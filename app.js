@@ -1,15 +1,19 @@
 /* تحدّي — مسابقة ثقافية للفرق */
 'use strict';
-const VERSION = '1.0.0';
+const VERSION = '1.1.0';
 
 const CATS = {
   religion:  { name: 'الدين',            icon: '🕌', file: 'data/religion.txt',  color: '#2fb47c' },
+  seerah:    { name: 'السيرة النبوية',   icon: '🌙', file: 'data/seerah.txt',    color: '#4cc9a0' },
   history:   { name: 'التاريخ الإسلامي', icon: '📜', file: 'data/history.txt',   color: '#e0a13c' },
   geography: { name: 'الجغرافيا',        icon: '🌍', file: 'data/geography.txt', color: '#3a9be0' },
   poetry:    { name: 'الشعر',            icon: '🪶', file: 'data/poetry.txt',    color: '#b06ee0' },
+  arabic:    { name: 'اللغة العربية',    icon: '✒️', file: 'data/arabic.txt',    color: '#e07a5f' },
+  saudi:     { name: 'السعودية',         icon: '🌴', file: 'data/saudi.txt',     color: '#3fae5a' },
+  whoami:    { name: 'من أنا؟',          icon: '🕵️', file: 'data/whoami.txt',    color: '#e05a8a', clues: true },
 };
 const TEAM_COLORS = ['#e0b44c', '#3a9be0', '#e05a8a', '#2fb47c', '#b06ee0', '#e07a3a', '#4cd0d0', '#c8c8c8'];
-const DIFF_NAME = { 1: 'سهل', 2: 'متوسط', 3: 'صعب' };
+const DIFF_NAME = { 1: 'سهل', 2: 'متوسط', 3: 'صعب', 4: 'صعب جداً' };
 const LETTERS = ['أ', 'ب', 'ج', 'د'];
 const LS = { settings: 'tahaddi_settings', used: 'tahaddi_used', game: 'tahaddi_game', reports: 'tahaddi_reports' };
 
@@ -19,11 +23,11 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;',
 const load = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? d; } catch { return d; } };
 const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
 const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
-const toAr = n => String(n); // أرقام إنجليزية: الصفر العربي (٠) يشبه النقطة
+const ptsWord = n => n === 1 ? 'نقطة' : n === 2 ? 'نقطتان' : `${n} نقاط`;
 function hash(s) { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return (h >>> 0).toString(36); }
 
 /* ---------- البيانات ---------- */
-let BANK = {}; // cat -> [{id,cat,d,q,a,w:[]}]
+let BANK = {}; // cat -> [{id,cat,d,q,clues,a,w}]
 
 function parseBank(cat, text) {
   const out = [];
@@ -33,27 +37,31 @@ function parseBank(cat, text) {
     const p = line.split('|').map(x => x.trim());
     if (p.length < 6) return;
     const d = parseInt(p[0], 10);
-    if (![1, 2, 3].includes(d)) return;
+    if (![1, 2, 3, 4].includes(d)) return;
     const q = p[1].replace(/\\n/g, '\n');
-    out.push({ id: cat + ':' + hash(q), cat, d, q, a: p[2], w: p.slice(3, 6) });
+    const item = { id: cat + ':' + hash(q + '|' + p[2]), cat, d, q, a: p[2], w: p.slice(3, 6) };
+    if (CATS[cat].clues) item.clues = q.split(';;').map(x => x.trim()).filter(Boolean);
+    out.push(item);
   });
   return out;
 }
 
 async function loadBank() {
   await Promise.all(Object.entries(CATS).map(async ([k, c]) => {
-    try { const r = await fetch(c.file + '?v=' + VERSION); BANK[k] = parseBank(k, await r.text()); }
+    try { const r = await fetch(c.file + '?v=' + VERSION); BANK[k] = r.ok ? parseBank(k, await r.text()) : []; }
     catch { BANK[k] = []; }
   }));
 }
+const qById = id => { const c = id.split(':')[0]; return (BANK[c] || []).find(q => q.id === id); };
 
 /* ---------- الإعدادات ---------- */
 const DEFAULTS = {
   teams: ['الفريق الأول', 'الفريق الثاني'],
-  cats: Object.keys(CATS), difficulty: 0, perTeam: 10, timer: 30,
+  cats: ['religion', 'history', 'geography', 'poetry'], difficulty: 0, perTeam: 10, timer: 30, mode: 0,
   steal: true, fifty: true, sound: true,
 };
 let S = Object.assign({}, DEFAULTS, load(LS.settings, {}));
+S.cats = S.cats.filter(c => CATS[c]); if (!S.cats.length) S.cats = [...DEFAULTS.cats];
 const saveSettings = () => save(LS.settings, S);
 
 /* ---------- الصوت ---------- */
@@ -62,7 +70,7 @@ function beep(type) {
   if (!S.sound) return;
   try {
     actx = actx || new (window.AudioContext || window.webkitAudioContext)();
-    const seq = { ok: [[660, .09], [880, .16]], bad: [[220, .25]], tick: [[1000, .04]], win: [[523, .12], [659, .12], [784, .12], [1046, .3]] }[type];
+    const seq = { ok: [[660, .09], [880, .16]], bad: [[220, .25]], tick: [[1000, .04]], clue: [[520, .08]], win: [[523, .12], [659, .12], [784, .12], [1046, .3]] }[type];
     let t = actx.currentTime;
     seq.forEach(([f, d]) => {
       const o = actx.createOscillator(), g = actx.createGain();
@@ -73,7 +81,7 @@ function beep(type) {
   } catch {}
 }
 
-/* ---------- الشاشات ---------- */
+/* ---------- عام ---------- */
 function show(id) { document.querySelectorAll('.screen').forEach(s => s.classList.toggle('active', s.id === 'screen-' + id)); window.scrollTo(0, 0); }
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.remove('hidden'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.add('hidden'), 1800); }
 function modal(html, actions) {
@@ -103,10 +111,10 @@ function renderHome() {
   const cl = $('#cats-list'); cl.innerHTML = '';
   const used = new Set(load(LS.used, []));
   Object.entries(CATS).forEach(([k, c]) => {
-    const total = (BANK[k] || []).length;
-    const left = (BANK[k] || []).filter(q => !used.has(q.id)).length;
+    const all = BANK[k] || [];
+    const left = all.filter(q => !used.has(q.id)).length;
     const d = el('div', 'cat' + (S.cats.includes(k) ? ' on' : ''),
-      `<div class="ic">${c.icon}</div><div class="nm">${c.name}</div><div class="ct">${toAr(left)} متبقٍ من ${toAr(total)}</div>`);
+      `<div class="ic">${c.icon}</div><div class="nm">${c.name}</div><div class="ct">${left} متبقٍ من ${all.length}</div>`);
     d.style.setProperty('--c', c.color);
     d.onclick = () => {
       if (S.cats.includes(k)) { if (S.cats.length > 1) S.cats = S.cats.filter(x => x !== k); else return toast('اختر قسماً واحداً على الأقل'); }
@@ -127,29 +135,34 @@ function renderHome() {
     sw.checked = !!S[sw.dataset.key];
     sw.onchange = () => { S[sw.dataset.key] = sw.checked; saveSettings(); };
   });
+  $('#mode-hint').textContent = S.mode ? 'كل فريق في دوره يختار القسم والصعوبة من اللوحة. في اللوحة خانة واحدة على الأقل لكل قسم ومستوى، فقلّل الأقسام إذا أردت لوحة أصغر.' : 'تأتي الأسئلة متتالية بالتناوب بين الأقسام.';
 
   const total = Object.values(BANK).reduce((a, b) => a + b.length, 0);
-  $('#stats').textContent = `مجموع الأسئلة: ${toAr(total)}`;
+  $('#stats').textContent = `مجموع الأسئلة: ${total}`;
   const reps = load(LS.reports, []);
-  $('#reports-count').textContent = reps.length ? `(${toAr(reps.length)})` : '';
+  $('#reports-count').textContent = reps.length ? `(${reps.length})` : '';
   $('#resume-box').classList.toggle('hidden', !load(LS.game, null));
 }
 
-/* ---------- بناء المسابقة ---------- */
-function pickQuestions(n, exclude = new Set()) {
-  let used = new Set(load(LS.used, []));
-  const matches = q => S.cats.includes(q.cat) && (!S.difficulty || q.d === S.difficulty) && !exclude.has(q.id);
-  const pools = {};
-  S.cats.forEach(c => { pools[c] = shuffle((BANK[c] || []).filter(q => matches(q) && !used.has(q.id))); });
-  let avail = Object.values(pools).reduce((a, p) => a + p.length, 0);
-  if (avail < n) { // نفدت الأسئلة: نعيد تدوير المستعمل في الأقسام المختارة
-    const ids = new Set(S.cats.flatMap(c => (BANK[c] || []).map(q => q.id)));
-    used = new Set([...used].filter(id => !ids.has(id)));
-    save(LS.used, [...used]);
-    S.cats.forEach(c => { pools[c] = shuffle((BANK[c] || []).filter(matches)); });
-    toast('تمت إعادة تدوير الأسئلة');
+/* ---------- اختيار الأسئلة ---------- */
+// يختار n سؤالاً من قسم ومستوى محددين مع تجنب المستعمل، ويعيد التدوير عند النفاد
+function pickFrom(cat, d, n, exclude) {
+  const used = new Set(load(LS.used, []));
+  const base = (BANK[cat] || []).filter(q => (!d || q.d === d) && !exclude.has(q.id));
+  let pool = shuffle(base.filter(q => !used.has(q.id)));
+  if (pool.length < n) {
+    const ids = new Set(base.map(q => q.id));
+    save(LS.used, [...used].filter(id => !ids.has(id)));
+    const extra = shuffle(base.filter(q => used.has(q.id)));
+    pool = pool.concat(extra);
   }
-  // توزيع متناوب بين الأقسام
+  return pool.slice(0, n);
+}
+
+function pickSequence(n) {
+  const levels = S.difficulty ? [S.difficulty] : [0];
+  const pools = {}; const exclude = new Set();
+  S.cats.forEach(c => { pools[c] = pickFrom(c, levels[0], n, exclude); });
   const out = []; const keys = shuffle([...S.cats]);
   while (out.length < n && keys.some(k => pools[k].length)) {
     for (const k of keys) { if (out.length >= n) break; if (pools[k].length) out.push(pools[k].pop()); }
@@ -157,49 +170,126 @@ function pickQuestions(n, exclude = new Set()) {
   return out;
 }
 
-let G = null; // حالة اللعبة
-
-function startGame() {
-  const names = S.teams.map((n, i) => n.trim() || `فريق ${toAr(i + 1)}`);
-  const total = names.length * S.perTeam;
-  const qs = pickQuestions(total);
-  if (!qs.length) return toast('لا توجد أسئلة بهذه الإعدادات');
-  G = {
-    teams: names.map((n, i) => ({ name: n, color: TEAM_COLORS[i], score: 0, ok: 0, bad: 0, fifty: S.fifty })),
-    qs: qs.map(q => q.id), idx: 0, opts: null, answered: false, settings: { ...S },
-  };
-  newOptions(); persist(); show('game'); renderQ();
+function buildBoard(total) {
+  const levels = S.difficulty ? [S.difficulty] : [1, 2, 3, 4];
+  const per = Math.max(1, Math.ceil(total / (S.cats.length * levels.length)));
+  const rows = [];
+  S.cats.forEach(c => {
+    const cells = [];
+    levels.forEach(d => pickFrom(c, d, per, new Set()).forEach(q => cells.push({ id: q.id, d, used: false })));
+    if (cells.length) rows.push({ cat: c, cells });
+  });
+  return rows;
 }
 
-const qById = id => { const c = id.split(':')[0]; return (BANK[c] || []).find(q => q.id === id); };
-function newOptions() { const q = qById(G.qs[G.idx]); G.opts = shuffle([q.a, ...q.w]); G.gone = []; G.answered = false; G.pick = null; G.stolen = null; }
+/* ---------- حالة اللعبة ---------- */
+let G = null;
+const curTeamIdx = () => G.mode === 1 ? G.turn : G.idx % G.teams.length;
+const curTeam = () => G.teams[curTeamIdx()];
+const curQ = () => G.qid ? qById(G.qid) : null;
 function persist() { save(LS.game, G); }
 function markUsed(id) { const u = new Set(load(LS.used, [])); u.add(id); save(LS.used, [...u]); }
+
+function startGame() {
+  const names = S.teams.map((n, i) => n.trim() || `فريق ${i + 1}`);
+  const total = names.length * S.perTeam;
+  G = {
+    mode: S.mode, teams: names.map((n, i) => ({ name: n, color: TEAM_COLORS[i], score: 0, ok: 0, bad: 0, fifty: S.fifty })),
+    settings: { ...S }, idx: 0, turn: 0, qid: null,
+  };
+  if (G.mode === 1) {
+    G.board = buildBoard(total);
+    if (!G.board.length) return toast('لا توجد أسئلة بهذه الإعدادات');
+    persist(); show('game'); renderBoard();
+  } else {
+    const qs = pickSequence(total);
+    if (!qs.length) return toast('لا توجد أسئلة بهذه الإعدادات');
+    G.qs = qs.map(q => q.id); G.qid = G.qs[0];
+    newOptions(); persist(); show('game'); renderQ();
+  }
+}
+
+function newOptions() {
+  const q = curQ();
+  G.opts = shuffle([q.a, ...q.w]); G.gone = []; G.answered = false; G.pick = null; G.stolen = null;
+  G.shown = q.clues ? 1 : 0;
+}
+// نقاط السؤال الحالي (مع مكافأة التلميحات غير المكشوفة)
+function qPoints(q) { return q.clues ? q.d + Math.max(0, q.clues.length - G.shown) : q.d; }
+
+/* ---------- لوحة الأسئلة ---------- */
+function renderBoard() {
+  stopTimer();
+  G.qid = null; persist();
+  $('#board').classList.remove('hidden'); $('#qview').classList.add('hidden');
+  renderScore();
+  const left = G.board.reduce((a, r) => a + r.cells.filter(c => !c.used).length, 0);
+  const all = G.board.reduce((a, r) => a + r.cells.length, 0);
+  $('.progress').textContent = `تمّ ${all - left} من ${all}`;
+  if (!left) return endGame();
+  const t = curTeam();
+  $('#turn').innerHTML = `دور <span style="--c:${t.color}">${esc(t.name)}</span> — اختر سؤالاً`;
+  const b = $('#board'); b.innerHTML = '';
+  G.board.forEach((row, r) => {
+    const c = CATS[row.cat];
+    const div = el('div', 'brow', `<div class="bt">${c.icon} ${c.name}</div>`);
+    div.style.setProperty('--c', c.color);
+    const cells = el('div', 'cells');
+    row.cells.forEach((cell, k) => {
+      const btn = el('button', `cell d${cell.d}${cell.used ? ' used ' + (cell.by != null ? 'ok' : 'bad') : ''}`, String(cell.d));
+      if (cell.used && cell.by != null) btn.style.setProperty('--tc', G.teams[cell.by].color);
+      btn.title = DIFF_NAME[cell.d];
+      if (!cell.used) btn.onclick = () => openCell(r, k);
+      cells.appendChild(btn);
+    });
+    div.appendChild(cells); b.appendChild(div);
+  });
+  b.appendChild(el('div', 'board-legend', '1 سهل · 2 متوسط · 3 صعب · 4 صعب جداً'));
+}
+
+function openCell(r, k) {
+  const cell = G.board[r].cells[k];
+  if (!qById(cell.id)) { cell.used = true; persist(); return renderBoard(); }
+  G.cell = [r, k]; G.qid = cell.id; newOptions(); persist(); renderQ();
+}
 
 /* ---------- عرض السؤال ---------- */
 let timerH = null;
 function renderScore(bumpIdx) {
   const sb = $('#scoreboard'); sb.innerHTML = '';
-  const cur = G.idx % G.teams.length;
+  const cur = curTeamIdx();
   G.teams.forEach((t, i) => {
     const d = el('div', 'sc' + (i === cur ? ' cur' : '') + (i === bumpIdx ? ' bump' : ''),
-      `<div class="n">${esc(t.name)}</div><div class="s">${toAr(t.score)}</div>${G.settings.fifty ? `<div class="f">${t.fifty ? '½ متاحة' : '&nbsp;'}</div>` : ''}`);
+      `<div class="n">${esc(t.name)}</div><div class="s">${t.score}</div>${G.settings.fifty ? `<div class="f">${t.fifty ? '½ متاحة' : '&nbsp;'}</div>` : ''}`);
     d.style.setProperty('--c', t.color); d.style.borderTopColor = t.color;
     sb.appendChild(d);
   });
 }
 
 function renderQ() {
-  const q = qById(G.qs[G.idx]);
-  if (!q) { G.qs.splice(G.idx, 1); if (G.idx >= G.qs.length) return endGame(); newOptions(); return renderQ(); }
-  const team = G.teams[G.idx % G.teams.length];
-  $('#q-num').textContent = toAr(G.idx + 1); $('#q-total').textContent = toAr(G.qs.length);
+  const q = curQ();
+  if (!q) return skipMissing();
+  $('#board').classList.add('hidden'); $('#qview').classList.remove('hidden');
+  const team = curTeam();
+  if (G.mode === 1) {
+    const all = G.board.reduce((a, r) => a + r.cells.length, 0);
+    const done = G.board.reduce((a, r) => a + r.cells.filter(c => c.used).length, 0);
+    $('.progress').textContent = `سؤال ${done + 1} من ${all}`;
+  } else $('.progress').textContent = `سؤال ${G.idx + 1} من ${G.qs.length}`;
   renderScore();
   $('#turn').innerHTML = `دور <span style="--c:${team.color}">${esc(team.name)}</span>`;
   const c = CATS[q.cat];
   $('#q-cat').textContent = c.icon + ' ' + c.name; $('#q-cat').style.borderColor = c.color;
-  $('#q-diff').textContent = `${DIFF_NAME[q.d]} (${q.d === 1 ? 'نقطة' : q.d === 2 ? 'نقطتان' : '3 نقاط'})`;
-  const qt = $('#q-text'); qt.textContent = q.q; qt.classList.toggle('poem', q.q.includes('\n'));
+
+  const qt = $('#q-text'); const cl = $('#clues');
+  if (q.clues) {
+    qt.textContent = 'من أنا؟'; qt.classList.remove('poem');
+    renderClues(q);
+  } else {
+    cl.classList.add('hidden');
+    qt.textContent = q.q; qt.classList.toggle('poem', q.q.includes('\n'));
+  }
+  updateDiffBadge(q);
 
   const box = $('#options'); box.innerHTML = ''; box.classList.remove('locked');
   G.opts.forEach((o, i) => {
@@ -211,6 +301,7 @@ function renderQ() {
 
   $('#btn-fifty').classList.toggle('hidden', !G.settings.fifty);
   $('#btn-fifty').disabled = !team.fifty || G.answered;
+  $('#btn-clue').classList.toggle('hidden', !(q.clues && G.shown < q.clues.length));
   $('#btn-swap').disabled = G.answered;
   $('#tools').classList.toggle('hidden', G.answered);
   $('#after').classList.add('hidden');
@@ -219,13 +310,38 @@ function renderQ() {
   startTimer();
 }
 
+function updateDiffBadge(q) {
+  $('#q-diff').textContent = q.clues ? `${DIFF_NAME[q.d]} · الآن ${ptsWord(qPoints(q))}` : `${DIFF_NAME[q.d]} (${ptsWord(q.d)})`;
+}
+
+function renderClues(q) {
+  const cl = $('#clues'); cl.innerHTML = ''; cl.classList.remove('hidden');
+  q.clues.forEach((t, i) => {
+    if (i < G.shown || G.answered) cl.appendChild(el('div', 'clue', `<b>${i + 1}</b>${esc(t)}`));
+    else cl.appendChild(el('div', 'clue locked', `<b>${i + 1}</b>تلميح مخفي`));
+  });
+}
+
+function moreClue() {
+  const q = curQ(); if (!q || !q.clues || G.answered || G.shown >= q.clues.length) return;
+  G.shown++; persist(); beep('clue');
+  renderClues(q); updateDiffBadge(q);
+  $('#btn-clue').classList.toggle('hidden', G.shown >= q.clues.length);
+}
+
+function skipMissing() { // سؤال حُذف من الملفات بعد بدء اللعبة
+  if (G.mode === 1) { const [r, k] = G.cell || [0, 0]; if (G.board[r]) G.board[r].cells[k].used = true; return renderBoard(); }
+  G.qs.splice(G.idx, 1); if (G.idx >= G.qs.length) return endGame();
+  G.qid = G.qs[G.idx]; newOptions(); renderQ();
+}
+
 function startTimer() {
   stopTimer();
   const T = G.settings.timer; const tw = $('#timer');
   if (!T) { tw.classList.add('hidden'); return; }
   tw.classList.remove('hidden', 'warn');
   let left = T; const bar = $('#timer-bar'); const num = $('#timer-num');
-  const draw = () => { num.textContent = toAr(left); bar.style.strokeDashoffset = 100.5 * (1 - left / T); tw.classList.toggle('warn', left <= 5); };
+  const draw = () => { num.textContent = left; bar.style.strokeDashoffset = 100.5 * (1 - left / T); tw.classList.toggle('warn', left <= 5); };
   bar.style.transition = 'none'; draw(); void bar.offsetWidth; bar.style.transition = '';
   timerH = setInterval(() => {
     left--; draw();
@@ -238,17 +354,19 @@ function stopTimer() { clearInterval(timerH); timerH = null; }
 function answer(i) {
   if (G.answered) return;
   stopTimer();
-  const q = qById(G.qs[G.idx]);
-  const team = G.teams[G.idx % G.teams.length];
+  const q = curQ(); const ti = curTeamIdx(); const team = G.teams[ti];
   G.answered = true; G.pick = i;
   const ok = i >= 0 && G.opts[i] === q.a;
-  if (ok) { team.score += q.d; team.ok++; beep('ok'); } else { team.bad++; beep('bad'); }
+  G.earned = ok ? qPoints(q) : 0;
+  if (ok) { team.score += G.earned; team.ok++; beep('ok'); } else { team.bad++; beep('bad'); }
+  if (G.mode === 1) { const [r, k] = G.cell; const cell = G.board[r].cells[k]; cell.used = true; cell.by = ok ? ti : null; }
   markUsed(q.id); persist();
-  reveal(false, ok ? G.idx % G.teams.length : null);
+  reveal(false, ok ? ti : null);
 }
 
 function reveal(restoring, bumpIdx) {
-  const q = qById(G.qs[G.idx]);
+  const q = curQ();
+  if (q.clues) renderClues(q);
   const box = $('#options'); box.classList.add('locked');
   [...box.children].forEach((b, j) => {
     b.disabled = true;
@@ -258,35 +376,41 @@ function reveal(restoring, bumpIdx) {
   const ok = G.pick >= 0 && G.opts[G.pick] === q.a;
   const v = $('#verdict');
   v.className = 'verdict ' + (ok ? 'ok' : 'bad');
-  v.textContent = ok ? `صح! +${toAr(q.d)}` : (G.pick === -1 ? 'انتهى الوقت ⏱' : 'خطأ');
+  v.textContent = ok ? `صح! +${G.earned}` : (G.pick === -1 ? 'انتهى الوقت ⏱' : 'خطأ');
   const st = $('#steal');
   const canSteal = !ok && G.settings.steal && G.teams.length > 1 && G.stolen == null;
   st.classList.toggle('hidden', !canSteal);
   if (canSteal) {
     const sb = $('#steal-btns'); sb.innerHTML = '';
-    const pts = Math.ceil(q.d / 2);
+    const pts = Math.ceil(qPoints(q) / 2);
     G.teams.forEach((t, k) => {
-      if (k === G.idx % G.teams.length) return;
-      const b = el('button', 'btn sm', `${esc(t.name)} +${toAr(pts)}`); b.style.setProperty('--c', t.color);
-      b.onclick = () => { t.score += pts; G.stolen = k; persist(); beep('ok'); st.classList.add('hidden'); renderScore(k); toast(`سرقة ناجحة لـ ${t.name}`); };
+      if (k === curTeamIdx()) return;
+      const b = el('button', 'btn sm', `${esc(t.name)} +${pts}`); b.style.setProperty('--c', t.color);
+      b.onclick = () => {
+        t.score += pts; t.ok++; G.stolen = k;
+        if (G.mode === 1) { const [r, c] = G.cell; G.board[r].cells[c].by = k; }
+        persist(); beep('ok'); st.classList.add('hidden'); renderScore(k); toast(`سرقة ناجحة لـ ${t.name}`);
+      };
       sb.appendChild(b);
     });
   }
   $('#tools').classList.add('hidden');
   $('#after').classList.remove('hidden');
-  $('#btn-next').textContent = G.idx + 1 >= G.qs.length ? 'النتيجة' : 'التالي';
+  const last = G.mode === 1 ? !G.board.some(r => r.cells.some(c => !c.used)) : G.idx + 1 >= G.qs.length;
+  $('#btn-next').textContent = last ? 'النتيجة' : (G.mode === 1 ? 'إلى اللوحة' : 'التالي');
   renderScore(restoring ? undefined : bumpIdx);
 }
 
 function next() {
+  if (G.mode === 1) { G.turn = (G.turn + 1) % G.teams.length; G.qid = null; persist(); return renderBoard(); }
   if (G.idx + 1 >= G.qs.length) return endGame();
-  G.idx++; newOptions(); persist(); renderQ();
+  G.idx++; G.qid = G.qs[G.idx]; newOptions(); persist(); renderQ();
 }
 
 function useFifty() {
-  const team = G.teams[G.idx % G.teams.length];
+  const team = curTeam();
   if (!team.fifty || G.answered) return;
-  const q = qById(G.qs[G.idx]);
+  const q = curQ();
   const wrong = G.opts.map((o, i) => o === q.a ? -1 : i).filter(i => i >= 0);
   G.gone = shuffle(wrong).slice(0, 2); team.fifty = false; persist();
   G.gone.forEach(i => $('#options').children[i].classList.add('gone'));
@@ -295,21 +419,23 @@ function useFifty() {
 
 function swapQ() {
   if (G.answered) return;
-  const cur = G.qs[G.idx];
-  const [rep] = pickQuestions(1, new Set(G.qs));
+  const q = curQ();
+  const inGame = new Set(G.mode === 1 ? G.board.flatMap(r => r.cells.map(c => c.id)) : G.qs);
+  const [rep] = pickFrom(q.cat, q.d, 1, inGame);
   if (!rep) return toast('لا يوجد بديل');
-  markUsed(cur); G.qs[G.idx] = rep.id; newOptions(); persist(); renderQ(); toast('تم تبديل السؤال');
+  markUsed(q.id);
+  if (G.mode === 1) { const [r, k] = G.cell; G.board[r].cells[k].id = rep.id; } else G.qs[G.idx] = rep.id;
+  G.qid = rep.id; newOptions(); persist(); renderQ(); toast('تم تبديل السؤال');
 }
 
 function reportQ() {
-  const q = qById(G.qs[G.idx]); if (!q) return;
+  const q = curQ(); if (!q) return;
   modal(`<h3>الإبلاغ عن السؤال</h3><p>${esc(q.q)}</p><p><small>الإجابة المعتمدة: ${esc(q.a)}</small></p><textarea class="copy" id="rep-note" placeholder="ملاحظتك (اختياري): ما الخطأ؟"></textarea>`,
     [{ t: 'حفظ', primary: true, f: () => {
       const reps = load(LS.reports, []);
       reps.push({ cat: CATS[q.cat].name, q: q.q, a: q.a, note: ($('#rep-note') || {}).value || '', at: new Date().toISOString().slice(0, 10) });
       save(LS.reports, reps); toast('تم الحفظ');
     } }, { t: 'إلغاء' }]);
-  setTimeout(() => { const n = $('#rep-note'); if (n) n.value = ''; }, 0);
 }
 
 /* ---------- النهاية ---------- */
@@ -317,16 +443,15 @@ function endGame() {
   stopTimer();
   const ranked = G.teams.map((t, i) => ({ ...t, i })).sort((a, b) => b.score - a.score);
   const top = ranked[0].score; const winners = ranked.filter(t => t.score === top);
-  $('#winner').textContent = G.teams.length === 1 ? `نتيجتك: ${toAr(top)}` :
+  $('#winner').textContent = G.teams.length === 1 ? `نتيجتك: ${top}` :
     winners.length > 1 ? 'تعادل! 🤝' : `🏆 الفائز: ${ranked[0].name}`;
   const rk = $('#ranking'); rk.innerHTML = '';
   const medals = ['🥇', '🥈', '🥉'];
   let place = 0, prev = null;
   ranked.forEach((t, k) => {
     if (t.score !== prev) place = k; prev = t.score;
-    const d = el('div', 'rk' + (t.score === top ? ' first' : ''),
-      `<div class="m">${medals[place] || toAr(place + 1)}</div><div class="nm">${esc(t.name)}<div class="dt">صح ${toAr(t.ok)} · خطأ ${toAr(t.bad)}</div></div><div class="pt" style="color:${t.color}">${toAr(t.score)}</div>`);
-    rk.appendChild(d);
+    rk.appendChild(el('div', 'rk' + (t.score === top ? ' first' : ''),
+      `<div class="m">${medals[place] || place + 1}</div><div class="nm">${esc(t.name)}<div class="dt">صح ${t.ok} · خطأ ${t.bad}</div></div><div class="pt" style="color:${t.color}">${t.score}</div>`));
   });
   localStorage.removeItem(LS.game);
   show('result'); beep('win'); confetti();
@@ -348,7 +473,7 @@ function showReports() {
   const reps = load(LS.reports, []);
   if (!reps.length) return modal('<h3>الأسئلة المُبلَّغ عنها</h3><p>لا يوجد بلاغات. أثناء اللعب اضغط «⚑ فيه خطأ» على أي سؤال تشك فيه.</p>');
   const txt = reps.map((r, i) => `${i + 1}) [${r.cat}] ${r.q}\nالإجابة المعتمدة: ${r.a}${r.note ? '\nالملاحظة: ' + r.note : ''}`).join('\n\n');
-  modal(`<h3>الأسئلة المُبلَّغ عنها (${toAr(reps.length)})</h3>` +
+  modal(`<h3>الأسئلة المُبلَّغ عنها (${reps.length})</h3>` +
     reps.map(r => `<div class="rep">[${esc(r.cat)}] ${esc(r.q)}<br><small>المعتمد: ${esc(r.a)}${r.note ? ' — ' + esc(r.note) : ''}</small></div>`).join('') +
     `<p><small>انسخ القائمة وأرسلها لتصحيحها:</small></p><textarea class="copy" readonly>${esc(txt)}</textarea>`,
     [{ t: 'نسخ', primary: true, f: () => { navigator.clipboard?.writeText(txt).then(() => toast('تم النسخ')); } },
@@ -357,27 +482,33 @@ function showReports() {
 }
 
 /* ---------- الربط ---------- */
+function resumeView() { show('game'); if (G.mode === 1 && !G.qid) renderBoard(); else renderQ(); }
 function bind() {
   document.querySelectorAll('.ver').forEach(e => e.textContent = VERSION);
-  $('#btn-add-team').onclick = () => { if (S.teams.length < 8) { S.teams.push(`الفريق ${['الأول','الثاني','الثالث','الرابع','الخامس','السادس','السابع','الثامن'][S.teams.length]}`); saveSettings(); renderHome(); } };
+  const ORD = ['الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس', 'السابع', 'الثامن'];
+  $('#btn-add-team').onclick = () => { if (S.teams.length < 8) { S.teams.push(`الفريق ${ORD[S.teams.length]}`); saveSettings(); renderHome(); } };
   $('#btn-remove-team').onclick = () => { if (S.teams.length > 1) { S.teams.pop(); saveSettings(); renderHome(); } };
   $('#btn-start').onclick = () => { if (load(LS.game, null)) modal('<p>عندك مسابقة لم تكتمل. تبدأ واحدة جديدة؟</p>', [{ t: 'جديدة', primary: true, f: startGame }, { t: 'إلغاء' }]); else startGame(); };
-  $('#btn-resume').onclick = () => { G = load(LS.game, null); if (!G) return renderHome(); show('game'); renderQ(); };
+  $('#btn-resume').onclick = () => { G = load(LS.game, null); if (!G) return renderHome(); if (G.mode == null) G.mode = 0; resumeView(); };
   $('#btn-discard').onclick = () => { localStorage.removeItem(LS.game); renderHome(); };
   $('#btn-next').onclick = next;
   $('#btn-fifty').onclick = useFifty;
+  $('#btn-clue').onclick = moreClue;
   $('#btn-swap').onclick = swapQ;
   $('#btn-report').onclick = reportQ;
-  $('#btn-again').onclick = () => { startGame(); };
+  $('#btn-again').onclick = startGame;
   $('#btn-home').onclick = () => { show('home'); renderHome(); };
   $('#btn-reports').onclick = showReports;
   $('#btn-reset-used').onclick = () => modal('<p>تصفير سجل الأسئلة المستعملة؟ ستعود كل الأسئلة متاحة.</p>', [{ t: 'نعم', primary: true, f: () => { save(LS.used, []); renderHome(); toast('تم التصفير'); } }, { t: 'إلغاء' }]);
-  $('#btn-menu').onclick = () => modal('<h3>القائمة</h3>', [
-    { t: 'إنهاء وعرض النتيجة', primary: true, f: endGame },
-    { t: 'الخروج للرئيسية (تحفظ المسابقة)', f: () => { stopTimer(); persist(); show('home'); renderHome(); } },
-    { t: 'متابعة' , f: () => { if (!G.answered) startTimer(); } },
-  ]);
-  $('#btn-menu').addEventListener('click', stopTimer, true);
+  $('#btn-menu').onclick = () => {
+    stopTimer();
+    const inQ = !!G.qid && !G.answered;
+    modal('<h3>القائمة</h3>', [
+      { t: 'إنهاء وعرض النتيجة', primary: true, f: endGame },
+      { t: 'الخروج للرئيسية (تُحفظ المسابقة)', f: () => { persist(); show('home'); renderHome(); } },
+      { t: 'متابعة', f: () => { if (inQ) startTimer(); } },
+    ]);
+  };
 }
 
 (async function init() {

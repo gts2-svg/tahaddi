@@ -51,9 +51,16 @@
     <div class="card">
       <h2>الإعدادات</h2>
       <div class="setting">
+        <label>طريقة اللعب</label>
+        <div class="seg" data-key="mode">
+          <button data-v="0">بالتتابع</button><button data-v="1">لوحة الأسئلة</button>
+        </div>
+        <p class="hint left" id="mode-hint"></p>
+      </div>
+      <div class="setting">
         <label>مستوى الأسئلة</label>
         <div class="seg" data-key="difficulty">
-          <button data-v="0">مختلط</button><button data-v="1">سهل</button><button data-v="2">متوسط</button><button data-v="3">صعب</button>
+          <button data-v="0">مختلط</button><button data-v="1">سهل</button><button data-v="2">متوسط</button><button data-v="3">صعب</button><button data-v="4">صعب جداً</button>
         </div>
       </div>
       <div class="setting">
@@ -80,7 +87,7 @@
         <label>الأصوات</label>
         <input type="checkbox" class="switch" data-key="sound">
       </div>
-      <p class="hint">النقاط: سهل 1 — متوسط 2 — صعب 3</p>
+      <p class="hint">النقاط: سهل 1 — متوسط 2 — صعب 3 — صعب جداً 4<br>«من أنا؟»: نقطة إضافية عن كل تلميح لم يُكشف</p>
     </div>
 
     <button class="btn primary big" id="btn-start">ابدأ المسابقة</button>
@@ -104,6 +111,9 @@
 
     <div class="turn" id="turn"></div>
 
+    <div id="board" class="board hidden"></div>
+
+    <div id="qview">
     <div class="qcard" id="qcard">
       <div class="qmeta">
         <span class="badge" id="q-cat"></span>
@@ -111,11 +121,13 @@
         <div class="timer hidden" id="timer"><svg viewBox="0 0 36 36"><circle class="track" cx="18" cy="18" r="16"/><circle class="bar" id="timer-bar" cx="18" cy="18" r="16"/></svg><span id="timer-num"></span></div>
       </div>
       <div class="question" id="q-text"></div>
+      <div class="clues hidden" id="clues"></div>
       <div class="options" id="options"></div>
     </div>
 
     <div class="tools" id="tools">
       <button class="btn ghost sm" id="btn-fifty">½ حذف إجابتين</button>
+      <button class="btn ghost sm hidden" id="btn-clue">تلميح آخر (−1)</button>
       <button class="btn ghost sm" id="btn-swap">تبديل السؤال</button>
     </div>
 
@@ -129,6 +141,7 @@
         <button class="btn primary" id="btn-next">التالي</button>
         <button class="btn ghost sm" id="btn-report">⚑ فيه خطأ</button>
       </div>
+    </div>
     </div>
   </section>
 
