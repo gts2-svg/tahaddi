@@ -1,4 +1,4 @@
-const CACHE = 'tahaddi-v1.1.0';
+const CACHE = 'tahaddi-v1.1.1';
 const CORE = ['./', 'index.html', 'style.css', 'app.js', 'manifest.json',
   'data/religion.txt', 'data/seerah.txt', 'data/history.txt', 'data/geography.txt', 'data/poetry.txt',
   'data/arabic.txt', 'data/saudi.txt', 'data/whoami.txt',
