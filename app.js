@@ -1,6 +1,6 @@
 /* تحدّي — مسابقة ثقافية للفرق */
 'use strict';
-const VERSION = '1.1.1';
+const VERSION = '1.2.0';
 
 const CATS = {
   religion:  { name: 'الدين',            icon: '🕌', file: 'data/religion.txt',  color: '#2fb47c' },
@@ -27,6 +27,11 @@ const ptsWord = n => n === 1 ? 'نقطة' : n === 2 ? 'نقطتان' : `${n} ن�
 function hash(s) { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) | 0; return (h >>> 0).toString(36); }
 
 /* ---------- البيانات ---------- */
+// تطبيع الإجابة لمنع تكرار نفس المعلومة في المسابقة الواحدة
+function normAns(s) {
+  return String(s).replace(/[\u064B-\u0652\u0670\u0640]/g, '').replace(/[«»"()]/g, '')
+    .replace(/[أإآ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه').replace(/^ال/, '').replace(/\s+/g, ' ').trim();
+}
 let BANK = {}; // cat -> [{id,cat,d,q,clues,a,w}]
 
 function parseBank(cat, text) {
@@ -39,7 +44,8 @@ function parseBank(cat, text) {
     const d = parseInt(p[0], 10);
     if (![1, 2, 3, 4].includes(d)) return;
     const q = p[1].replace(/\\n/g, '\n');
-    const item = { id: cat + ':' + hash(q + '|' + p[2]), cat, d, q, a: p[2], w: p.slice(3, 6) };
+    const legacy = cat + ':' + hash(q + '|' + p[2]);
+    const item = { id: p[6] ? cat + ':' + p[6] : legacy, legacy, cat, d, q, a: p[2], w: p.slice(3, 6), key: normAns(p[2]) };
     if (CATS[cat].clues) item.clues = q.split(';;').map(x => x.trim()).filter(Boolean);
     out.push(item);
   });
@@ -51,6 +57,14 @@ async function loadBank() {
     try { const r = await fetch(c.file + '?v=' + VERSION); BANK[k] = r.ok ? parseBank(k, await r.text()) : []; }
     catch { BANK[k] = []; }
   }));
+  migrateUsed();
+}
+// ترحيل سجل المستعمل من المعرفات القديمة (المأخوذة من النص) إلى المعرفات الثابتة
+function migrateUsed() {
+  const used = load(LS.used, []); if (!used.length) return;
+  const map = {}; Object.values(BANK).flat().forEach(q => { map[q.legacy] = q.id; map[q.id] = q.id; });
+  const out = new Set(used.map(id => map[id] || id));
+  save(LS.used, [...out]);
 }
 const qById = id => { const c = id.split(':')[0]; return (BANK[c] || []).find(q => q.id === id); };
 
@@ -111,10 +125,10 @@ function renderHome() {
   const cl = $('#cats-list'); cl.innerHTML = '';
   const used = new Set(load(LS.used, []));
   Object.entries(CATS).forEach(([k, c]) => {
-    const all = BANK[k] || [];
+    const all = (BANK[k] || []).filter(q => !S.difficulty || q.d === S.difficulty);
     const left = all.filter(q => !used.has(q.id)).length;
     const d = el('div', 'cat' + (S.cats.includes(k) ? ' on' : ''),
-      `<div class="ic">${c.icon}</div><div class="nm">${c.name}</div><div class="ct">${left} متبقٍ من ${all.length}</div>`);
+      `<div class="ic">${c.icon}</div><div class="nm">${c.name}</div><div class="ct">${left} متبقٍ من ${all.length}${S.difficulty ? ' · ' + DIFF_NAME[S.difficulty] : ''}</div>`);
     d.style.setProperty('--c', c.color);
     d.onclick = () => {
       if (S.cats.includes(k)) { if (S.cats.length > 1) S.cats = S.cats.filter(x => x !== k); else return toast('اختر قسماً واحداً على الأقل'); }
@@ -145,27 +159,33 @@ function renderHome() {
 }
 
 /* ---------- اختيار الأسئلة ---------- */
-// يختار n سؤالاً من قسم ومستوى محددين مع تجنب المستعمل، ويعيد التدوير عند النفاد
-function pickFrom(cat, d, n, exclude) {
+// الأسئلة لا تتكرر أبداً: لا يُعاد سؤال مستعمل إلا بعد «تصفير» يدوي
+// ولا تجتمع في المسابقة الواحدة إجابتان متماثلتان (keys)
+function availPool(cat, d, excludeIds, keys) {
   const used = new Set(load(LS.used, []));
-  const base = (BANK[cat] || []).filter(q => (!d || q.d === d) && !exclude.has(q.id));
-  let pool = shuffle(base.filter(q => !used.has(q.id)));
-  if (pool.length < n) {
-    const ids = new Set(base.map(q => q.id));
-    save(LS.used, [...used].filter(id => !ids.has(id)));
-    const extra = shuffle(base.filter(q => used.has(q.id)));
-    pool = pool.concat(extra);
-  }
-  return pool.slice(0, n);
+  return shuffle((BANK[cat] || []).filter(q => (!d || q.d === d) && !used.has(q.id) && !excludeIds.has(q.id) && !keys.has(q.key)));
+}
+function takeFrom(pool, keys) {
+  while (pool.length) { const q = pool.pop(); if (!keys.has(q.key)) { keys.add(q.key); return q; } }
+  return null;
+}
+function pickFrom(cat, d, n, excludeIds, keys = new Set()) {
+  const pool = availPool(cat, d, excludeIds, keys); const out = [];
+  while (out.length < n) { const q = takeFrom(pool, keys); if (!q) break; out.push(q); }
+  return out;
 }
 
 function pickSequence(n) {
-  const levels = S.difficulty ? [S.difficulty] : [0];
-  const pools = {}; const exclude = new Set();
-  S.cats.forEach(c => { pools[c] = pickFrom(c, levels[0], n, exclude); });
-  const out = []; const keys = shuffle([...S.cats]);
-  while (out.length < n && keys.some(k => pools[k].length)) {
-    for (const k of keys) { if (out.length >= n) break; if (pools[k].length) out.push(pools[k].pop()); }
+  const d = S.difficulty || 0; const keys = new Set(); const none = new Set();
+  const pools = {}; S.cats.forEach(c => { pools[c] = availPool(c, d, none, keys); });
+  const out = []; const order = shuffle([...S.cats]);
+  let progress = true;
+  while (out.length < n && progress) {
+    progress = false;
+    for (const c of order) {
+      if (out.length >= n) break;
+      const q = takeFrom(pools[c], keys); if (q) { out.push(q); progress = true; }
+    }
   }
   return out;
 }
@@ -173,13 +193,25 @@ function pickSequence(n) {
 function buildBoard(total) {
   const levels = S.difficulty ? [S.difficulty] : [1, 2, 3, 4];
   const per = Math.max(1, Math.ceil(total / (S.cats.length * levels.length)));
-  const rows = [];
+  const rows = []; const keys = new Set(); const none = new Set();
   S.cats.forEach(c => {
     const cells = [];
-    levels.forEach(d => pickFrom(c, d, per, new Set()).forEach(q => cells.push({ id: q.id, d, used: false })));
+    levels.forEach(d => pickFrom(c, d, per, none, keys).forEach(q => cells.push({ id: q.id, d, used: false })));
     if (cells.length) rows.push({ cat: c, cells });
   });
   return rows;
+}
+function availableCount() {
+  const used = new Set(load(LS.used, []));
+  return S.cats.reduce((a, c) => a + (BANK[c] || []).filter(q => (!S.difficulty || q.d === S.difficulty) && !used.has(q.id)).length, 0);
+}
+function exhaustedModal() {
+  const lvl = S.difficulty ? ` في مستوى «${DIFF_NAME[S.difficulty]}»` : '';
+  modal(`<h3>انتهت الأسئلة</h3><p>لعبتم كل الأسئلة المتاحة${lvl} في الأقسام المختارة، ولن يتكرر أي سؤال إلا إذا صفّرتم السجل.</p><p>اختاروا أقساماً أو مستوى آخر، أو صفّروا سجل هذه الأقسام.</p>`,
+    [{ t: 'تصفير هذه الأقسام', primary: true, f: () => {
+      const ids = new Set(S.cats.flatMap(c => (BANK[c] || []).filter(q => !S.difficulty || q.d === S.difficulty).map(q => q.id)));
+      save(LS.used, load(LS.used, []).filter(id => !ids.has(id))); renderHome(); toast('تم التصفير');
+    } }, { t: 'إغلاق' }]);
 }
 
 /* ---------- حالة اللعبة ---------- */
@@ -199,11 +231,12 @@ function startGame() {
   };
   if (G.mode === 1) {
     G.board = buildBoard(total);
-    if (!G.board.length) return toast('لا توجد أسئلة بهذه الإعدادات');
+    if (!G.board.length) { G = null; return exhaustedModal(); }
     persist(); show('game'); renderBoard();
   } else {
     const qs = pickSequence(total);
-    if (!qs.length) return toast('لا توجد أسئلة بهذه الإعدادات');
+    if (!qs.length) { G = null; return exhaustedModal(); }
+    if (qs.length < total) toast(`بقي ${qs.length} سؤالاً فقط بهذه الإعدادات`);
     G.qs = qs.map(q => q.id); G.qid = G.qs[0];
     newOptions(); persist(); show('game'); renderQ();
   }
@@ -421,7 +454,8 @@ function swapQ() {
   if (G.answered) return;
   const q = curQ();
   const inGame = new Set(G.mode === 1 ? G.board.flatMap(r => r.cells.map(c => c.id)) : G.qs);
-  const [rep] = pickFrom(q.cat, q.d, 1, inGame);
+  const keys = new Set([...inGame].map(id => (qById(id) || {}).key).filter(Boolean));
+  const [rep] = pickFrom(q.cat, q.d, 1, inGame, keys);
   if (!rep) return toast('لا يوجد بديل');
   markUsed(q.id);
   if (G.mode === 1) { const [r, k] = G.cell; G.board[r].cells[k].id = rep.id; } else G.qs[G.idx] = rep.id;

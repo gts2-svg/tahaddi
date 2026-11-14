@@ -21,7 +21,8 @@ for f in sorted(glob.glob(os.path.join(os.path.dirname(__file__), '..', 'data', 
         l = l.strip()
         if not l or l.startswith('#'): continue
         p = [x.strip() for x in l.split('|')]
-        if len(p) != 6: continue
+        if len(p) < 6: continue
+        p = p[:6]
         d, q, a, ws = p[0], p[1], p[2], p[3:]
         if cat == 'whoami': q = q.split(';;')[0]   # التلميح الأول فقط
         if 'أكمل' in q: continue
