@@ -1,24 +1,93 @@
 #!/usr/bin/env python3
-"""كشف الأسئلة المكررة بالمعنى: نفس الإجابة وتقارب كبير في كلمات السؤال (خارج «من أنا؟»)."""
-import glob, re, itertools, os, collections
-D = re.compile(r'[ً-ْٰـ]')
-STOP = set('من ما في على عن الى اي التي الذي هو هي كان ذلك هذا هذه مع بين قال بن ابن ابو ابي عبد الله سوره كتاب صاحب اول اخر اسم معني ثم او لا لم كل بعد قبل عند يوم القائل البيت وزن الشهير المشهور تقع يقع دوله مدينه'.split())
-def norm(s):
-    s = D.sub('', s); s = re.sub(r'[«»"().,:؟?!،;\-]|\\n', ' ', s)
-    return s.replace('أ','ا').replace('إ','ا').replace('آ','ا').replace('ى','ي').replace('ة','ه')
-def toks(s): return {w[2:] if w.startswith('ال') and len(w) > 4 else w for w in norm(s).split() if len(w) >= 3} - STOP
-items = []
-base = os.path.join(os.path.dirname(__file__), '..', 'data')
-for f in glob.glob(os.path.join(base, '*.txt')):
-    c = os.path.basename(f)[:-4]
-    if c == 'whoami': continue
-    for i, l in enumerate(open(f, encoding='utf8'), 1):
-        p = l.strip().split('|')
-        if len(p) >= 6 and p[0] in '1234': items.append((c, i, p[1], norm(p[2]).strip(), toks(p[1])))
-by = collections.defaultdict(list)
-for it in items: by[it[3]].append(it)
-for a, lst in by.items():
-    for x, y in itertools.combinations(lst, 2):
-        if not x[4] or not y[4]: continue
-        j = len(x[4] & y[4]) / min(len(x[4]), len(y[4]))
-        if j >= 0.5: print(f'{x[0]}:{x[1]} | {y[0]}:{y[1]} | {a} | {x[2][:60]} || {y[2][:60]}')
+"""كشف الأسئلة المكررة بالمعنى عبر كل الملفات (ومنها تلميحات «من أنا؟»)، بتطبيع عربي وتجذير خفيف.
+
+أنواع المرشحات:
+  same     الإجابة نفسها (بعد التطبيع) وكلمات السؤالين متقاربة: المعلومة نفسها مرتين
+  reverse  سؤالان معكوسان: إجابة كلٍّ منهما في نص الآخر (عاصمة فرنسا؟ باريس / باريس عاصمة أي دولة؟ فرنسا)
+  reveals  نص سؤال يذكر إجابة سؤال آخر وموضوعهما واحد، فيكشف أحدهما الآخر إذا اجتمعا
+  text     نصان متطابقان تقريباً بإجابتين مختلفتين
+
+الأزواج التي يجمعها مفتاح معلومة (الحقل الثامن) مُعالجة أصلاً في التطبيق، فلا تظهر إلا مع --all.
+
+الاستعمال: python3 tools/dupes.py [--all] [--type same,reverse] [--cat poetry] [--min 0.5]
+"""
+import collections, itertools, os, sys
+sys.dont_write_bytecode = True
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import tahaddi_data as td
+
+EXTRA_STOP = {td.stem(w) for w in 'الذي التي قوله تعالى ورد قال النبي الشاعر الصحابي يسمي يسمى سمي اسم اشهر اكبر اصغر اطول اول اخر اي ما من'.split()}
+
+
+def main():
+    args = sys.argv[1:]
+    def opt(name, default=None):
+        if name in args:
+            i = args.index(name)
+            return args[i + 1] if i + 1 < len(args) else default
+        return default
+    show_all = '--all' in args
+    types = set((opt('--type') or 'same,reverse,reveals,text').split(','))
+    cats = opt('--cat'); cats = cats.split(',') if cats else None
+    thr = float(opt('--min') or 0.5)
+
+    qs = td.read_questions()
+    items = []
+    for q in qs:
+        st = td.content_stems(q.stem_text) - EXTRA_STOP
+        ans = td.norm_answer(q.a)
+        ast = td.content_stems(q.a) - EXTRA_STOP
+        items.append((q, st, ans, ast, set(q.keys)))
+
+    # فهرس مقلوب: الجذع ← الأسئلة، والإجابة ← الأسئلة
+    by_stem = collections.defaultdict(set); by_ans = collections.defaultdict(set)
+    for i, (q, st, ans, ast, _) in enumerate(items):
+        for s in st | ast: by_stem[s].add(i)
+        by_ans[ans].add(i)
+    cand = set()
+    for ids in by_ans.values():
+        if len(ids) < 400: cand.update(itertools.combinations(sorted(ids), 2))
+    for s, ids in by_stem.items():
+        if len(ids) <= 60: cand.update(itertools.combinations(sorted(ids), 2))
+
+    out = []
+    for i, j in cand:
+        a, b = items[i], items[j]
+        qa, sa, ansa, asa, ka = a
+        qb, sb, ansb, asb, kb = b
+        if cats and qa.cat not in cats and qb.cat not in cats: continue
+        keyed = bool(ka & kb)
+        if keyed and not show_all: continue
+        found = None
+        if sa and sb:
+            ov = len(sa & sb) / min(len(sa), len(sb))
+            jac = len(sa & sb) / len(sa | sb)
+        else:
+            ov = jac = 0
+        common = len(sa & sb)
+        if 'same' in types and ansa == ansb and ansa and ov >= thr and common >= 2:
+            found = ('same', f'الإجابة نفسها «{qa.a}»، وتقارب {ov:.0%}')
+        elif 'reverse' in types and asa and asb and asa <= sb and asb <= sa:
+            found = ('reverse', f'معكوسان: «{qa.a}» ↔ «{qb.a}»')
+        elif 'text' in types and jac >= 0.8 and len(sa | sb) >= 3 and ansa != ansb:
+            found = ('text', f'نصان متشابهان جداً ({jac:.0%}) بإجابتين مختلفتين: قد يكشف أحدهما الآخر في المسابقة نفسها')
+        elif 'reveals' in types:
+            for x, y in ((a, b), (b, a)):
+                qx, sx, ansx, asx, _ = x; qy, sy, ansy, asy, _ = y
+                rest_x = sx - asy; rest_y = sy - asy
+                if asy and asy <= sx and len(rest_x & rest_y) >= 2 and len(rest_x & rest_y) / min(len(rest_x), len(rest_y)) >= 0.5:
+                    found = ('reveals', f'نص {qx.ref()} يذكر «{qy.a}» إجابة {qy.ref()}')
+                    break
+        if found:
+            out.append((found[0], qa, qb, found[1] + (' [مربوطان بمفتاح]' if keyed else '')))
+
+    names = {'same': 'المعلومة نفسها', 'reverse': 'معكوس', 'reveals': 'يكشف', 'text': 'نص'}
+    order = {'same': 0, 'reverse': 1, 'reveals': 2, 'text': 3}
+    for k, qa, qb, msg in sorted(out, key=lambda x: (order[x[0]], x[1].cat, x[1].line)):
+        print(f'[{names[k]}] {qa.ref()} | {qb.ref()} | {msg}\n    {qa.raw[:110]}\n    {qb.raw[:110]}')
+    c = collections.Counter(k for k, *_ in out)
+    print('\nالمجموع:', len(out), ' '.join(f'{names[k]}={v}' for k, v in c.items()), file=sys.stderr)
+
+
+if __name__ == '__main__':
+    main()

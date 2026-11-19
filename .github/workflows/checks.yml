@@ -1,0 +1,30 @@
+name: checks
+
+# فحص خفيف على Linux (مجاني للمستودع العام): صيغة ملفات الأسئلة واختبارات منطق اللعب.
+# لا يمس تطبيق الآيفون ولا يشغّل بناء macOS.
+on:
+  push:
+    paths: ["data/**", "tools/**", "logic.js", "app.js", ".github/workflows/checks.yml"]
+  pull_request:
+    paths: ["data/**", "tools/**", "logic.js", "app.js", ".github/workflows/checks.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate question files
+        run: python3 tools/validate.py
+      - name: Logic tests
+        run: node --test tools/tests/*.test.js
+      - name: Audit (advisory, never fails)
+        run: python3 tools/audit.py --summary || true

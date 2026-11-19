@@ -6,6 +6,7 @@
 <title>تحدّي — مسابقة ثقافية</title>
 <meta name="theme-color" content="#0d1b2a">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="تحدّي">
 <link rel="manifest" href="manifest.json">
@@ -25,11 +26,17 @@
     </header>
 
     <div id="resume-box" class="card resume hidden">
-      <div>عندك مسابقة لم تكتمل</div>
+      <div class="resume-title">عندك مسابقة لم تكتمل</div>
+      <div id="resume-info"></div>
       <div class="row">
-        <button class="btn primary" id="btn-resume">متابعة</button>
-        <button class="btn ghost" id="btn-discard">تجاهل</button>
+        <button class="btn primary" id="btn-resume">متابعتها</button>
+        <button class="btn ghost" id="btn-discard">حذفها</button>
       </div>
+    </div>
+
+    <div id="load-error" class="card warn-card hidden">
+      <div id="load-error-text"></div>
+      <div class="row"><button class="btn ghost sm" id="btn-retry">أعد المحاولة</button></div>
     </div>
 
     <div class="card">
@@ -49,97 +56,127 @@
     <div class="card">
       <h2>الإعدادات</h2>
       <div class="setting">
-        <label>طريقة اللعب</label>
+        <div class="lbl">طريقة اللعب</div>
         <div class="seg" data-key="mode">
           <button data-v="0">بالتتابع</button><button data-v="1">لوحة الأسئلة</button>
         </div>
         <p class="hint left" id="mode-hint"></p>
       </div>
       <div class="setting">
-        <label>مستوى الأسئلة</label>
-        <div class="seg" data-key="difficulty">
-          <button data-v="0">مختلط</button><button data-v="1">سهل</button><button data-v="2">متوسط</button><button data-v="3">صعب</button><button data-v="4">صعب جداً</button>
+        <div class="lbl">مستوى الأسئلة</div>
+        <div class="seg" data-key="diffMode" data-type="str">
+          <button data-v="mixed">مختلط</button><button data-v="team">يختاره الفريق</button><button data-v="fixed">مستوى ثابت</button>
         </div>
+        <div class="seg sub" data-key="level" id="level-row">
+          <button data-v="1">سهل</button><button data-v="2">متوسط</button><button data-v="3">صعب</button><button data-v="4">صعب جداً</button>
+        </div>
+        <p class="hint left" id="diff-hint"></p>
       </div>
       <div class="setting">
-        <label>عدد الأسئلة لكل فريق</label>
+        <div class="lbl">عدد الأسئلة لكل فريق</div>
         <div class="seg" data-key="perTeam">
           <button data-v="5">5</button><button data-v="10">10</button><button data-v="15">15</button><button data-v="20">20</button><button data-v="30">30</button>
         </div>
       </div>
       <div class="setting">
-        <label>وقت السؤال</label>
+        <div class="lbl">وقت السؤال</div>
         <div class="seg" data-key="timer">
           <button data-v="0">بلا</button><button data-v="15">15ث</button><button data-v="30">30ث</button><button data-v="45">45ث</button><button data-v="60">60ث</button>
         </div>
       </div>
-      <div class="setting toggle-row">
-        <label>السرقة: إذا أخطأ الفريق يجاوب غيره بنصف النقاط</label>
+      <label class="setting toggle-row">
+        <span>السرقة: إذا أخطأ الفريق يحاول غيره بنصف النقاط قبل كشف الإجابة</span>
         <input type="checkbox" class="switch" data-key="steal">
-      </div>
-      <div class="setting toggle-row">
-        <label>وسيلة «حذف إجابتين» مرة لكل فريق</label>
+      </label>
+      <label class="setting toggle-row">
+        <span>وسيلة «حذف إجابتين» مرة لكل فريق</span>
         <input type="checkbox" class="switch" data-key="fifty">
-      </div>
-      <div class="setting toggle-row">
-        <label>الأصوات</label>
+      </label>
+      <label class="setting toggle-row">
+        <span>وضع المضيف: الخيارات مخفية ويجيب الفريق شفهياً</span>
+        <input type="checkbox" class="switch" data-key="host">
+      </label>
+      <p class="hint left hidden" id="host-hint">يقرأ المقدِّم السؤال ويجيب الفريق بلا خيارات. إن طلب الفريق الخيارات أخذ نصف النقاط. ثم يكشف المقدِّم الإجابة ويحكم: صح، أو سرقة لمن قال جوابه قبل الكشف، أو لم يُصب أحد. وفي «من أنا؟» تبقى الخيارات مخفية، فتصير لمكافأة التلميحات قيمة.</p>
+      <label class="setting toggle-row">
+        <span>الأصوات</span>
         <input type="checkbox" class="switch" data-key="sound">
-      </div>
-      <p class="hint">النقاط: سهل 1 — متوسط 2 — صعب 3 — صعب جداً 4<br>«من أنا؟»: نقطة إضافية عن كل تلميح لم يُكشف</p>
+      </label>
+      <p class="hint">النقاط: سهل 1 — متوسط 2 — صعب 3 — صعب جداً 4<br>«من أنا؟»: نقطة إضافية عن كل تلميح لم يُكشف<br>السرقة بنصف نقاط السؤال، و«½» معناها نصف نقطة (فالسؤال السهل يُسرق بنصف نقطة)<br>لكل فريق مرة واحدة: ✂ حذف إجابتين، و⇄ تبديل السؤال</p>
     </div>
 
-    <button class="btn primary big" id="btn-start">ابدأ المسابقة</button>
+    <button class="btn primary big" id="btn-start" disabled>جارٍ تحميل الأسئلة…</button>
 
     <div class="footer-links">
+      <button class="link" id="btn-history">نقل السجل بين الأجهزة</button>
       <button class="link" id="btn-reports">الأسئلة المُبلَّغ عنها <span id="reports-count"></span></button>
+      <button class="link" id="btn-diag">التشخيص <span id="diag-badge" class="bad-t"></span></button>
       <button class="link" id="btn-reset-used">تصفير الأسئلة المستعملة</button>
     </div>
     <div class="stats" id="stats"></div>
     <div class="version">الإصدار <span class="ver"></span></div>
+    <input type="file" id="import-file" accept=".json,application/json,text/plain" class="hidden">
   </section>
 
   <!-- ============ اللعب ============ -->
   <section id="screen-game" class="screen">
     <div class="topbar">
       <button class="icon-btn" id="btn-menu" aria-label="القائمة">☰</button>
-      <div class="progress">سؤال <span id="q-num">1</span> من <span id="q-total">10</span></div>
-      <div class="ver-mini">v<span class="ver"></span></div>
-    </div>
-    <div class="scoreboard" id="scoreboard"></div>
-
-    <div class="turn" id="turn"></div>
-
-    <div id="board" class="board hidden"></div>
-
-    <div id="qview">
-    <div class="qcard" id="qcard">
-      <div class="qmeta">
-        <span class="badge" id="q-cat"></span>
-        <span class="badge diff" id="q-diff"></span>
-        <div class="timer hidden" id="timer"><svg viewBox="0 0 36 36"><circle class="track" cx="18" cy="18" r="16"/><circle class="bar" id="timer-bar" cx="18" cy="18" r="16"/></svg><span id="timer-num"></span></div>
-      </div>
-      <div class="question" id="q-text"></div>
-      <div class="clues hidden" id="clues"></div>
-      <div class="options" id="options"></div>
-    </div>
-
-    <div class="tools" id="tools">
-      <button class="btn ghost sm" id="btn-fifty">½ حذف إجابتين</button>
-      <button class="btn ghost sm hidden" id="btn-clue">تلميح آخر (−1)</button>
-      <button class="btn ghost sm" id="btn-swap">تبديل السؤال</button>
-    </div>
-
-    <div class="after hidden" id="after">
-      <div class="verdict" id="verdict"></div>
-      <div class="steal hidden" id="steal">
-        <div class="steal-title">هل أجاب فريق آخر صح؟</div>
-        <div class="steal-btns" id="steal-btns"></div>
-      </div>
-      <div class="row">
-        <button class="btn primary" id="btn-next">التالي</button>
-        <button class="btn ghost sm" id="btn-report">⚑ فيه خطأ</button>
+      <div class="progress" aria-live="polite"></div>
+      <div class="top-tools">
+        <button class="icon-btn" id="btn-undo" aria-label="تراجع عن آخر إجراء" title="تراجع عن آخر إجراء" disabled>↶</button>
+        <button class="icon-btn" id="btn-fs" aria-label="ملء الشاشة" title="ملء الشاشة">⛶</button>
       </div>
     </div>
+
+    <div class="game-grid">
+      <div class="scoreboard" id="scoreboard"></div>
+
+      <div class="stage">
+        <div class="turn" id="turn" aria-live="polite"></div>
+
+        <div id="board" class="board hidden"></div>
+        <div id="chooser" class="chooser hidden"></div>
+
+        <div id="qview">
+          <div class="qcard" id="qcard">
+            <div class="qmeta">
+              <span class="badge" id="q-cat"></span>
+              <span class="badge diff" id="q-diff"></span>
+              <button class="icon-btn pause-btn hidden" id="btn-pause" aria-label="إيقاف مؤقت">⏸</button>
+              <div class="timer hidden" id="timer" role="timer"><svg viewBox="0 0 36 36"><circle class="track" cx="18" cy="18" r="16"/><circle class="bar" id="timer-bar" cx="18" cy="18" r="16"/></svg><span id="timer-num"></span></div>
+            </div>
+            <div class="question" id="q-text"></div>
+            <div class="clues hidden" id="clues"></div>
+            <div class="options" id="options"></div>
+            <div class="answer-line hidden" id="answer-line" aria-live="polite"></div>
+            <button class="pause-cover" id="pause-cover" aria-label="متابعة">⏸ متوقف مؤقتاً<small>اضغط للمتابعة</small></button>
+          </div>
+
+          <div class="tools" id="tools">
+            <button class="btn ghost sm" id="btn-fifty">✂ حذف إجابتين</button>
+            <button class="btn ghost sm hidden" id="btn-clue">تلميح آخر (تنقص نقطة)</button>
+            <button class="btn ghost sm" id="btn-swap">⇄ تبديل السؤال</button>
+            <button class="btn ghost sm hidden" id="btn-showopts">أظهر الخيارات</button>
+            <button class="btn primary sm hidden" id="btn-reveal">اكشف الإجابة</button>
+          </div>
+
+          <div class="after hidden" id="after">
+            <div class="verdict" id="verdict" aria-live="polite"></div>
+            <div class="steal hidden" id="steal">
+              <div class="steal-title" id="steal-title"></div>
+              <div class="steal-btns" id="steal-btns"></div>
+            </div>
+            <div class="steal hidden" id="judge">
+              <div class="steal-title" id="judge-title"></div>
+              <div class="steal-btns" id="judge-btns"></div>
+            </div>
+            <div class="row" id="after-row">
+              <button class="btn primary" id="btn-next">التالي</button>
+              <button class="btn ghost sm" id="btn-report">⚑ فيه خطأ</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -155,14 +192,15 @@
   </section>
 
   <!-- ============ نوافذ ============ -->
-  <div class="modal hidden" id="modal">
+  <div class="modal hidden" id="modal" role="dialog" aria-modal="true">
     <div class="modal-box">
       <div id="modal-body"></div>
       <div class="row" id="modal-actions"></div>
     </div>
   </div>
-  <div class="toast hidden" id="toast"></div>
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
 </div>
+<script src="logic.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
