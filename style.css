@@ -158,3 +158,18 @@ textarea.copy{width:100%;min-height:140px;background:var(--bg);color:var(--text)
 .clue b{color:var(--gold2);margin-left:6px}
 .clue.locked{color:var(--muted);font-size:14px;border-style:dashed}
 .pts-now{text-align:center;color:var(--gold2);font-weight:800;margin:-6px 0 10px}
+
+/* ===== v1.3: الآيباد والشاشات العريضة ===== */
+/* المسابقة تكبر لتملأ الشاشة ويقرؤها الحاضرون من بعيد، والجوال كما هو */
+@media (min-width: 744px) {
+  #app { max-width: none; padding-left: 24px; padding-right: 24px; }
+  .screen { max-width: 640px; margin: 0 auto; zoom: 1.22; }
+  .modal-box { zoom: 1.2; max-height: 66vh; }
+  .toast { zoom: 1.2; }
+}
+/* الآيباد بالعرض: أوسع، والخيارات في عمودين حتى يظهر السؤال كاملاً بلا تمرير */
+@media (min-width: 1000px) and (orientation: landscape) {
+  .screen { max-width: 760px; zoom: 1.38; }
+  .options { grid-template-columns: 1fr 1fr; }
+  .cats { grid-template-columns: repeat(4, 1fr); }
+}

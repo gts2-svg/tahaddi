@@ -1,8 +1,9 @@
-const CACHE = 'tahaddi-v1.2.0';
-const CORE = ['./', 'index.html', 'style.css', 'app.js', 'manifest.json',
+const CACHE = 'tahaddi-v1.3.0';
+const CORE = ['./', 'index.html', 'style.css', 'fonts.css', 'app.js', 'manifest.json',
   'data/religion.txt', 'data/seerah.txt', 'data/history.txt', 'data/geography.txt', 'data/poetry.txt',
   'data/arabic.txt', 'data/saudi.txt', 'data/whoami.txt',
-  'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-180.png'];
+  'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-180.png',
+  'fonts/amiri-arabic-400-normal.woff2', 'fonts/amiri-arabic-700-normal.woff2', 'fonts/amiri-latin-400-normal.woff2', 'fonts/amiri-latin-700-normal.woff2', 'fonts/tajawal-arabic-400-normal.woff2', 'fonts/tajawal-arabic-500-normal.woff2', 'fonts/tajawal-arabic-700-normal.woff2', 'fonts/tajawal-arabic-800-normal.woff2', 'fonts/tajawal-latin-400-normal.woff2', 'fonts/tajawal-latin-500-normal.woff2', 'fonts/tajawal-latin-700-normal.woff2', 'fonts/tajawal-latin-800-normal.woff2'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));

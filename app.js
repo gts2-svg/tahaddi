@@ -1,6 +1,6 @@
 /* تحدّي — مسابقة ثقافية للفرق */
 'use strict';
-const VERSION = '1.2.0';
+const VERSION = '1.3.0';
 
 const CATS = {
   religion:  { name: 'الدين',            icon: '🕌', file: 'data/religion.txt',  color: '#2fb47c' },
