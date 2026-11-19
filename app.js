@@ -1,6 +1,6 @@
 /* تحدّي — مسابقة ثقافية للفرق (الواجهة). منطق اللعب الخالص في logic.js */
 'use strict';
-const VERSION = '1.4.1';
+const VERSION = '1.5.0';
 const T = window.TL;
 
 // سجل الأقسام في data/cats.json. هذه نسخة احتياطية تُستعمل فقط إذا تعذّر تحميله.
