@@ -2,13 +2,13 @@
   "_": "سجل الأقسام: يقرؤه app.js وsw.js وأدوات tools/. لإضافة قسم: أضف سطراً هنا وملفه في data/. الترتيب هنا ترتيب العرض. lastId آخر رقم أُعطي في القسم (يحدّثه tools/assign_ids.py) حتى لا يُعاد رقم سؤال محذوف.",
   "format": 1,
   "categories": [
-    { "key": "religion",  "name": "الدين",            "icon": "🕌", "file": "data/religion.txt",  "color": "#2fb47c", "prefix": "r", "lastId": 451 },
-    { "key": "seerah",    "name": "السيرة النبوية",   "icon": "🌙", "file": "data/seerah.txt",    "color": "#4cc9a0", "prefix": "s", "lastId": 172 },
-    { "key": "history",   "name": "التاريخ الإسلامي", "icon": "📜", "file": "data/history.txt",   "color": "#e0a13c", "prefix": "h", "lastId": 192 },
-    { "key": "geography", "name": "الجغرافيا",        "icon": "🌍", "file": "data/geography.txt", "color": "#3a9be0", "prefix": "g", "lastId": 307 },
-    { "key": "poetry",    "name": "الشعر",            "icon": "🪶", "file": "data/poetry.txt",    "color": "#b06ee0", "prefix": "p", "lastId": 288 },
-    { "key": "arabic",    "name": "اللغة العربية",    "icon": "✒️", "file": "data/arabic.txt",    "color": "#e07a5f", "prefix": "a", "lastId": 205 },
-    { "key": "saudi",     "name": "السعودية",         "icon": "🌴", "file": "data/saudi.txt",     "color": "#3fae5a", "prefix": "k", "lastId": 143 },
-    { "key": "whoami",    "name": "من أنا؟",          "icon": "🕵️", "file": "data/whoami.txt",    "color": "#e05a8a", "prefix": "w", "lastId": 136, "clues": true }
+    {"key": "religion", "name": "الدين", "icon": "🕌", "file": "data/religion.txt", "color": "#2fb47c", "prefix": "r", "lastId": 451},
+    {"key": "seerah", "name": "السيرة النبوية", "icon": "🌙", "file": "data/seerah.txt", "color": "#4cc9a0", "prefix": "s", "lastId": 174},
+    {"key": "history", "name": "التاريخ الإسلامي", "icon": "📜", "file": "data/history.txt", "color": "#e0a13c", "prefix": "h", "lastId": 192},
+    {"key": "geography", "name": "الجغرافيا", "icon": "🌍", "file": "data/geography.txt", "color": "#3a9be0", "prefix": "g", "lastId": 400},
+    {"key": "poetry", "name": "الشعر", "icon": "🪶", "file": "data/poetry.txt", "color": "#b06ee0", "prefix": "p", "lastId": 289},
+    {"key": "arabic", "name": "اللغة العربية", "icon": "✒️", "file": "data/arabic.txt", "color": "#e07a5f", "prefix": "a", "lastId": 205},
+    {"key": "saudi", "name": "السعودية", "icon": "🌴", "file": "data/saudi.txt", "color": "#3fae5a", "prefix": "k", "lastId": 152},
+    {"key": "whoami", "name": "من أنا؟", "icon": "🕵️", "file": "data/whoami.txt", "color": "#e05a8a", "prefix": "w", "lastId": 140, "clues": true}
   ]
 }
