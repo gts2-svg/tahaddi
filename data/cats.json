@@ -3,7 +3,7 @@
   "format": 1,
   "categories": [
     {"key": "religion", "name": "الدين", "icon": "🕌", "file": "data/religion.txt", "color": "#2fb47c", "prefix": "r", "lastId": 551},
-    {"key": "seerah", "name": "السيرة النبوية", "icon": "🌙", "file": "data/seerah.txt", "color": "#4cc9a0", "prefix": "s", "lastId": 174},
+    {"key": "seerah", "name": "السيرة النبوية", "icon": "🌙", "file": "data/seerah.txt", "color": "#4cc9a0", "prefix": "s", "lastId": 274},
     {"key": "history", "name": "التاريخ الإسلامي", "icon": "📜", "file": "data/history.txt", "color": "#e0a13c", "prefix": "h", "lastId": 192},
     {"key": "geography", "name": "الجغرافيا", "icon": "🌍", "file": "data/geography.txt", "color": "#3a9be0", "prefix": "g", "lastId": 400},
     {"key": "poetry", "name": "الشعر", "icon": "🪶", "file": "data/poetry.txt", "color": "#b06ee0", "prefix": "p", "lastId": 289},
