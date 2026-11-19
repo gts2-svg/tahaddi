@@ -12,6 +12,8 @@
     {"key": "whoami", "name": "من أنا؟", "icon": "🕵️", "file": "data/whoami.txt", "color": "#e05a8a", "prefix": "w", "lastId": 220, "clues": true},
     {"key": "science", "name": "العلوم", "icon": "🔬", "file": "data/science.txt", "color": "#4aa3c7", "prefix": "c", "lastId": 150},
     {"key": "sports", "name": "الرياضة", "icon": "⚽", "file": "data/sports.txt", "color": "#e0703c", "prefix": "t", "lastId": 137},
-    {"key": "proverbs", "name": "الأمثال والحِكم", "icon": "📖", "file": "data/proverbs.txt", "color": "#c9a227", "prefix": "m", "lastId": 148}
+    {"key": "proverbs", "name": "الأمثال والحِكم", "icon": "📖", "file": "data/proverbs.txt", "color": "#c9a227", "prefix": "m", "lastId": 148},
+    {"key": "nature", "name": "الطبيعة والحيوان", "icon": "🐪", "file": "data/nature.txt", "color": "#6fb04a", "prefix": "n", "lastId": 148},
+    {"key": "puzzles", "name": "ألغاز وذكاء", "icon": "🧩", "file": "data/puzzles.txt", "color": "#9b7be0", "prefix": "z", "lastId": 149}
   ]
 }
