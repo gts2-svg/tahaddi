@@ -4,6 +4,9 @@
 const VERSION = new URL(self.location.href).searchParams.get('v') || 'dev';
 const CACHE = 'tahaddi-v' + VERSION;
 const TIMEOUT = 3000; // مهلة الشبكة قبل الرجوع إلى المحفوظ
+// صور الأقسام من Unsplash: لها مخزن مستقل لا يُمسح مع كل إصدار، والمحفوظ أولاً (الصورة لا تتغير)
+const PHOTOS = 'photos-tahaddi-1';
+const PHOTO_HOST = 'images.unsplash.com';
 const CORE = ['./', 'index.html', 'style.css', 'fonts.css', 'logic.js', 'app.js', 'manifest.json', 'data/cats.json',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-180.png',
   'fonts/amiri-arabic-400-normal.woff2', 'fonts/amiri-arabic-700-normal.woff2', 'fonts/amiri-latin-400-normal.woff2', 'fonts/amiri-latin-700-normal.woff2',
@@ -38,6 +41,16 @@ self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
+  if (url.hostname === PHOTO_HOST) {
+    e.respondWith((async () => {
+      const c = await caches.open(PHOTOS);
+      const hit = await c.match(req, { ignoreVary: true });
+      if (hit) return hit;
+      try { const r = await fetch(req); if (r && (r.ok || r.type === 'opaque')) await c.put(req, r.clone()); return r; }
+      catch { return Response.error(); }
+    })());
+    return;
+  }
   if (url.origin !== self.location.origin) return;
   e.respondWith((async () => {
     const key = keyOf(req);

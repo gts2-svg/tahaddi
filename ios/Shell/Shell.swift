@@ -12,7 +12,7 @@ struct ShellApp: App {
             WebScreen()
                 .ignoresSafeArea()
                 .background(Color("LaunchBackground").ignoresSafeArea())
-                .preferredColorScheme(Shell.forceDark ? .dark : nil)
+                .preferredColorScheme(Shell.forceDark ? .dark : .light)
         }
     }
 }

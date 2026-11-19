@@ -42,5 +42,5 @@ targets:
           - UIInterfaceOrientationPortraitUpsideDown
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
-        ShellForceDark: true
+        ShellForceDark: false
         ITSAppUsesNonExemptEncryption: false

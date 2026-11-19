@@ -1,6 +1,6 @@
 /* تحدّي — مسابقة ثقافية للفرق (الواجهة). منطق اللعب الخالص في logic.js */
 'use strict';
-const VERSION = '1.6.0';
+const VERSION = '1.7.0';
 const T = window.TL;
 
 /* ---------- الأيقونات (خطوط SVG على شبكة 24×24، بلا رموز تعبيرية) ---------- */
@@ -36,6 +36,10 @@ const UI = {
 };
 const ico = (d, cls = 'ic') => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${d}"/></svg>`;
 const catIcon = c => ico(CAT_ICONS[c.icon] || (/^M[\d\s.,MmLlHhVvCcSsQqTtAaZz-]+$/.test(c.icon || '') ? c.icon : CAT_ICONS.star));
+// صورة القسم (Unsplash): رقم الصورة في data/cats.json (الحقل photo). إن لم تصل الصورة ظهر تدرّج لون القسم تحتها.
+const photoUrl = (c, w) => c.photo ? `https://images.unsplash.com/photo-${c.photo}?auto=format&fit=crop&w=${w}&q=60` : '';
+const photoBg = (c, w) => c.photo ? `background-image:url('${photoUrl(c, w)}')` : '';
+const catThumb = c => c.photo ? `<span class="thumb" aria-hidden="true" style="${photoBg(c, 96)}"></span>` : catIcon(c);
 const catStyle = c => `--c1:${c.c1 || c.color};--c2:${c.c2 || c.color}`;
 
 // سجل الأقسام في data/cats.json. هذه نسخة احتياطية تُستعمل فقط إذا تعذّر تحميله.
@@ -246,8 +250,8 @@ function renderHome() {
     const all = (BANK[k] || []).filter(q => !lvl || q.d === lvl);
     const left = all.filter(q => T.isFresh(q, USED, USED_KEYS)).length;
     const d = el('button', 'cat' + (S.cats.includes(k) ? ' on' : ''),
-      `<span class="gl" aria-hidden="true">${esc(c.glyph || c.name.replace(/^ال/, '')[0] || '')}</span>` +
-      `<div class="top">${catIcon(c)}<span class="chk">${ico(UI.check)}</span></div>` +
+      (c.photo ? `<span class="ph" aria-hidden="true" style="${photoBg(c, 480)}"></span>` : `<span class="gl" aria-hidden="true">${esc(c.glyph || c.name.replace(/^ال/, '')[0] || '')}</span>`) +
+      `<div class="top">${c.photo ? '' : catIcon(c)}<span class="chk">${ico(UI.check)}</span></div>` +
       `<div><div class="nm">${esc(c.name)}</div><div class="ct">بقي ${left} من ${all.length}${lvl ? ' · ' + DIFF_NAME[lvl] : ''}</div></div>`);
     d.setAttribute('aria-pressed', S.cats.includes(k));
     d.setAttribute('style', catStyle(c));
@@ -595,7 +599,7 @@ function renderChooser() {
   }
   const c = CATS[cat];
   box.innerHTML = '';
-  box.appendChild(el('div', 'choose-head', `<span class="qcat" style="${catStyle(c)}">${catIcon(c)}${esc(c.name)}</span><div class="choose-title">اختاروا مستوى سؤالكم</div>`));
+  box.appendChild(el('div', 'choose-head', `<span class="qcat" style="${catStyle(c)}">${catThumb(c)}${esc(c.name)}</span><div class="choose-title">اختاروا مستوى سؤالكم</div>`));
   const grid = el('div', 'levels');
   T.LEVELS.forEach((d, i) => {
     const extra = c.clues ? ' + التلميحات' : '';
@@ -632,7 +636,7 @@ function renderBoard() {
   const b = $('#board'); b.innerHTML = '';
   G.board.forEach((row, r) => {
     const c = CATS[row.cat] || { icon: 'star', name: row.cat, color: '#5B4A8A' };
-    const div = el('div', 'brow', `<div class="bt" style="${catStyle(c)}">${catIcon(c)}${esc(c.name)}</div>`);
+    const div = el('div', 'brow', `<div class="bt" style="${catStyle(c)}">${catThumb(c)}${esc(c.name)}</div>`);
     const cells = el('div', 'cells');
     row.cells.forEach((cell, k) => {
       const btn = el('button', `cell d${cell.d}${cell.used ? ' used ' + (cell.by != null ? 'ok' : 'bad') : ''}`, String(cell.d));
@@ -699,7 +703,7 @@ function renderQ(bump) {
   $('#turn').innerHTML = stealT ? `محاولة سرقة: ${teamPill(G.stealer)}` : `دور ${teamPill(ti)}`;
   setTurnColor(tt.color);
   const c = CATS[q.cat];
-  $('#q-cat').innerHTML = catIcon(c) + `<span>${esc(c.name)}</span>`; $('#q-cat').setAttribute('style', catStyle(c));
+  $('#q-cat').innerHTML = catThumb(c) + `<span>${esc(c.name)}</span>`; $('#q-cat').setAttribute('style', catStyle(c));
   const p = T.turnPoints(q, ptsState());
   $('#q-diff').textContent = `${DIFF_NAME[q.d]} · ${q.clues && ph === 'q' ? 'الآن ' : ''}${ptsWord(p)}`;
 
