@@ -7,8 +7,8 @@ const TIMEOUT = 3000; // مهلة الشبكة قبل الرجوع إلى الم
 const CORE = ['./', 'index.html', 'style.css', 'fonts.css', 'logic.js', 'app.js', 'manifest.json', 'data/cats.json',
   'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-180.png',
   'fonts/amiri-arabic-400-normal.woff2', 'fonts/amiri-arabic-700-normal.woff2', 'fonts/amiri-latin-400-normal.woff2', 'fonts/amiri-latin-700-normal.woff2',
-  'fonts/tajawal-arabic-400-normal.woff2', 'fonts/tajawal-arabic-500-normal.woff2', 'fonts/tajawal-arabic-700-normal.woff2', 'fonts/tajawal-arabic-800-normal.woff2',
-  'fonts/tajawal-latin-400-normal.woff2', 'fonts/tajawal-latin-500-normal.woff2', 'fonts/tajawal-latin-700-normal.woff2', 'fonts/tajawal-latin-800-normal.woff2'];
+  'fonts/readex-pro-arabic-400-normal.woff2', 'fonts/readex-pro-arabic-500-normal.woff2', 'fonts/readex-pro-arabic-600-normal.woff2', 'fonts/readex-pro-arabic-700-normal.woff2',
+  'fonts/readex-pro-latin-400-normal.woff2', 'fonts/readex-pro-latin-500-normal.woff2', 'fonts/readex-pro-latin-600-normal.woff2', 'fonts/readex-pro-latin-700-normal.woff2'];
 
 // مفتاح الحفظ بلا لاحقة ?v= حتى تُستبدل النسخة القديمة بالجديدة دائماً
 const keyOf = req => { const u = new URL(req.url || req, self.location.href); u.search = ''; u.hash = ''; return u.href; };

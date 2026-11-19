@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>تحدّي — مسابقة ثقافية</title>
-<meta name="theme-color" content="#0d1b2a">
+<meta name="theme-color" content="#1A0B4A">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -21,8 +21,11 @@
   <!-- ============ الرئيسية / الإعداد ============ -->
   <section id="screen-home" class="screen active">
     <header class="hero">
-      <div class="logo">تحدّي</div>
-      <div class="tag">مسابقة ثقافية للفرق</div>
+      <div class="brand">
+        <div class="logo">تحدّي</div>
+        <div class="tag">مسابقة ثقافية للفرق</div>
+      </div>
+      <div class="hero-meta" id="hero-meta"></div>
     </header>
 
     <div id="resume-box" class="card resume hidden">
@@ -39,19 +42,20 @@
       <div class="row"><button class="btn ghost sm" id="btn-retry">أعد المحاولة</button></div>
     </div>
 
-    <div class="card">
+    <div class="sec-h">
       <h2>الفرق</h2>
-      <div id="teams-list"></div>
-      <div class="row">
-        <button class="btn ghost sm" id="btn-add-team">+ فريق</button>
-        <button class="btn ghost sm" id="btn-remove-team">− فريق</button>
+      <div class="sec-tools">
+        <button class="btn ghost sm" id="btn-add-team" data-ico="plus">فريق</button>
+        <button class="btn ghost sm" id="btn-remove-team" data-ico="minus">فريق</button>
       </div>
     </div>
+    <div id="teams-list" class="teams"></div>
 
-    <div class="card">
-      <h2>الأقسام</h2>
-      <div id="cats-list" class="cats"></div>
+    <div class="sec-h">
+      <h2>اختاروا الأقسام</h2>
+      <span class="sec-note" id="cats-count"></span>
     </div>
+    <div id="cats-list" class="cats"></div>
 
     <div class="card">
       <h2>الإعدادات</h2>
@@ -101,10 +105,13 @@
         <span>الأصوات</span>
         <input type="checkbox" class="switch" data-key="sound">
       </label>
-      <p class="hint">النقاط: سهل 1 — متوسط 2 — صعب 3 — صعب جداً 4<br>«من أنا؟»: نقطة إضافية عن كل تلميح لم يُكشف<br>السرقة بنصف نقاط السؤال، و«½» معناها نصف نقطة (فالسؤال السهل يُسرق بنصف نقطة)<br>لكل فريق مرة واحدة: ✂ حذف إجابتين، و⇄ تبديل السؤال</p>
+      <p class="hint">النقاط: سهل 1 — متوسط 2 — صعب 3 — صعب جداً 4<br>«من أنا؟»: نقطة إضافية عن كل تلميح لم يُكشف<br>السرقة بنصف نقاط السؤال، و«½» معناها نصف نقطة (فالسؤال السهل يُسرق بنصف نقطة)<br>لكل فريق مرة واحدة: <span data-ico="scissors">حذف إجابتين</span>، و<span data-ico="swap">تبديل السؤال</span></p>
     </div>
 
-    <button class="btn primary big" id="btn-start" disabled>جارٍ تحميل الأسئلة…</button>
+    <div class="start-wrap">
+      <button class="btn primary big" id="btn-start" disabled>جارٍ تحميل الأسئلة…</button>
+      <div class="chips" id="setup-chips"></div>
+    </div>
 
     <div class="footer-links">
       <button class="link" id="btn-history">نقل السجل بين الأجهزة</button>
@@ -120,11 +127,11 @@
   <!-- ============ اللعب ============ -->
   <section id="screen-game" class="screen">
     <div class="topbar">
-      <button class="icon-btn" id="btn-menu" aria-label="القائمة">☰</button>
+      <button class="icon-btn" id="btn-menu" aria-label="القائمة" data-ico="menu"></button>
       <div class="progress" aria-live="polite"></div>
       <div class="top-tools">
-        <button class="icon-btn" id="btn-undo" aria-label="تراجع عن آخر إجراء" title="تراجع عن آخر إجراء" disabled>↶</button>
-        <button class="icon-btn" id="btn-fs" aria-label="ملء الشاشة" title="ملء الشاشة">⛶</button>
+        <button class="icon-btn" id="btn-undo" aria-label="تراجع عن آخر إجراء" title="تراجع عن آخر إجراء" data-ico="undo" disabled></button>
+        <button class="icon-btn" id="btn-fs" aria-label="ملء الشاشة" title="ملء الشاشة"></button>
       </div>
     </div>
 
@@ -140,22 +147,29 @@
         <div id="qview">
           <div class="qcard" id="qcard">
             <div class="qmeta">
-              <span class="badge" id="q-cat"></span>
-              <span class="badge diff" id="q-diff"></span>
-              <button class="icon-btn pause-btn hidden" id="btn-pause" aria-label="إيقاف مؤقت">⏸</button>
-              <div class="timer hidden" id="timer" role="timer"><svg viewBox="0 0 36 36"><circle class="track" cx="18" cy="18" r="16"/><circle class="bar" id="timer-bar" cx="18" cy="18" r="16"/></svg><span id="timer-num"></span></div>
+              <span class="qcat" id="q-cat"></span>
+              <span class="qdiff" id="q-diff"></span>
             </div>
-            <div class="question" id="q-text"></div>
-            <div class="clues hidden" id="clues"></div>
-            <div class="options" id="options"></div>
-            <div class="answer-line hidden" id="answer-line" aria-live="polite"></div>
-            <button class="pause-cover" id="pause-cover" aria-label="متابعة">⏸ متوقف مؤقتاً<small>اضغط للمتابعة</small></button>
+            <div class="trow">
+              <div class="tbar hidden" id="tbar"><i id="timer-bar"></i></div>
+              <div class="timer hidden" id="timer" role="timer"><span id="timer-num"></span></div>
+              <button class="icon-btn pause-btn hidden" id="btn-pause" aria-label="إيقاف مؤقت"></button>
+            </div>
+            <div class="qbody">
+              <div class="qbox" id="qbox">
+                <div class="question" id="q-text"></div>
+                <div class="clues hidden" id="clues"></div>
+              </div>
+              <div class="options" id="options"></div>
+              <div class="answer-line hidden" id="answer-line" aria-live="polite"></div>
+              <button class="pause-cover" id="pause-cover" aria-label="متابعة"><span class="pc-ic" data-ico="pause"></span>متوقف مؤقتاً<small>اضغط للمتابعة</small></button>
+            </div>
           </div>
 
           <div class="tools" id="tools">
-            <button class="btn ghost sm" id="btn-fifty">✂ حذف إجابتين</button>
-            <button class="btn ghost sm hidden" id="btn-clue">تلميح آخر (تنقص نقطة)</button>
-            <button class="btn ghost sm" id="btn-swap">⇄ تبديل السؤال</button>
+            <button class="btn ghost sm" id="btn-fifty" data-ico="scissors">حذف إجابتين</button>
+            <button class="btn ghost sm hidden" id="btn-clue" data-ico="bulb">تلميح آخر (تنقص نقطة)</button>
+            <button class="btn ghost sm" id="btn-swap" data-ico="swap">تبديل السؤال</button>
             <button class="btn ghost sm hidden" id="btn-showopts">أظهر الخيارات</button>
             <button class="btn primary sm hidden" id="btn-reveal">اكشف الإجابة</button>
           </div>
@@ -172,7 +186,7 @@
             </div>
             <div class="row" id="after-row">
               <button class="btn primary" id="btn-next">التالي</button>
-              <button class="btn ghost sm" id="btn-report">⚑ فيه خطأ</button>
+              <button class="btn ghost sm" id="btn-report" data-ico="flag">فيه خطأ</button>
             </div>
           </div>
         </div>
@@ -182,10 +196,18 @@
 
   <!-- ============ النتيجة ============ -->
   <section id="screen-result" class="screen">
-    <div class="confetti" id="confetti"></div>
-    <h1 class="winner" id="winner"></h1>
+    <div class="res-head">
+      <div class="res-kicker">انتهت المسابقة</div>
+      <h1 class="winner" id="winner"></h1>
+    </div>
+    <div class="podium-wrap">
+      <div class="rays" aria-hidden="true"></div>
+      <div class="podium" id="podium"></div>
+      <div class="win-pts" id="win-pts"></div>
+    </div>
     <div class="ranking" id="ranking"></div>
-    <div class="row col">
+    <div class="res-stats" id="res-stats"></div>
+    <div class="res-btns">
       <button class="btn primary big" id="btn-again">مباراة جديدة بنفس الفرق</button>
       <button class="btn ghost" id="btn-home">الرئيسية</button>
     </div>
@@ -200,6 +222,7 @@
   </div>
   <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
 </div>
+<div class="fx" id="fx" aria-hidden="true"></div>
 <script src="logic.js"></script>
 <script src="app.js"></script>
 </body>

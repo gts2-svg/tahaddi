@@ -38,6 +38,11 @@ def main():
         keys.add(c.get('key')); prefixes.add(c.get('prefix'))
         if c.get('file') and not os.path.exists(os.path.join(td.ROOT, c['file'])): err('cats.json', f'الملف غير موجود: {c["file"]}')
         if c.get('color') and not re.fullmatch(r'#[0-9a-fA-F]{6}', c['color']): err('cats.json', f'لون غير صالح {c["color"]}')
+        for f in ('c1', 'c2'):
+            if c.get(f) and not re.fullmatch(r'#[0-9a-fA-F]{6}', c[f]): err('cats.json', f'لون تدرّج غير صالح {f}={c[f]} في القسم {c.get("key")}')
+        ic = c.get('icon') or ''
+        if ic and not re.fullmatch(r'[a-z][a-z0-9-]*|M[0-9MmLlHhVvCcSsQqTtAaZz .,\-]+', ic):
+            warn('cats.json', f'أيقونة القسم {c.get("key")} ليست اسماً من مكتبة الأيقونات ولا مسار SVG (الرموز التعبيرية لم تعد تُستعمل)')
     listed = {c.get('file') for c in cats}
     for f in sorted(os.listdir(td.DATA)):
         if f.endswith('.txt') and 'data/' + f not in listed: warn('cats.json', f'الملف data/{f} غير مسجل في cats.json فلن يظهر في التطبيق')

@@ -1,21 +1,63 @@
 /* تحدّي — مسابقة ثقافية للفرق (الواجهة). منطق اللعب الخالص في logic.js */
 'use strict';
-const VERSION = '1.5.0';
+const VERSION = '1.6.0';
 const T = window.TL;
+
+/* ---------- الأيقونات (خطوط SVG على شبكة 24×24، بلا رموز تعبيرية) ---------- */
+// أيقونات الأقسام: يُشار إليها باسمها في data/cats.json (الحقل icon)، أو يُكتب هناك مسار SVG يبدأ بـ M
+const CAT_ICONS = {
+  mosque: 'M4 20h16M6 20v-7a6 6 0 0 1 12 0v7M12 4v3M10 20v-4h4v4',
+  crescent: 'M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z',
+  scroll: 'M7 4h11v13a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-1h11v1M7 4a3 3 0 0 0-3 3v1h3M10 9h5M10 12h5',
+  globe: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18zM3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18',
+  quill: 'M20 4c-8 0-13 5-14 14l-2 2M6 18c6-1 10-5 12-11M10 14h5',
+  nib: 'M7 3h10l1.5 7L12 21 5.5 10zM12 21v-8M12 13a1.7 1.7 0 1 0 0-3.4a1.7 1.7 0 1 0 0 3.4z',
+  palm: 'M12 21v-9M12 12c-2-4-6-5-9-4M12 12c2-4 6-5 9-4M12 12c-1-4 0-7 3-9M12 12c1-4 0-7-3-9',
+  mystery: 'M10 4a3.5 3.5 0 1 0 0 7a3.5 3.5 0 1 0 0-7zM3 20c0-3.6 3.1-6 7-6s7 2.4 7 6M16.8 4.6a2.2 2.2 0 1 1 3 2.1c-.6.3-.9.8-.9 1.4v.5M18.9 11.3v.2',
+  flask: 'M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3M7.5 15h9',
+  ball: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18zM12 8l3.8 2.8-1.4 4.4H9.6L8.2 10.8zM12 3v5M20.6 9.5l-4.8 1.3M17.3 19.3l-2.9-4.1M6.7 19.3l2.9-4.1M3.4 9.5l4.8 1.3',
+  book: 'M3 5.5c2.6-1 6-1 9 1 3-2 6.4-2 9-1V19c-2.6-1-6-1-9 1-3-2-6.4-2-9-1zM12 6.5V20',
+  leaf: 'M5 19C5 10 11 5 20 5c0 9-5 14-14 14zM5 19l8-8',
+  puzzle: 'M4 8h4a2 2 0 1 1 4 0h4v4a2 2 0 1 1 0 4v4H4z',
+  star: 'M7 7h10v10H7zM12 4.9l7.1 7.1-7.1 7.1-7.1-7.1z',
+};
+// أيقونات الواجهة
+const UI = {
+  menu: 'M4 7h16M4 12h16M4 17h16', undo: 'M9 14L4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3',
+  fs: 'M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5', fsExit: 'M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5',
+  pause: 'M9 5v14M15 5v14', play: 'M8 5l11 7-11 7z',
+  scissors: 'M6 3a3 3 0 1 0 0 6a3 3 0 1 0 0-6zM6 15a3 3 0 1 0 0 6a3 3 0 1 0 0-6zM8.6 7.6L20 19M8.6 16.4L20 5',
+  swap: 'M7 4L3 8l4 4M3 8h14M17 12l4 4-4 4M21 16H7', flag: 'M5 21V4M5 4h11l-2 4 2 4H5',
+  check: 'M5 12l4 4 10-10', x: 'M6 6l12 12M18 6L6 18', plus: 'M12 5v14M5 12h14', minus: 'M5 12h14',
+  trophy: 'M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4',
+  clock: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18zM12 7v5l3 2',
+  bulb: 'M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3z',
+  eye: 'M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12zM12 9a3 3 0 1 0 0 6a3 3 0 1 0 0-6z',
+};
+const ico = (d, cls = 'ic') => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${d}"/></svg>`;
+const catIcon = c => ico(CAT_ICONS[c.icon] || (/^M[\d\s.,MmLlHhVvCcSsQqTtAaZz-]+$/.test(c.icon || '') ? c.icon : CAT_ICONS.star));
+const catStyle = c => `--c1:${c.c1 || c.color};--c2:${c.c2 || c.color}`;
 
 // سجل الأقسام في data/cats.json. هذه نسخة احتياطية تُستعمل فقط إذا تعذّر تحميله.
 const FALLBACK_CATS = [
-  { key: 'religion', name: 'الدين', icon: '🕌', file: 'data/religion.txt', color: '#2fb47c', prefix: 'r' },
-  { key: 'seerah', name: 'السيرة النبوية', icon: '🌙', file: 'data/seerah.txt', color: '#4cc9a0', prefix: 's' },
-  { key: 'history', name: 'التاريخ الإسلامي', icon: '📜', file: 'data/history.txt', color: '#e0a13c', prefix: 'h' },
-  { key: 'geography', name: 'الجغرافيا', icon: '🌍', file: 'data/geography.txt', color: '#3a9be0', prefix: 'g' },
-  { key: 'poetry', name: 'الشعر', icon: '🪶', file: 'data/poetry.txt', color: '#b06ee0', prefix: 'p' },
-  { key: 'arabic', name: 'اللغة العربية', icon: '✒️', file: 'data/arabic.txt', color: '#e07a5f', prefix: 'a' },
-  { key: 'saudi', name: 'السعودية', icon: '🌴', file: 'data/saudi.txt', color: '#3fae5a', prefix: 'k' },
-  { key: 'whoami', name: 'من أنا؟', icon: '🕵️', file: 'data/whoami.txt', color: '#e05a8a', prefix: 'w', clues: true },
+  { key: 'religion', name: 'الدين', icon: 'mosque', glyph: 'د', file: 'data/religion.txt', color: '#108559', c1: '#108559', c2: '#0A5C3F', prefix: 'r' },
+  { key: 'seerah', name: 'السيرة النبوية', icon: 'crescent', glyph: 'س', file: 'data/seerah.txt', color: '#11817C', c1: '#11817C', c2: '#0A5653', prefix: 's' },
+  { key: 'history', name: 'التاريخ الإسلامي', icon: 'scroll', glyph: 'ت', file: 'data/history.txt', color: '#A96515', c1: '#A96515', c2: '#6E3F08', prefix: 'h' },
+  { key: 'geography', name: 'الجغرافيا', icon: 'globe', glyph: 'ج', file: 'data/geography.txt', color: '#1F6FE0', c1: '#1F6FE0', c2: '#0F3E85', prefix: 'g' },
+  { key: 'poetry', name: 'الشعر', icon: 'quill', glyph: 'ش', file: 'data/poetry.txt', color: '#8A47D6', c1: '#8A47D6', c2: '#4B2181', prefix: 'p' },
+  { key: 'arabic', name: 'اللغة العربية', icon: 'nib', glyph: 'ض', file: 'data/arabic.txt', color: '#B9472A', c1: '#B9472A', c2: '#6E2814', prefix: 'a' },
+  { key: 'saudi', name: 'السعودية', icon: 'palm', glyph: 'ع', file: 'data/saudi.txt', color: '#188646', c1: '#188646', c2: '#0C4F28', prefix: 'k' },
+  { key: 'whoami', name: 'من أنا؟', icon: 'mystery', glyph: 'أ', file: 'data/whoami.txt', color: '#5B5BD6', c1: '#5B5BD6', c2: '#2C2C7A', prefix: 'w', clues: true },
 ];
 let CATS = {}; let CAT_ORDER = [];
-const TEAM_COLORS = ['#e0b44c', '#3a9be0', '#e05a8a', '#2fb47c', '#b06ee0', '#e07a3a', '#4cd0d0', '#c8c8c8'];
+// ألوان الفرق: [بداية التدرّج، نهايته]. البداية داكنة بما يكفي لنص أبيض (تباين 4.5:1 فأكثر)
+const TEAM_GRADS = [['#D7334C', '#9E1F37'], ['#11837A', '#0B5C55'], ['#1F6FE0', '#1449A0'], ['#8A47D6', '#4B2181'],
+  ['#B35F0F', '#7A3E07'], ['#188646', '#0C4F28'], ['#C2408A', '#6B1F4B'], ['#127E9C', '#0A4F63']];
+const TEAM_COLORS = TEAM_GRADS.map(g => g[0]);
+const teamStyle = i => { const g = TEAM_GRADS[i % TEAM_GRADS.length]; return `--g1:${g[0]};--g2:${g[1]}`; };
+const initial = s => (String(s).trim().replace(/^ال(?=..)/, '')[0] || '؟');
+const teamPill = i => `<span class="tpill" style="${teamStyle(i)}">${esc(G.teams[i].name)}</span>`;
+const RM = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
 const DIFF_NAME = { 1: 'سهل', 2: 'متوسط', 3: 'صعب', 4: 'صعب جداً' };
 const LETTERS = ['أ', 'ب', 'ج', 'د'];
 const ORD = ['الأول', 'الثاني', 'الثالث', 'الرابع', 'الخامس', 'السادس', 'السابع', 'الثامن'];
@@ -31,6 +73,7 @@ const fmt = x => iso(T.fmtPts(x));
 const plus = x => iso('+' + T.fmtPts(x));
 const ptsWord = x => (x === Math.floor(x) || x === 0.5) && x >= 0 ? T.ptsWord(x) : `${fmt(x)} نقطة`;
 const qName = s => `«${esc(s)}»`;
+const catsWord = n => T.countWord(n, { one: 'قسم واحد', two: 'قسمان', few: 'أقسام', many: 'قسماً', hund: 'قسم' });
 
 /* ---------- التخزين ---------- */
 // القيم التالفة لا تعطّل التطبيق، وفشل الحفظ يُعلَن للمستخدم
@@ -155,6 +198,7 @@ function show(id) {
   document.body.classList.toggle('in-game', id === 'game');
   window.scrollTo(0, 0);
   wake(id === 'game');
+  if (id !== 'result') { const r = $('#fx .rain'); if (r) r.remove(); }
 }
 function toast(msg, ms = 2200) { const t = $('#toast'); t.textContent = msg; t.classList.remove('hidden'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.add('hidden'), ms); }
 let modalClose = null;
@@ -184,11 +228,11 @@ function confirmBox(html, yes, f, opts = {}) { modal(html, [{ t: yes, danger: tr
 function renderHome() {
   const tl = $('#teams-list'); tl.innerHTML = '';
   S.teams.forEach((n, i) => {
-    const row = el('div', 'team-input');
-    const dot = el('span', 'dot'); dot.style.background = TEAM_COLORS[i];
+    const row = el('div', 'team-input'); row.setAttribute('style', teamStyle(i));
+    const dot = el('span', 'dot'); dot.setAttribute('aria-hidden', 'true'); dot.textContent = initial(n || ORD[i]);
     const inp = el('input'); inp.value = n; inp.maxLength = 24; inp.placeholder = 'اسم الفريق';
     inp.setAttribute('aria-label', `اسم الفريق ${ORD[i]}`);
-    inp.oninput = () => { S.teams[i] = inp.value; saveSettings(); };
+    inp.oninput = () => { S.teams[i] = inp.value; saveSettings(); dot.textContent = initial(inp.value || ORD[i]); };
     row.append(dot, inp); tl.appendChild(row);
   });
   $('#btn-remove-team').disabled = S.teams.length <= 1;
@@ -202,9 +246,11 @@ function renderHome() {
     const all = (BANK[k] || []).filter(q => !lvl || q.d === lvl);
     const left = all.filter(q => T.isFresh(q, USED, USED_KEYS)).length;
     const d = el('button', 'cat' + (S.cats.includes(k) ? ' on' : ''),
-      `<div class="ic">${c.icon}</div><div class="nm">${esc(c.name)}</div><div class="ct">بقي ${left} من ${all.length}${lvl ? ' · ' + DIFF_NAME[lvl] : ''}</div>`);
+      `<span class="gl" aria-hidden="true">${esc(c.glyph || c.name.replace(/^ال/, '')[0] || '')}</span>` +
+      `<div class="top">${catIcon(c)}<span class="chk">${ico(UI.check)}</span></div>` +
+      `<div><div class="nm">${esc(c.name)}</div><div class="ct">بقي ${left} من ${all.length}${lvl ? ' · ' + DIFF_NAME[lvl] : ''}</div></div>`);
     d.setAttribute('aria-pressed', S.cats.includes(k));
-    d.style.setProperty('--c', c.color);
+    d.setAttribute('style', catStyle(c));
     d.onclick = () => {
       if (S.cats.includes(k)) { if (S.cats.length > 1) S.cats = S.cats.filter(x => x !== k); else return toast('اختر قسماً واحداً على الأقل'); }
       else S.cats = CAT_ORDER.filter(x => x === k || S.cats.includes(x));
@@ -238,8 +284,13 @@ function renderHome() {
 
   const total = Object.values(BANK).reduce((a, b) => a + b.length, 0);
   $('#stats').textContent = READY ? `مجموع الأسئلة: ${total} · المستعمل منها: ${[...USED].filter(id => INDEX.byId.has(id)).length}` : '';
+  $('#hero-meta').innerHTML = READY ? `${esc(catsWord(CAT_ORDER.length))}<br><b>${esc(T.qsWord(total))}</b>` : '';
+  $('#cats-count').textContent = `${S.cats.length} مختارة`;
+  const diffChip = { mixed: 'مستوى مختلط', team: 'المستوى يختاره الفريق', fixed: `مستوى ${DIFF_NAME[S.level]}` }[S.diffMode];
+  $('#setup-chips').innerHTML = [S.mode ? 'لوحة الأسئلة' : 'بالتتابع', diffChip, S.timer ? `${S.timer} ث` : 'بلا وقت', S.host ? 'وضع المضيف' : '']
+    .filter(Boolean).map(x => `<span>${esc(x)}</span>`).join('');
   const errs = DIAG.problems.filter(p => p.level === 'error').length;
-  $('#diag-badge').textContent = errs || DIAG.failed.length ? `⚠ ${errs + DIAG.failed.length}` : '';
+  $('#diag-badge').textContent = errs || DIAG.failed.length ? `(${errs + DIAG.failed.length})` : '';
   const reps = load(LS.reports, []);
   $('#reports-count').textContent = reps.length ? `(${reps.length})` : '';
 
@@ -259,12 +310,14 @@ function renderResumeBox() {
   const prog = g.v === 2 ? (g.mode === 1
     ? `اللوحة: تمّ ${g.board.reduce((a, r) => a + r.cells.filter(c => c.used).length, 0)} من ${g.board.reduce((a, r) => a + r.cells.length, 0)}`
     : `الجولة ${((g.turns[g.ti] || {}).round || 0) + 1} من ${g.rounds}`) : '';
-  $('#resume-info').innerHTML = `<div class="resume-teams">${g.teams.map(t => `<span style="--c:${t.color}"><b>${esc(t.name)}</b> ${fmt(t.score || 0)}</span>`).join('')}</div>${prog ? `<div class="hint">${prog}</div>` : ''}`;
+  $('#resume-info').innerHTML = `<div class="resume-teams">${g.teams.map((t, i) => `<span style="${teamStyle(i)}"><b>${esc(t.name)}</b> ${fmt(t.score || 0)}</span>`).join('')}</div>${prog ? `<div class="hint">${prog}</div>` : ''}`;
 }
 
 /* ---------- حالة اللعبة ---------- */
 let G = null;
 const UNDO = [];
+let FX = null;      // مؤثر الإجابة الأخيرة، يُعرض مرة واحدة في الرسم التالي
+let shownQid = null; // لتحريك دخول البطاقة عند كل سؤال جديد فقط
 const curTeamIdx = () => G.mode === 1 ? G.turn : (G.turns[G.ti] || {}).team || 0;
 const curTeam = () => G.teams[curTeamIdx()];
 const curQ = () => G.qid ? qById(G.qid) : null;
@@ -374,16 +427,22 @@ function tick() {
   if (!G || !G.timer) return timerHalt();
   const now = Date.now(); const s = T.tSeconds(G.timer, now);
   if (s !== lastSec) { lastSec = s; drawTimer(); if (s <= 5 && s > 0) beep('tick'); persist(); }
+  else drawBar(now); // الشريط ينساب بين الثواني
   if (T.tExpired(G.timer, now)) { timerHalt(); onTimeout(); }
 }
+function drawBar(now) {
+  if (!G || !G.timer) return;
+  $('#timer-bar').style.width = (100 * T.tRemaining(G.timer, now) / (G.timer.total * 1000)).toFixed(2) + '%';
+}
 function drawTimer() {
-  const tw = $('#timer');
-  if (!G || !G.timer) { tw.classList.add('hidden'); return; }
-  tw.classList.remove('hidden');
-  const s = T.tSeconds(G.timer, Date.now()); const total = G.timer.total;
+  const tw = $('#timer'); const tb = $('#tbar');
+  if (!G || !G.timer) { tw.classList.add('hidden'); tb.classList.add('hidden'); return; }
+  tw.classList.remove('hidden'); tb.classList.remove('hidden');
+  const now = Date.now(); const s = T.tSeconds(G.timer, now);
   $('#timer-num').textContent = s;
-  $('#timer-bar').style.strokeDashoffset = 100.5 * (1 - s / total);
-  tw.classList.toggle('warn', s <= 5);
+  drawBar(now);
+  const urgent = s <= 5 && G.timer.since != null;
+  tw.classList.toggle('warn', urgent); tb.classList.toggle('urgent', urgent);
   tw.setAttribute('aria-label', `بقي ${s} ثانية`);
 }
 function pauseGame() {
@@ -433,8 +492,10 @@ function answer(i) {
     if (ok) {
       const p = T.turnPoints(q, ptsState());
       team.score += p; team.ok++; G.res = { type: 'ok', team: ti, pts: p }; G.phase = 'done'; beep('ok'); bump = ti;
+      FX = { ok: true, team: ti, pts: p, opt: i };
     } else {
       team.bad++; if (i >= 0) beep('bad');
+      FX = { ok: false, opt: i };
       if (canSteal()) { G.phase = 'steal'; G.stealer = null; }
       else { G.res = { type: 'none' }; G.phase = 'done'; }
     }
@@ -446,8 +507,9 @@ function answer(i) {
     if (G.order[i] === 0) {
       const p = T.stealPoints(T.turnPoints(q, ptsState()));
       t.score += p; t.steals++; G.res = { type: 'steal', team: k, pts: p }; beep('ok'); bump = k;
+      FX = { ok: true, team: k, pts: p, opt: i };
       toast(`سرقة ناجحة: ${t.name} ${plus(p)}`);
-    } else { G.res = { type: 'none', failed: k }; beep('bad'); }
+    } else { G.res = { type: 'none', failed: k }; beep('bad'); FX = { ok: false, opt: i }; }
     G.phase = 'done';
   } else return;
   persist(); renderQ(bump);
@@ -465,11 +527,11 @@ function judge(kind, k) {
   pushUndo();
   const q = curQ(); const ti = curTeamIdx(); const team = G.teams[ti];
   const p = T.turnPoints(q, ptsState()); let bump;
-  if (kind === 'ok') { team.score += p; team.ok++; G.res = { type: 'ok', team: ti, pts: p }; bump = ti; beep('ok'); }
+  if (kind === 'ok') { team.score += p; team.ok++; G.res = { type: 'ok', team: ti, pts: p }; bump = ti; beep('ok'); FX = { ok: true, team: ti, pts: p }; }
   else if (kind === 'steal') {
     team.bad++; const sp = T.stealPoints(p); G.teams[k].score += sp; G.teams[k].steals++;
-    G.res = { type: 'steal', team: k, pts: sp }; bump = k; beep('ok');
-  } else { team.bad++; G.res = { type: 'none' }; beep('bad'); }
+    G.res = { type: 'steal', team: k, pts: sp }; bump = k; beep('ok'); FX = { ok: true, team: k, pts: sp };
+  } else { team.bad++; G.res = { type: 'none' }; beep('bad'); FX = { ok: false }; }
   G.phase = 'done'; persist(); renderQ(bump);
 }
 
@@ -524,7 +586,7 @@ function renderChooser() {
   const box = $('#chooser'); box.classList.remove('hidden');
   const t = G.turns[G.ti]; const team = curTeam();
   progressText(); renderScore();
-  $('#turn').innerHTML = `دور <span style="--c:${team.color}">${esc(team.name)}</span>`;
+  $('#turn').innerHTML = `دور ${teamPill(curTeamIdx())}`;
   setTurnColor(team.color);
   let cat = t.cat; let counts = levelCounts(cat);
   if (!counts.some(Boolean)) { // نفد القسم: نأخذ قسماً آخر فيه أسئلة
@@ -533,7 +595,7 @@ function renderChooser() {
   }
   const c = CATS[cat];
   box.innerHTML = '';
-  box.appendChild(el('div', 'choose-head', `<span class="badge" style="border-color:${c.color}">${c.icon} ${esc(c.name)}</span><div class="choose-title">اختاروا مستوى سؤالكم</div>`));
+  box.appendChild(el('div', 'choose-head', `<span class="qcat" style="${catStyle(c)}">${catIcon(c)}${esc(c.name)}</span><div class="choose-title">اختاروا مستوى سؤالكم</div>`));
   const grid = el('div', 'levels');
   T.LEVELS.forEach((d, i) => {
     const extra = c.clues ? ' + التلميحات' : '';
@@ -565,24 +627,23 @@ function renderBoard() {
   progressText();
   if (!left) return endGame();
   const t = curTeam();
-  $('#turn').innerHTML = `دور <span style="--c:${t.color}">${esc(t.name)}</span> — اختاروا سؤالاً`;
+  $('#turn').innerHTML = `دور ${teamPill(curTeamIdx())} — اختاروا سؤالاً`;
   setTurnColor(t.color);
   const b = $('#board'); b.innerHTML = '';
   G.board.forEach((row, r) => {
-    const c = CATS[row.cat] || { icon: '', name: row.cat, color: '#888' };
-    const div = el('div', 'brow', `<div class="bt">${c.icon} ${esc(c.name)}</div>`);
-    div.style.setProperty('--c', c.color);
+    const c = CATS[row.cat] || { icon: 'star', name: row.cat, color: '#5B4A8A' };
+    const div = el('div', 'brow', `<div class="bt" style="${catStyle(c)}">${catIcon(c)}${esc(c.name)}</div>`);
     const cells = el('div', 'cells');
     row.cells.forEach((cell, k) => {
       const btn = el('button', `cell d${cell.d}${cell.used ? ' used ' + (cell.by != null ? 'ok' : 'bad') : ''}`, String(cell.d));
-      if (cell.used && cell.by != null) btn.style.setProperty('--tc', G.teams[cell.by].color);
+      if (cell.used && cell.by != null) btn.setAttribute('style', teamStyle(cell.by).replace('--g1', '--tc').replace('--g2', '--tc2'));
       btn.setAttribute('aria-label', `${c.name}، ${DIFF_NAME[cell.d]}` + (cell.used ? (cell.by != null ? `، كسبه ${G.teams[cell.by].name}` : '، لم يُجب') : ''));
       if (cell.used) btn.disabled = true; else btn.onclick = () => openCell(r, k);
       cells.appendChild(btn);
     });
     div.appendChild(cells); b.appendChild(div);
   });
-  b.appendChild(el('div', 'board-legend', '1 سهل · 2 متوسط · 3 صعب · 4 صعب جداً · الخانة الملونة كسبها الفريق صاحب اللون'));
+  b.appendChild(el('div', 'board-legend', '<span><i style="background:#4BE08C"></i>1 سهل</span><span><i style="background:#5AA9FF"></i>2 متوسط</span><span><i style="background:#FFB020"></i>3 صعب</span><span><i style="background:#FF5A7A"></i>4 صعب جداً</span><span>الخانة الملونة كسبها الفريق صاحب اللون</span>'));
   updateTopbar();
 }
 function openCell(r, k) {
@@ -610,11 +671,11 @@ function renderScore(bumpIdx) {
   const cur = curTeamIdx();
   G.teams.forEach((t, i) => {
     const life = [];
-    if (G.settings.fifty) life.push(`<span class="life${t.fifty ? '' : ' off'}" title="حذف إجابتين">✂</span>`);
-    life.push(`<span class="life${t.swap ? '' : ' off'}" title="تبديل السؤال">⇄</span>`);
+    if (G.settings.fifty) life.push(`<span class="life${t.fifty ? '' : ' off'}" title="حذف إجابتين">${ico(UI.scissors)}</span>`);
+    life.push(`<span class="life${t.swap ? '' : ' off'}" title="تبديل السؤال">${ico(UI.swap)}</span>`);
     const d = el('button', 'sc' + (i === cur ? ' cur' : '') + (i === bumpIdx ? ' bump' : ''),
-      `<div class="n">${esc(t.name)}</div><div class="s">${fmt(t.score)}</div><div class="f">${life.join('')}</div>`);
-    d.style.setProperty('--c', t.color);
+      `<div class="who"><div class="lb">دوركم</div><div class="n">${esc(t.name)}</div><div class="f">${life.join('')}</div></div><div class="s">${fmt(t.score)}</div>`);
+    d.setAttribute('style', teamStyle(i)); d.dataset.i = i;
     d.setAttribute('aria-label', `${t.name}: ${fmt(t.score)}. اضغط لتعديل الاسم أو النقاط`);
     d.onclick = () => teamModal(i);
     sb.appendChild(d);
@@ -635,10 +696,10 @@ function renderQ(bump) {
   progressText(); renderScore(bump);
   const stealT = ph === 'steal' && G.stealer != null ? G.teams[G.stealer] : null;
   const tt = stealT || team;
-  $('#turn').innerHTML = stealT ? `محاولة سرقة: <span style="--c:${stealT.color}">${esc(stealT.name)}</span>` : `دور <span style="--c:${team.color}">${esc(team.name)}</span>`;
+  $('#turn').innerHTML = stealT ? `محاولة سرقة: ${teamPill(G.stealer)}` : `دور ${teamPill(ti)}`;
   setTurnColor(tt.color);
   const c = CATS[q.cat];
-  $('#q-cat').textContent = c.icon + ' ' + c.name; $('#q-cat').style.borderColor = c.color;
+  $('#q-cat').innerHTML = catIcon(c) + `<span>${esc(c.name)}</span>`; $('#q-cat').setAttribute('style', catStyle(c));
   const p = T.turnPoints(q, ptsState());
   $('#q-diff').textContent = `${DIFF_NAME[q.d]} · ${q.clues && ph === 'q' ? 'الآن ' : ''}${ptsWord(p)}`;
 
@@ -661,11 +722,14 @@ function renderQ(bump) {
   const box = $('#options'); box.innerHTML = '';
   const hidden = optsHidden();
   box.classList.toggle('locked', open || (ph === 'steal' && G.stealer == null));
+  // خيار طويل (تعريف مثلاً) أو فيه سطر جديد: قائمة بعمود واحد بدل البطاقات الأربع
+  box.classList.toggle('list', !hidden && G.order.some(k => { const t = String(optText(q, k)); return t.length > 22 || t.includes('\n'); }));
   if (hidden) {
     if (ph === 'q') box.appendChild(el('div', 'opts-hidden', G.timedOut ? 'انتهى الوقت. لغير الفريق أن يقول جوابه الآن قبل الكشف.' : 'الخيارات مخفية: يجيب الفريق شفهياً، ثم يكشف المقدِّم الإجابة.'));
   } else {
     G.order.forEach((k, i) => {
-      const b = el('button', 'opt', `<span class="k">${LETTERS[i]}</span><bdi>${esc(optText(q, k))}</bdi>`);
+      const b = el('button', 'opt', `<span class="k">${open && k === 0 ? ico(UI.check) : LETTERS[i]}</span><bdi>${esc(optText(q, k))}</bdi>`);
+      b.setAttribute('aria-label', `${LETTERS[i]}: ${optText(q, k)}`);
       if (G.gone.includes(i)) b.classList.add('gone');
       if (ph === 'steal' && i === G.pick) { b.classList.add('bad'); b.disabled = true; }
       if (open) {
@@ -700,14 +764,14 @@ function renderQ(bump) {
   st.classList.add('hidden'); jd.classList.add('hidden'); v.classList.remove('hidden');
   $('#after-row').classList.toggle('hidden', ph !== 'done');
   if (ph === 'steal') {
-    v.className = 'verdict bad'; v.textContent = G.pick === -1 ? 'انتهى الوقت ⏱' : `خطأ من ${team.name}`;
+    v.className = 'verdict bad'; v.textContent = G.pick === -1 ? 'انتهى الوقت' : `الجواب غير صحيح من ${team.name}`;
     st.classList.remove('hidden');
     const sp = T.stealPoints(p); const sb = $('#steal-btns'); sb.innerHTML = '';
     if (G.stealer == null) {
       $('#steal-title').textContent = `هل يحاول فريق آخر قبل كشف الإجابة؟ للسرقة ${plus(sp)}`;
       G.teams.forEach((t, k) => {
         if (k === ti) return;
-        const b = el('button', 'btn sm team-btn', esc(t.name)); b.style.setProperty('--c', t.color);
+        const b = el('button', 'btn sm team-btn', esc(t.name)); b.setAttribute('style', teamStyle(k));
         b.onclick = () => chooseStealer(k); sb.appendChild(b);
       });
       const nb = el('button', 'btn ghost sm', 'لا أحد — اكشف الإجابة'); nb.onclick = noSteal; sb.appendChild(nb);
@@ -719,23 +783,23 @@ function renderQ(bump) {
   } else if (ph === 'judge') {
     v.classList.add('hidden'); jd.classList.remove('hidden');
     const jb = $('#judge-btns'); jb.innerHTML = '';
-    if (!G.timedOut) { const b = el('button', 'btn ok', `✓ أصاب ${esc(team.name)} ${plus(p)}`); b.onclick = () => judge('ok'); jb.appendChild(b); }
+    if (!G.timedOut) { const b = el('button', 'btn ok', `${ico(UI.check)} أصاب ${esc(team.name)} ${plus(p)}`); b.onclick = () => judge('ok'); jb.appendChild(b); }
     if (canSteal()) {
       const sp = T.stealPoints(p);
       G.teams.forEach((t, k) => {
         if (k === ti) return;
-        const b = el('button', 'btn sm team-btn', `سرقة: ${esc(t.name)} ${plus(sp)}`); b.style.setProperty('--c', t.color);
+        const b = el('button', 'btn sm team-btn', `سرقة: ${esc(t.name)} ${plus(sp)}`); b.setAttribute('style', teamStyle(k));
         b.onclick = () => judge('steal', k); jb.appendChild(b);
       });
     }
-    const nb = el('button', 'btn bad', '✗ لم يُصب أحد'); nb.onclick = () => judge('none'); jb.appendChild(nb);
+    const nb = el('button', 'btn bad', `${ico(UI.x)} لم يُصب أحد`); nb.onclick = () => judge('none'); jb.appendChild(nb);
     $('#judge-title').textContent = canSteal() ? 'من أصاب؟ (السرقة لمن قال جوابه قبل الكشف)' : 'هل أصاب الفريق؟';
   } else if (ph === 'done') {
     const r = G.res || { type: 'none' };
     v.className = 'verdict ' + (r.type === 'none' ? 'bad' : 'ok');
-    v.textContent = r.type === 'ok' ? `صح! ${G.teams[r.team].name} ${plus(r.pts)}`
+    v.textContent = r.type === 'ok' ? `أحسنتم! ${G.teams[r.team].name} ${plus(r.pts)}`
       : r.type === 'steal' ? `سرقة ناجحة: ${G.teams[r.team].name} ${plus(r.pts)}`
-      : G.pick === -1 && !isHost() ? 'انتهى الوقت ⏱' : canSteal() ? 'لم يُصب أحد' : 'خطأ';
+      : G.pick === -1 && !isHost() ? 'انتهى الوقت' : canSteal() ? 'لم يُصب أحد' : 'الجواب غير صحيح';
     const last = G.mode === 1 ? G.board.reduce((a, row) => a + row.cells.filter(x => !x.used).length, 0) <= 1 : G.ti + 1 >= G.turns.length;
     $('#btn-next').textContent = last ? 'النتيجة' : (G.mode === 1 ? 'إلى اللوحة' : 'التالي');
   }
@@ -744,11 +808,30 @@ function renderQ(bump) {
   const canPause = inQ && G.timer && !G.timedOut;
   $('#qcard').classList.toggle('paused', !!(canPause && G.paused));
   $('#btn-pause').classList.toggle('hidden', !canPause);
-  $('#btn-pause').textContent = G.paused ? '▶' : '⏸';
+  $('#btn-pause').innerHTML = ico(G.paused ? UI.play : UI.pause);
   $('#btn-pause').setAttribute('aria-label', G.paused ? 'متابعة' : 'إيقاف مؤقت');
-  drawTimer(); if (!inQ) $('#timer').classList.add('hidden');
+  drawTimer(); if (!inQ) { $('#timer').classList.add('hidden'); $('#tbar').classList.add('hidden'); }
   updateTopbar();
   if (inQ && !G.paused && !G.timedOut) timerRun(); else if (tickH) timerHalt();
+  if (G.qid !== shownQid) { shownQid = G.qid; $('#qbox').classList.remove('shake'); replay($('#qbox'), 'enter'); if (!hidden) replay(box, 'enter'); }
+  playFx();
+}
+// يعيد تشغيل حركة CSS على عنصر
+function replay(e, cls) { if (!e || RM.matches) return; e.classList.remove(cls); void e.offsetWidth; e.classList.add(cls); }
+// مؤثرات الإجابة: قصاصات و«+N» فوق نقاط الفريق عند الصواب، واهتزاز عند الخطأ
+function playFx() {
+  const f = FX; FX = null;
+  if (!f || RM.matches) return;
+  const opt = f.opt != null && f.opt >= 0 ? $('#options').children[f.opt] : null;
+  if (f.ok) {
+    if (opt) opt.classList.add('pop');
+    burst();
+    const sc = $(`#scoreboard .sc[data-i="${f.team}"]`);
+    if (sc) { const pp = el('span', 'plus-pop', plus(f.pts)); sc.appendChild(pp); setTimeout(() => pp.remove(), 1500); }
+  } else {
+    if (opt) replay(opt, 'shake');
+    replay($('#qbox'), 'shake');
+  }
 }
 
 function skipMissing() { // سؤال حُذف من الملفات بعد بدء المسابقة
@@ -814,7 +897,7 @@ function reportQ() {
 }
 function showReports() {
   const reps = load(LS.reports, []);
-  if (!reps.length) return modal('<h3>الأسئلة المُبلَّغ عنها</h3><p>لا يوجد بلاغات. أثناء اللعب اضغط «⚑ فيه خطأ» على أي سؤال تشك فيه.</p>');
+  if (!reps.length) return modal('<h3>الأسئلة المُبلَّغ عنها</h3><p>لا يوجد بلاغات. أثناء اللعب اضغط «فيه خطأ» على أي سؤال تشك فيه.</p>');
   const sid = r => r.id ? ` (${r.id.split(':')[1] || r.id})` : '';
   const txt = reps.map((r, i) => `${i + 1}) [${r.cat}]${sid(r)} ${r.q}\nالإجابة المعتمدة: ${r.a}${r.note ? '\nالملاحظة: ' + r.note : ''}`).join('\n\n');
   modal(`<h3>الأسئلة المُبلَّغ عنها (${reps.length})</h3>` +
@@ -916,29 +999,44 @@ function endGame() {
   commitStats(); timerHalt(); UNDO.length = 0;
   const ranked = G.teams.map((t, i) => ({ ...t, i })).sort((a, b) => b.score - a.score);
   const top = ranked[0].score; const winners = ranked.filter(t => t.score === top);
-  $('#winner').textContent = G.teams.length === 1 ? `نتيجتك: ${ptsWord(top) === 'نقطة' ? 'نقطة واحدة' : ptsWord(top)}` :
-    winners.length > 1 ? `تعادل بين ${joinNames(winners.map(w => `«${w.name}»`))} 🤝` : `🏆 الفائز: ${ranked[0].name}`;
+  const solo = G.teams.length === 1; const tie = !solo && winners.length > 1;
+  const detail = t => `صح ${t.ok} · سرقة ${t.steals || 0} · خطأ ${t.bad}`;
+  $('#winner').textContent = solo ? 'نتيجتك' : tie ? 'تعادل!' : 'الفائز!';
+  const pod = $('#podium'); pod.classList.toggle('tie', tie);
+  pod.innerHTML = winners.map(t => `<div class="champ" style="${teamStyle(t.i)}">${ico(UI.trophy)}<div class="cn">${esc(t.name)}</div></div>`).join('');
+  const word = ptsWord(top) === 'نقطة' ? 'نقطة واحدة' : ptsWord(top);
+  const m = word.match(/^(\S+)\s(.+)$/); // «27 نقطة» → الرقم كبير والكلمة صغيرة
+  $('#win-pts').innerHTML = (m && /\d/.test(m[1]) ? `${esc(m[1])} <small>${esc(m[2])}</small>` : `<span class="pw">${esc(word)}</span>`) +
+    `<div class="win-sub">${tie ? `بين ${esc(joinNames(winners.map(w => `«${w.name}»`)))}` : detail(winners[0])}</div>`;
   const rk = $('#ranking'); rk.innerHTML = '';
-  const medals = ['🥇', '🥈', '🥉'];
   let place = 0, prev = null;
   ranked.forEach((t, k) => {
     if (t.score !== prev) place = k; prev = t.score;
-    rk.appendChild(el('div', 'rk' + (t.score === top ? ' first' : ''),
-      `<div class="m">${medals[place] || place + 1}</div><div class="nm">${esc(t.name)}<div class="dt">صح ${t.ok} · سرقة ${t.steals || 0} · خطأ ${t.bad}</div></div><div class="pt" style="color:${t.color}">${fmt(t.score)}</div>`));
+    if (t.score === top) return; // الفائزون في الأعلى
+    rk.appendChild(el('div', 'rk', `<div class="m" style="${teamStyle(t.i)}">${place + 1}</div><div class="nm">${esc(t.name)}<div class="dt">${detail(t)}</div></div><div class="pt">${fmt(t.score)}</div>`));
   });
+  if (tie) winners.forEach(t => rk.insertBefore(el('div', 'rk', `<div class="m" style="${teamStyle(t.i)}">1</div><div class="nm">${esc(t.name)}<div class="dt">${detail(t)}</div></div><div class="pt">${fmt(t.score)}</div>`), rk.children[winners.indexOf(t)] || null));
+  const sum = f => G.teams.reduce((a, t) => a + (t[f] || 0), 0);
+  $('#res-stats').innerHTML = [['الأسئلة', sum('ok') + sum('bad')], ['إجابات صحيحة', sum('ok')], ['سرقات', sum('steals')]]
+    .map(([l, v]) => `<div><small>${l}</small><b>${v}</b></div>`).join('');
   localStorage.removeItem(LS.game);
-  show('result'); beep('win'); confetti();
+  show('result'); beep('win'); burst(60); rain();
 }
-function confetti() {
-  const c = $('#confetti'); c.innerHTML = '';
-  for (let i = 0; i < 80; i++) {
-    const p = el('i'); p.style.left = Math.random() * 100 + '%';
-    p.style.background = TEAM_COLORS[i % TEAM_COLORS.length];
-    p.style.animationDuration = 2 + Math.random() * 2.5 + 's'; p.style.animationDelay = Math.random() * .8 + 's';
-    c.appendChild(p);
+// قصاصات ملونة: دفعة عند الصواب، ومطر خفيف متواصل في شاشة الفوز
+const FX_COLORS = ['#FFD23F', '#FF5A5F', '#2EC4B6', '#7B4DFF', '#FFFFFF', '#3BD67F'];
+function pieces(n, loop) {
+  const box = el('div', loop ? 'rain' : 'burst');
+  for (let i = 0; i < n; i++) {
+    const p = el('i'); const w = 6 + (i % 3) * 3;
+    p.style.cssText = `left:${(i * 37 + Math.random() * 20) % 100}%;width:${w}px;height:${w * 1.6}px;background:${FX_COLORS[i % FX_COLORS.length]};` +
+      `--dx:${Math.round((Math.random() - .5) * 120)}px;animation-duration:${(loop ? 3.5 + (i % 4) * .8 : 1.6 + (i % 5) * .25).toFixed(2)}s;animation-delay:${(loop ? (i % 10) * .6 : (i % 9) * .07).toFixed(2)}s`;
+    box.appendChild(p);
   }
-  setTimeout(() => c.innerHTML = '', 5500);
+  $('#fx').appendChild(box);
+  return box;
 }
+function burst(n = 36) { if (RM.matches) return; const b = pieces(n, false); setTimeout(() => b.remove(), 3200); }
+function rain() { if (RM.matches) return; const old = $('#fx .rain'); if (old) old.remove(); pieces(26, true); }
 
 /* ---------- الشاشة: ملء الشاشة ومنع الإطفاء ---------- */
 const fullscreenSupported = () => !!(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen);
@@ -980,6 +1078,7 @@ function onKey(e) {
 }
 function bind() {
   document.querySelectorAll('.ver').forEach(e => e.textContent = VERSION);
+  document.querySelectorAll('[data-ico]').forEach(e => e.insertAdjacentHTML('afterbegin', ico(UI[e.dataset.ico])));
   $('#btn-add-team').onclick = () => { if (S.teams.length < 8) { S.teams.push(`الفريق ${ORD[S.teams.length]}`); saveSettings(); renderHome(); } };
   $('#btn-remove-team').onclick = () => { if (S.teams.length > 1) { S.teams.pop(); saveSettings(); renderHome(); } };
   $('#btn-start').onclick = () => {
@@ -1019,8 +1118,8 @@ function bind() {
     if (document.visibilityState === 'hidden') { if (G && tickH) { timerHalt(); G.paused = true; persist(); renderQ(); } }
     else if (screenIs('game')) wake(true);
   });
-  const fsBtn = () => { $('#btn-fs').textContent = document.fullscreenElement || document.webkitFullscreenElement ? '🗗' : '⛶'; };
-  document.addEventListener('fullscreenchange', fsBtn); document.addEventListener('webkitfullscreenchange', fsBtn);
+  const fsBtn = () => { const on = !!(document.fullscreenElement || document.webkitFullscreenElement); $('#btn-fs').innerHTML = ico(on ? UI.fsExit : UI.fs); $('#btn-fs').setAttribute('aria-label', on ? 'الخروج من ملء الشاشة' : 'ملء الشاشة'); };
+  fsBtn(); document.addEventListener('fullscreenchange', fsBtn); document.addEventListener('webkitfullscreenchange', fsBtn);
 }
 
 (async function init() {

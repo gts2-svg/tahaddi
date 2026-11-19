@@ -1,19 +1,19 @@
 {
-  "_": "سجل الأقسام: يقرؤه app.js وsw.js وأدوات tools/. لإضافة قسم: أضف سطراً هنا وملفه في data/. الترتيب هنا ترتيب العرض. lastId آخر رقم أُعطي في القسم (يحدّثه tools/assign_ids.py) حتى لا يُعاد رقم سؤال محذوف.",
+  "_": "سجل الأقسام: يقرؤه app.js وsw.js وأدوات tools/. لإضافة قسم: أضف سطراً هنا وملفه في data/. الترتيب هنا ترتيب العرض. lastId آخر رقم أُعطي في القسم (يحدّثه tools/assign_ids.py) حتى لا يُعاد رقم سؤال محذوف. icon اسم أيقونة من مكتبة الأيقونات في app.js (CAT_ICONS) أو مسار SVG يبدأ بـ M على شبكة 24×24، وglyph الحرف الكبير الباهت في بطاقة القسم، وc1 وc2 لونا التدرّج (يُكتب عليهما بالأبيض، فليكونا داكنين بما يكفي)، وcolor اللون الأساسي.",
   "format": 1,
   "categories": [
-    {"key": "religion", "name": "الدين", "icon": "🕌", "file": "data/religion.txt", "color": "#2fb47c", "prefix": "r", "lastId": 551},
-    {"key": "seerah", "name": "السيرة النبوية", "icon": "🌙", "file": "data/seerah.txt", "color": "#4cc9a0", "prefix": "s", "lastId": 274},
-    {"key": "history", "name": "التاريخ الإسلامي", "icon": "📜", "file": "data/history.txt", "color": "#e0a13c", "prefix": "h", "lastId": 311},
-    {"key": "geography", "name": "الجغرافيا", "icon": "🌍", "file": "data/geography.txt", "color": "#3a9be0", "prefix": "g", "lastId": 500},
-    {"key": "poetry", "name": "الشعر", "icon": "🪶", "file": "data/poetry.txt", "color": "#b06ee0", "prefix": "p", "lastId": 388},
-    {"key": "arabic", "name": "اللغة العربية", "icon": "✒️", "file": "data/arabic.txt", "color": "#e07a5f", "prefix": "a", "lastId": 304},
-    {"key": "saudi", "name": "السعودية", "icon": "🌴", "file": "data/saudi.txt", "color": "#3fae5a", "prefix": "k", "lastId": 239},
-    {"key": "whoami", "name": "من أنا؟", "icon": "🕵️", "file": "data/whoami.txt", "color": "#e05a8a", "prefix": "w", "lastId": 220, "clues": true},
-    {"key": "science", "name": "العلوم", "icon": "🔬", "file": "data/science.txt", "color": "#4aa3c7", "prefix": "c", "lastId": 150},
-    {"key": "sports", "name": "الرياضة", "icon": "⚽", "file": "data/sports.txt", "color": "#e0703c", "prefix": "t", "lastId": 137},
-    {"key": "proverbs", "name": "الأمثال والحِكم", "icon": "📖", "file": "data/proverbs.txt", "color": "#c9a227", "prefix": "m", "lastId": 148},
-    {"key": "nature", "name": "الطبيعة والحيوان", "icon": "🐪", "file": "data/nature.txt", "color": "#6fb04a", "prefix": "n", "lastId": 148},
-    {"key": "puzzles", "name": "ألغاز وذكاء", "icon": "🧩", "file": "data/puzzles.txt", "color": "#9b7be0", "prefix": "z", "lastId": 149}
+    {"key": "religion", "name": "الدين", "icon": "mosque", "glyph": "د", "file": "data/religion.txt", "color": "#108559", "c1": "#108559", "c2": "#0A5C3F", "prefix": "r", "lastId": 551},
+    {"key": "seerah", "name": "السيرة النبوية", "icon": "crescent", "glyph": "س", "file": "data/seerah.txt", "color": "#11817C", "c1": "#11817C", "c2": "#0A5653", "prefix": "s", "lastId": 274},
+    {"key": "history", "name": "التاريخ الإسلامي", "icon": "scroll", "glyph": "ت", "file": "data/history.txt", "color": "#A96515", "c1": "#A96515", "c2": "#6E3F08", "prefix": "h", "lastId": 311},
+    {"key": "geography", "name": "الجغرافيا", "icon": "globe", "glyph": "ج", "file": "data/geography.txt", "color": "#1F6FE0", "c1": "#1F6FE0", "c2": "#0F3E85", "prefix": "g", "lastId": 500},
+    {"key": "poetry", "name": "الشعر", "icon": "quill", "glyph": "ش", "file": "data/poetry.txt", "color": "#8A47D6", "c1": "#8A47D6", "c2": "#4B2181", "prefix": "p", "lastId": 388},
+    {"key": "arabic", "name": "اللغة العربية", "icon": "nib", "glyph": "ض", "file": "data/arabic.txt", "color": "#B9472A", "c1": "#B9472A", "c2": "#6E2814", "prefix": "a", "lastId": 304},
+    {"key": "saudi", "name": "السعودية", "icon": "palm", "glyph": "ع", "file": "data/saudi.txt", "color": "#188646", "c1": "#188646", "c2": "#0C4F28", "prefix": "k", "lastId": 239},
+    {"key": "whoami", "name": "من أنا؟", "icon": "mystery", "glyph": "أ", "file": "data/whoami.txt", "color": "#5B5BD6", "c1": "#5B5BD6", "c2": "#2C2C7A", "prefix": "w", "lastId": 220, "clues": true},
+    {"key": "science", "name": "العلوم", "icon": "flask", "glyph": "ل", "file": "data/science.txt", "color": "#127E9C", "c1": "#127E9C", "c2": "#0A4F63", "prefix": "c", "lastId": 150},
+    {"key": "sports", "name": "الرياضة", "icon": "ball", "glyph": "ر", "file": "data/sports.txt", "color": "#C8304A", "c1": "#C8304A", "c2": "#701526", "prefix": "t", "lastId": 137},
+    {"key": "proverbs", "name": "الأمثال والحِكم", "icon": "book", "glyph": "ح", "file": "data/proverbs.txt", "color": "#8C6A0A", "c1": "#8C6A0A", "c2": "#4F3A04", "prefix": "m", "lastId": 148},
+    {"key": "nature", "name": "الطبيعة والحيوان", "icon": "leaf", "glyph": "ط", "file": "data/nature.txt", "color": "#4D7F22", "c1": "#4D7F22", "c2": "#29481A", "prefix": "n", "lastId": 148},
+    {"key": "puzzles", "name": "ألغاز وذكاء", "icon": "puzzle", "glyph": "غ", "file": "data/puzzles.txt", "color": "#C2408A", "c1": "#C2408A", "c2": "#6B1F4B", "prefix": "z", "lastId": 149}
   ]
 }
