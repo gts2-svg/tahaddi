@@ -9,6 +9,7 @@
     {"key": "poetry", "name": "الشعر", "icon": "🪶", "file": "data/poetry.txt", "color": "#b06ee0", "prefix": "p", "lastId": 289},
     {"key": "arabic", "name": "اللغة العربية", "icon": "✒️", "file": "data/arabic.txt", "color": "#e07a5f", "prefix": "a", "lastId": 205},
     {"key": "saudi", "name": "السعودية", "icon": "🌴", "file": "data/saudi.txt", "color": "#3fae5a", "prefix": "k", "lastId": 152},
-    {"key": "whoami", "name": "من أنا؟", "icon": "🕵️", "file": "data/whoami.txt", "color": "#e05a8a", "prefix": "w", "lastId": 140, "clues": true}
+    {"key": "whoami", "name": "من أنا؟", "icon": "🕵️", "file": "data/whoami.txt", "color": "#e05a8a", "prefix": "w", "lastId": 140, "clues": true},
+    {"key": "science", "name": "العلوم", "icon": "🔬", "file": "data/science.txt", "color": "#4aa3c7", "prefix": "c", "lastId": 150}
   ]
 }

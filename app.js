@@ -1,6 +1,6 @@
 /* تحدّي — مسابقة ثقافية للفرق (الواجهة). منطق اللعب الخالص في logic.js */
 'use strict';
-const VERSION = '1.4.0';
+const VERSION = '1.4.1';
 const T = window.TL;
 
 // سجل الأقسام في data/cats.json. هذه نسخة احتياطية تُستعمل فقط إذا تعذّر تحميله.
@@ -665,7 +665,7 @@ function renderQ(bump) {
     if (ph === 'q') box.appendChild(el('div', 'opts-hidden', G.timedOut ? 'انتهى الوقت. لغير الفريق أن يقول جوابه الآن قبل الكشف.' : 'الخيارات مخفية: يجيب الفريق شفهياً، ثم يكشف المقدِّم الإجابة.'));
   } else {
     G.order.forEach((k, i) => {
-      const b = el('button', 'opt', `<span class="k">${LETTERS[i]}</span><span>${esc(optText(q, k))}</span>`);
+      const b = el('button', 'opt', `<span class="k">${LETTERS[i]}</span><bdi>${esc(optText(q, k))}</bdi>`);
       if (G.gone.includes(i)) b.classList.add('gone');
       if (ph === 'steal' && i === G.pick) { b.classList.add('bad'); b.disabled = true; }
       if (open) {
