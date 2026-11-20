@@ -1,0 +1,44 @@
+name: swift-logic
+
+# فحص مجاني على Linux لمنطق اللعب في التطبيق الأصلي (ios/App/Logic.swift):
+# يبنيه مع فحوصه الذاتية ويشغّلها على ملفات data/، ثم يقارن تحليل كل سؤال بما يعطيه logic.js في نسخة الويب.
+on:
+  push:
+    paths: ["ios/App/Logic.swift", "ios/App/SelfCheck.swift", "data/**", "logic.js", ".github/workflows/swift-logic.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  logic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and run the self-checks
+        run: |
+          swift --version
+          mkdir -p /tmp/sc
+          cat > /tmp/sc/main.swift <<'SWIFT'
+          import Foundation
+          let dir = URL(fileURLWithPath: CommandLine.arguments[1])
+          let r = SelfCheck.run(dataDir: dir)
+          print(r.text)
+          try! SelfCheck.dump(dataDir: dir).write(toFile: "/tmp/sc/swift.tsv", atomically: true, encoding: .utf8)
+          exit(r.ok ? 0 : 1)
+          SWIFT
+          swiftc -O ios/App/Logic.swift ios/App/SelfCheck.swift /tmp/sc/main.swift -o /tmp/sc/check
+          /tmp/sc/check data
+      - name: Compare parsing with logic.js
+        run: |
+          node -e "
+          const T=require('./logic.js'),fs=require('fs');
+          const reg=JSON.parse(fs.readFileSync('data/cats.json','utf8'));const out=[];
+          for(const c of reg.categories){const r=T.parseBank(c.key,fs.readFileSync(c.file,'utf8'),{clues:!!c.clues});
+          for(const q of r.items)out.push([q.id,q.legacy,q.d,q.akey,q.keys.join(','),q.clues?q.clues.length:0].join('\t'));
+          for(const p of r.problems)out.push(['P',p.cat,p.line,p.level].join('\t'));}
+          fs.writeFileSync('/tmp/sc/js.tsv',out.join('\n'));"
+          wc -l /tmp/sc/js.tsv /tmp/sc/swift.tsv
+          diff /tmp/sc/js.tsv /tmp/sc/swift.tsv | head -40
+          cmp /tmp/sc/js.tsv /tmp/sc/swift.tsv && echo "IDENTICAL"

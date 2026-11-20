@@ -6,7 +6,7 @@ options:
 settings:
   base:
     SWIFT_VERSION: "5.0"
-    MARKETING_VERSION: "1.0"
+    MARKETING_VERSION: "2.0.0"
     CURRENT_PROJECT_VERSION: "1"
     TARGETED_DEVICE_FAMILY: "1,2"
 targets:
@@ -14,9 +14,13 @@ targets:
     type: application
     platform: iOS
     sources:
-      - path: Shell
-        excludes: ["Web/**"]
-      - path: Shell/Web
+      - path: App
+        excludes: ["Data/**", "Fonts/**"]
+      # ملفات الأسئلة (ينسخها build_web.sh من data/ قبل التوليد) والخطوط: مجلدان كما هما داخل التطبيق
+      - path: App/Data
+        type: folder
+        buildPhase: resources
+      - path: App/Fonts
         type: folder
         buildPhase: resources
     scheme: {}
@@ -27,7 +31,7 @@ targets:
         TARGETED_DEVICE_FAMILY: "1,2"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
     info:
-      path: Shell/Info.plist
+      path: App/Info.plist
       properties:
         CFBundleDisplayName: تحدّي
         CFBundleDevelopmentRegion: ar
@@ -42,5 +46,4 @@ targets:
           - UIInterfaceOrientationPortraitUpsideDown
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
-        ShellForceDark: false
         ITSAppUsesNonExemptEncryption: false

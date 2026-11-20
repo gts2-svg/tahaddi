@@ -1,7 +1,8 @@
 name: ios
 
-# يبني تطبيق الآيفون والآيباد للمحاكي ويصوّر شاشته، ويرفع الصور إلى فرع ios-screens
-# للتأكد أن الموقع يعمل داخل التطبيق. لا ينشر شيئاً للتثبيت؛ الرفع إلى TestFlight من مستودع anthima.
+# يبني تطبيق الآيفون والآيباد الأصلي (SwiftUI) للمحاكي، ويشغّل فحوص المنطق داخله، ويصوّر شاشاته
+# بوضع التصوير (-shot) على آيفون عمودياً وآيباد أفقياً، ويرفع الصور إلى فرع ios-screens.
+# لا ينشر شيئاً للتثبيت؛ الرفع إلى TestFlight من مستودع anthima.
 on:
   push:
     branches: [main]
@@ -19,6 +20,8 @@ jobs:
   simulator:
     runs-on: macos-15-intel
     timeout-minutes: 60
+    env:
+      SHOTS: "home settings teams splash question answered steal whoami clubs poem board result"
     steps:
       - uses: actions/checkout@v4
 
@@ -41,13 +44,16 @@ jobs:
           xcodebuild -project Tahaddi.xcodeproj -scheme Tahaddi -configuration Debug -sdk iphonesimulator \
             -destination 'generic/platform=iOS Simulator' -derivedDataPath build CODE_SIGNING_ALLOWED=NO build \
             2>&1 | tee build.log | grep -E "error:|BUILD (SUCCEEDED|FAILED)" || true
-          grep -q "BUILD SUCCEEDED" build.log || { grep -B2 -A8 "error:" build.log | head -80; exit 1; }
+          echo "warnings: $(grep -c 'warning:' build.log || true)"
+          grep -E "warning:" build.log | grep "/App/" | sort -u | head -40 || true
+          grep -q "BUILD SUCCEEDED" build.log || { grep -E -A6 "error:" build.log | head -250; exit 1; }
 
       - name: Screenshots
         working-directory: ios
         run: |
           APP=$(find build/Build/Products -name "Tahaddi.app" -maxdepth 3 | head -1)
           mkdir -p "$RUNNER_TEMP/shots"
+          : > "$RUNNER_TEMP/problems.txt"
           pick() {
             xcrun simctl list devices available -j | python3 -c "
           import json,sys
@@ -61,21 +67,35 @@ jobs:
           " "$1"
           }
           shoot() {
-            read U N <<< "$(pick $1)"; echo "$1: $N"
-            xcrun simctl boot "$U"; xcrun simctl bootstatus "$U" -b
+            read U N <<< "$(pick $1)"; echo "== $1: $N"
+            xcrun simctl boot "$U"; xcrun simctl bootstatus "$U" -b > /dev/null
             xcrun simctl status_bar "$U" override --time "9:41" --batteryState charged --batteryLevel 100 --wifiBars 3
             xcrun simctl install "$U" "$APP"
-            PID=$(xcrun simctl launch "$U" com.gts2svg.tahaddi | awk '{print $NF}')
-            sleep 25
-            xcrun simctl io "$U" screenshot "$RUNNER_TEMP/shots/$1-launch.png" > /dev/null
-            echo "---- shell.log ($1)"; cat "$(xcrun simctl get_app_container "$U" com.gts2svg.tahaddi data)/Documents/shell.log" | head -60 || true
-            if ! ps -p "$PID" > /dev/null 2>&1; then echo "::error::$1: the app quit"; echo "$1 crashed" >> "$RUNNER_TEMP/problems.txt"; fi
+            if [ "$1" = iphone ]; then
+              xcrun simctl launch "$U" com.gts2svg.tahaddi -selfcheck > /dev/null
+              sleep 10
+              echo "---- selfcheck"
+              cat "$(xcrun simctl get_app_container "$U" com.gts2svg.tahaddi data)/Documents/selfcheck.txt" || echo "no selfcheck output"
+              grep -q "SELFCHECK OK" "$(xcrun simctl get_app_container "$U" com.gts2svg.tahaddi data)/Documents/selfcheck.txt" 2>/dev/null || echo "selfcheck failed" >> "$RUNNER_TEMP/problems.txt"
+            fi
+            i=0
+            for s in $SHOTS; do
+              i=$((i+1))
+              xcrun simctl terminate "$U" com.gts2svg.tahaddi > /dev/null 2>&1 || true
+              PID=$(xcrun simctl launch "$U" com.gts2svg.tahaddi -shot "$s" | awk '{print $NF}')
+              if [ $i -eq 1 ]; then sleep 14; else sleep 7; fi
+              F="$RUNNER_TEMP/shots/$1-$(printf %02d $i)-$s.png"
+              xcrun simctl io "$U" screenshot "$F" > /dev/null
+              if ! ps -p "$PID" > /dev/null 2>&1; then echo "::error::$1 $s: the app quit"; echo "$1 $s crashed" >> "$RUNNER_TEMP/problems.txt"; fi
+            done
             xcrun simctl shutdown "$U" || true
           }
-          : > "$RUNNER_TEMP/problems.txt"
           shoot iphone
           shoot ipad
           ls -la "$RUNNER_TEMP/shots"
+          echo "---- crash reports"
+          ls ~/Library/Logs/DiagnosticReports 2>/dev/null | grep -i tahaddi | head || true
+          for f in $(ls ~/Library/Logs/DiagnosticReports/Tahaddi* 2>/dev/null | head -2); do head -120 "$f"; done
 
       - name: Publish screenshots to the ios-screens branch
         if: always()
@@ -89,7 +109,7 @@ jobs:
           git config user.email "github-actions@users.noreply.github.com"
           cp "$RUNNER_TEMP"/shots/*.png .
           git add *.png
-          git commit -q -m "ios screenshots for ${GITHUB_SHA::7}"
+          git commit -q -m "ios screenshots for ${GITHUB_SHA::7} (${GITHUB_REF_NAME})"
           git push -q -f "https://x-access-token:${TOKEN}@github.com/${GITHUB_REPOSITORY}.git" ios-screens
 
       - name: Check the app stayed open
