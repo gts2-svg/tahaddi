@@ -67,7 +67,7 @@ extension AppModel {
             base.board = b.rows
             base.turn = 0
             base.seen = base.boardCells.map { $0.id }
-            let go = { [weak self] in self?.beginGame(base) }
+            let go: @MainActor () -> Void = { [weak self] in self?.beginGame(base) }
             if b.total < b.wanted {
                 alert = AppAlert(title: "الأسئلة المتاحة لا تكفي اللوحة كاملة",
                                  message: "اللوحة المطلوبة \(TL.qsWord(b.wanted))، والمتاح في الأقسام المختارة يكفي \(TL.qsWord(b.total)) فقط، فبعض المستويات ناقصة. ويبقى لكل فريق عدد الأدوار نفسه.\nتبدؤون بهذا العدد، أو تختارون أقساماً أخرى؟",
@@ -83,7 +83,7 @@ extension AppModel {
             base.ti = 0
             base.rounds = d.rounds
             base.seen = d.turns.compactMap { $0.id }
-            let go = { [weak self] in
+            let go: @MainActor () -> Void = { [weak self] in
                 guard let self else { return }
                 var s = base
                 self.beginTurn(&s)
