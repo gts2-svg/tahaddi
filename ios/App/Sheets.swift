@@ -91,7 +91,10 @@ struct MenuSheet: View {
                     m.autoPaused = false
                     m.pauseGame()
                     dismiss()
-                    m.confirmEnd()
+                    Task { @MainActor in
+                        try? await Task.sleep(nanoseconds: 450_000_000)
+                        m.confirmEnd()
+                    }
                 } label: { Text("إنهاء المسابقة…").frame(maxWidth: .infinity) }.buttonStyle(GhostStyle(k: k, danger: true))
             }
         }
@@ -135,37 +138,69 @@ struct ReportsSheet: View {
     @EnvironmentObject var m: AppModel
     @Environment(\.uiScale) var k
     @State private var confirmClear = false
+
+    var title: String { m.reports.isEmpty ? "الأسئلة المُبلَّغ عنها" : "الأسئلة المُبلَّغ عنها (\(m.reports.count))" }
+
     var body: some View {
-        SheetFrame(title: m.reports.isEmpty ? "الأسئلة المُبلَّغ عنها" : "الأسئلة المُبلَّغ عنها (\(m.reports.count))") {
+        SheetFrame(title: title) {
             if m.reports.isEmpty {
                 Text("لا يوجد بلاغات. أثناء اللعب اضغط «فيه خطأ» على أي سؤال تشك فيه.").tf(15).foregroundColor(C.text)
             } else {
-                ForEach(m.reports.indices, id: \.self) { i in
-                    let r = m.reports[i]
-                    VStack(alignment: .leading, spacing: 3 * k) {
-                        Text("[\(r.cat ?? "")]" + (r.id.map { id in " (" + (id.split(separator: ":").last.map(String.init) ?? id) + ")" } ?? ""))
-                            .tf(13, .semibold).foregroundColor(C.accentD)
-                        Text(r.q ?? "").tf(14).foregroundColor(C.text).fixedSize(horizontal: false, vertical: true)
-                        Text("المعتمد: \(r.a ?? "")" + ((r.note ?? "").isEmpty ? "" : " — " + (r.note ?? ""))).tf(12).foregroundColor(C.muted)
-                    }
-                    .padding(.vertical, 8 * k)
-                    Divider()
-                }
-                Text("انسخ القائمة وأرسلها لتصحيحها:").tf(13).foregroundColor(C.muted)
-                HStack(spacing: 10 * k) {
-                    Button { copyToPasteboard(m.reportsText); m.showToast("تم النسخ") } label: { Label("نسخ", systemImage: "doc.on.doc") }
-                        .buttonStyle(PrimaryStyle(k: k))
-                    ShareLink(item: m.reportsText) { Label("مشاركة", systemImage: "square.and.arrow.up") }
-                        .buttonStyle(GhostStyle(k: k))
-                    Button("مسح الكل") { confirmClear = true }.buttonStyle(GhostStyle(k: k, danger: true))
-                }
-                .frame(maxWidth: .infinity)
+                list
             }
         }
         .alert("مسح كل البلاغات نهائياً؟", isPresented: $confirmClear) {
             Button("نعم، امسحها", role: .destructive) { m.reports = []; m.saveReports() }
             Button("إلغاء", role: .cancel) {}
         }
+    }
+
+    var list: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            ForEach(m.reports.indices, id: \.self) { i in
+                ReportRow(r: m.reports[i])
+                Divider()
+            }
+            Text("انسخ القائمة وأرسلها لتصحيحها:").tf(13).foregroundColor(C.muted).padding(.top, 10 * k)
+            buttons.padding(.top, 10 * k)
+        }
+    }
+
+    var buttons: some View {
+        let text = m.reportsText
+        return HStack(spacing: 10 * k) {
+            Button { copyToPasteboard(text); m.showToast("تم النسخ") } label: { Label("نسخ", systemImage: "doc.on.doc") }
+                .buttonStyle(PrimaryStyle(k: k))
+            ShareLink(item: text) { Label("مشاركة", systemImage: "square.and.arrow.up") }
+                .buttonStyle(GhostStyle(k: k))
+            Button("مسح الكل") { confirmClear = true }.buttonStyle(GhostStyle(k: k, danger: true))
+        }
+        .frame(maxWidth: .infinity)
+    }
+}
+
+struct ReportRow: View {
+    @Environment(\.uiScale) var k
+    let r: Report
+    var head: String {
+        var s = "[" + (r.cat ?? "") + "]"
+        if let id = r.id {
+            let sid = id.split(separator: ":").last.map(String.init) ?? id
+            s += " (" + sid + ")"
+        }
+        return s
+    }
+    var foot: String {
+        let note = r.note ?? ""
+        return "المعتمد: " + (r.a ?? "") + (note.isEmpty ? "" : " — " + note)
+    }
+    var body: some View {
+        VStack(alignment: .leading, spacing: 3 * k) {
+            Text(head).tf(13, .semibold).foregroundColor(C.accentD)
+            Text(r.q ?? "").tf(14).foregroundColor(C.text).fixedSize(horizontal: false, vertical: true)
+            Text(foot).tf(12).foregroundColor(C.muted)
+        }
+        .padding(.vertical, 8 * k)
     }
 }
 
