@@ -23,7 +23,6 @@ struct ResultView: View {
                             .shadow(color: Color(hex: "#FDE68A"), radius: 0, x: 0, y: 3 * k)
                             .padding(.top, 4 * k)
                         ZStack {
-                            Rays().frame(width: 640 * k, height: 640 * k).offset(y: -10 * k)
                             VStack(spacing: 0) {
                                 FlowLayout(spacing: 16 * k, rowSpacing: 16 * k) {
                                     ForEach(winners, id: \.i) { w in champ(w, small: tie) }
@@ -34,6 +33,7 @@ struct ResultView: View {
                                 Text(tie ? "بين " + joinNames(winners.map { "«\($0.team.name)»" }) : detail(winners[0].team))
                                     .tf(14).foregroundColor(C.muted).multilineTextAlignment(.center).padding(.top, 8 * k)
                             }
+                            .background(Rays().frame(width: 640 * k, height: 640 * k).offset(y: -40 * k).allowsHitTesting(false))
                         }
                         .frame(maxWidth: .infinity)
                         VStack(spacing: 10 * k) {

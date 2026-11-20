@@ -198,40 +198,43 @@ struct CatCard: View {
         let c1 = cc.0
         let c2 = cc.1
         Button(action: action) {
-            ZStack {
-                C.catGrad(c)
-                if c.photo == nil {
-                    Text(c.glyph).tf(80, .bold).foregroundColor(.white.opacity(0.13))
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing).offset(x: -4 * k, y: 20 * k)
+            VStack(alignment: .leading, spacing: 2 * k) {
+                HStack {
+                    Spacer()
+                    Image(systemName: "checkmark").font(.system(size: 14 * k, weight: .heavy)).foregroundColor(c1)
+                        .frame(width: 28 * k, height: 28 * k)
+                        .background(Circle().fill(Color.white).shadow(color: .black.opacity(0.3), radius: 3 * k, x: 0, y: 2 * k))
+                        .scaleEffect(on ? 1 : 0.01).opacity(on ? 1 : 0)
                 }
-                CachedImage(url: c.photoURL(600))
-                    .saturation(on ? 1 : 0.55).brightness(on ? 0 : -0.05)
-                    .scaleEffect(on ? 1.06 : 1)
-                LinearGradient(stops: [.init(color: .clear, location: 0.3), .init(color: c2.opacity(0.78), location: 0.66), .init(color: c2, location: 1)],
-                               startPoint: .top, endPoint: .bottom)
-                if !on { Color.white.opacity(0.18) }
-                VStack(alignment: .leading, spacing: 2 * k) {
-                    HStack {
-                        Spacer()
-                        Image(systemName: "checkmark").font(.system(size: 14 * k, weight: .heavy)).foregroundColor(c1)
-                            .frame(width: 28 * k, height: 28 * k)
-                            .background(Circle().fill(Color.white).shadow(color: .black.opacity(0.3), radius: 3 * k, x: 0, y: 2 * k))
-                            .scaleEffect(on ? 1 : 0.01).opacity(on ? 1 : 0)
-                    }
-                    Spacer(minLength: 0)
-                    Text(c.name).tf(18, .bold).foregroundColor(.white).shadow(color: .black.opacity(0.45), radius: 3, x: 0, y: 1)
-                        .lineLimit(2).minimumScaleFactor(0.8)
-                    Text("بقي \(left) من \(all)" + (lvl > 0 ? " · " + (DIFF_NAME[lvl] ?? "") : ""))
-                        .tf(13).foregroundColor(.white.opacity(0.95)).shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 1)
-                }
-                .padding(.horizontal, 12 * k).padding(.vertical, 10 * k)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                Spacer(minLength: 0)
+                Text(c.name).tf(18, .bold).foregroundColor(.white).shadow(color: .black.opacity(0.45), radius: 3, x: 0, y: 1)
+                    .lineLimit(2).minimumScaleFactor(0.8)
+                Text("بقي \(left) من \(all)" + (lvl > 0 ? " · " + (DIFF_NAME[lvl] ?? "") : ""))
+                    .tf(13).foregroundColor(.white.opacity(0.95)).shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 1)
             }
+            .padding(.horizontal, 12 * k).padding(.vertical, 10 * k)
+            .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: 132 * k)
+            .background(
+                // الصورة والتدرّج خلف المحتوى، فلا تؤثر في مقاس البطاقة
+                ZStack {
+                    C.catGrad(c)
+                    if c.photo == nil {
+                        Text(c.glyph).tf(80, .bold).foregroundColor(.white.opacity(0.13))
+                    }
+                    CachedImage(url: c.photoURL(600))
+                        .saturation(on ? 1 : 0.55).brightness(on ? 0 : -0.05)
+                        .scaleEffect(on ? 1.06 : 1)
+                    LinearGradient(stops: [.init(color: .clear, location: 0.3), .init(color: c2.opacity(0.78), location: 0.66), .init(color: c2, location: 1)],
+                                   startPoint: .top, endPoint: .bottom)
+                    if !on { Color.white.opacity(0.18) }
+                }
+            )
             .clipShape(RoundedRectangle(cornerRadius: 22 * k, style: .continuous))
             .overlay(RoundedRectangle(cornerRadius: 22 * k, style: .continuous).strokeBorder(Color.white, lineWidth: on ? 3 * k : 0))
             .background(RoundedRectangle(cornerRadius: 25 * k, style: .continuous).fill(on ? c1 : .clear).padding(-3 * k))
             .shadow(color: Color.black.opacity(on ? 0.22 : 0.14), radius: (on ? 12 : 8) * k, x: 0, y: (on ? 8 : 5) * k)
+            .contentShape(Rectangle())
         }
         .buttonStyle(PressStyle())
         .accessibilityLabel(c.name)

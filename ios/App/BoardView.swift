@@ -62,20 +62,20 @@ struct BoardRowView: View {
 
     func header(_ cat: Category?, left: Int) -> some View {
         let cc = C.cat(cat)
-        return ZStack(alignment: wide ? .bottomLeading : .leading) {
-            C.catGrad(cat)
-            CachedImage(url: cat?.photoURL(wide ? 500 : 800))
-            LinearGradient(colors: wide ? [cc.1.opacity(0.0), cc.1.opacity(0.92)] : [cc.1.opacity(0.95), cc.1.opacity(0.35)],
-                           startPoint: wide ? .top : .leading, endPoint: wide ? .bottom : .trailing)
-            VStack(alignment: .leading, spacing: 1 * k) {
-                Text(cat?.name ?? row.cat).tf(wide ? 19 : 17, .bold).foregroundColor(.white)
-                    .shadow(color: .black.opacity(0.45), radius: 3, x: 0, y: 1).lineLimit(2).minimumScaleFactor(0.75)
-                Text(left == 0 ? "اكتمل" : TL.leftMsg(left)).tf(12, .medium).foregroundColor(.white.opacity(0.92))
-                    .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 1)
+        return C.catGrad(cat)
+            .overlay(CachedImage(url: cat?.photoURL(wide ? 500 : 800)))
+            .overlay(LinearGradient(colors: wide ? [cc.1.opacity(0.0), cc.1.opacity(0.92)] : [cc.1.opacity(0.95), cc.1.opacity(0.35)],
+                                    startPoint: wide ? .top : .leading, endPoint: wide ? .bottom : .trailing))
+            .overlay(alignment: wide ? .bottomLeading : .leading) {
+                VStack(alignment: .leading, spacing: 1 * k) {
+                    Text(cat?.name ?? row.cat).tf(wide ? 19 : 17, .bold).foregroundColor(.white)
+                        .shadow(color: .black.opacity(0.45), radius: 3, x: 0, y: 1).lineLimit(2).minimumScaleFactor(0.75)
+                    Text(left == 0 ? "اكتمل" : TL.leftMsg(left)).tf(12, .medium).foregroundColor(.white.opacity(0.92))
+                        .shadow(color: .black.opacity(0.4), radius: 2, x: 0, y: 1)
+                }
+                .padding(.horizontal, 14 * k).padding(.vertical, 10 * k)
             }
-            .padding(.horizontal, 14 * k).padding(.vertical, 10 * k)
-        }
-        .clipped()
+            .clipped()
     }
 
     var groups: some View {

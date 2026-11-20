@@ -229,12 +229,10 @@ struct CatThumb: View {
     let cat: Category?
     var size: CGFloat = 30
     var body: some View {
-        ZStack {
-            C.catGrad(cat)
-            Text(cat?.glyph ?? "").tf(size * 0.5, .bold).foregroundColor(.white.opacity(0.85))
-            CachedImage(url: cat?.photoURL(200))
-        }
-        .frame(width: size * k, height: size * k)
+        C.catGrad(cat)
+            .overlay(Text(cat?.glyph ?? "").tf(size * 0.5, .bold).foregroundColor(.white.opacity(0.85)))
+            .overlay(CachedImage(url: cat?.photoURL(200)))
+            .frame(width: size * k, height: size * k)
         .clipShape(RoundedRectangle(cornerRadius: size * 0.33 * k, style: .continuous))
     }
 }

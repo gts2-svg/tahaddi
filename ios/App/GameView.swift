@@ -840,9 +840,15 @@ struct TurnSplash: View {
     @State private var shown = false
     var body: some View {
         ZStack {
-            C.teamGrad(i).ignoresSafeArea()
-            Circle().fill(Color.white.opacity(0.08)).frame(width: 520 * k).offset(x: 160 * k, y: -260 * k)
-            Circle().fill(Color.white.opacity(0.06)).frame(width: 380 * k).offset(x: -170 * k, y: 300 * k)
+            C.teamGrad(i)
+                .overlay(
+                    ZStack {
+                        Circle().fill(Color.white.opacity(0.08)).frame(width: 520 * k, height: 520 * k).offset(x: 160 * k, y: -260 * k)
+                        Circle().fill(Color.white.opacity(0.06)).frame(width: 380 * k, height: 380 * k).offset(x: -170 * k, y: 300 * k)
+                    }
+                )
+                .clipped()
+                .ignoresSafeArea()
             VStack(spacing: 14 * k) {
                 Text(initialOf(name)).tf(54, .bold).foregroundColor(C.team(i))
                     .frame(width: 110 * k, height: 110 * k)
