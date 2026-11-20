@@ -475,8 +475,7 @@ struct ClubBadge: View {
             Circle().fill(LinearGradient(colors: [c1, c2], startPoint: .topLeading, endPoint: .bottomTrailing))
             Text(initialOf(club?.ar ?? key)).tf(size * 0.42, .bold).foregroundColor(.white)
             if let b = club?.badge, !b.isEmpty, let u = URL(string: b) {
-                Circle().fill(Color.white)
-                CachedImage(url: u, mode: .fit).padding(size * 0.08 * k)
+                CachedImage(url: u, mode: .fit, plate: true).padding(size * 0.08 * k)
             }
         }
         .frame(width: size * k, height: size * k)
@@ -792,7 +791,7 @@ struct AfterPanel: View {
         VStack(spacing: 10 * k) { content() }
             .frame(maxWidth: .infinity)
             .padding(12 * k)
-            .background(RoundedRectangle(cornerRadius: 18 * k).fill(Color.white).shadow(color: .black.opacity(0.08), radius: 6 * k, x: 0, y: 2 * k))
+            .background(RoundedRectangle(cornerRadius: 18 * k).fill(Color(hex: "#F3F4F6")))
     }
 }
 

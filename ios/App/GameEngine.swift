@@ -165,7 +165,8 @@ extension AppModel {
 
     // MARK: - المؤقت
     func timerRun() {
-        guard var s = game, let t = s.timer, s.phase == .q, !s.timedOut, !s.paused, splash == nil, sheet == nil, screen == .game else { return }
+        guard var s = game, let t = s.timer, s.phase == .q, !s.timedOut, !s.paused, splash == nil, sheet == nil, screen == .game,
+              UIApplication.shared.applicationState != .background else { return }
         s.timer = TL.tStart(t, TL.nowMs())
         game = s
         if tickTask == nil {

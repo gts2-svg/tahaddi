@@ -60,18 +60,22 @@ final class ImageStore {
 struct CachedImage: View {
     let url: URL?
     var mode: ContentMode = .fill
+    /// خلفية بيضاء مستديرة تظهر مع الصورة فقط (لشعارات الأندية)
+    var plate: Bool = false
     @State private var image: UIImage?
 
     @MainActor
-    init(url: URL?, mode: ContentMode = .fill) {
+    init(url: URL?, mode: ContentMode = .fill, plate: Bool = false) {
         self.url = url
         self.mode = mode
+        self.plate = plate
         _image = State(initialValue: url.flatMap { ImageStore.shared.cached($0) })
     }
 
     var body: some View {
         ZStack {
             if let image {
+                if plate { Circle().fill(Color.white).padding(-6).transition(.opacity) }
                 Image(uiImage: image).resizable().aspectRatio(contentMode: mode)
                     .transition(.opacity)
             }

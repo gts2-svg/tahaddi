@@ -36,14 +36,12 @@ struct BoardRowView: View {
         let cat = m.catByKey[row.cat]
         let left = row.groups.reduce(0) { $0 + $1.cells.filter { !$0.used }.count }
         if wide {
+            // الترويسة خلف مساحة محجوزة في جانب الصف، فيتحدد ارتفاع الصف بالخانات وحدها
             HStack(spacing: 0) {
-                header(cat, left: left)
-                    .frame(width: 170 * k)
-                    .frame(maxHeight: .infinity)
-                groups
-                    .padding(10 * k)
+                Color.clear.frame(width: 170 * k)
+                groups.padding(10 * k)
             }
-            .fixedSize(horizontal: false, vertical: true)
+            .background(alignment: .leading) { header(cat, left: left).frame(width: 170 * k) }
             .background(Color.white)
             .clipShape(RoundedRectangle(cornerRadius: 20 * k, style: .continuous))
             .shadow(color: .black.opacity(0.08), radius: 8 * k, x: 0, y: 3 * k)
@@ -111,9 +109,16 @@ struct LevelGroupView: View {
             if group.cells.isEmpty {
                 Text("نفدت").tf(12).foregroundColor(C.soft).frame(maxWidth: .infinity, minHeight: 44 * k)
             } else {
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 5 * k), count: max(1, cols)), spacing: 5 * k) {
-                    ForEach(group.cells.indices, id: \.self) { ci in
-                        BoardCellView(r: r, gi: gi, ci: ci, cell: group.cells[ci])
+                let c = max(1, cols)
+                let rows = stride(from: 0, to: group.cells.count, by: c).map { Array($0..<min($0 + c, group.cells.count)) }
+                VStack(spacing: 5 * k) {
+                    ForEach(rows.indices, id: \.self) { ri in
+                        HStack(spacing: 5 * k) {
+                            ForEach(rows[ri], id: \.self) { ci in
+                                BoardCellView(r: r, gi: gi, ci: ci, cell: group.cells[ci])
+                            }
+                            ForEach(0..<(c - rows[ri].count), id: \.self) { _ in Color.clear.frame(maxWidth: .infinity) }
+                        }
                     }
                 }
             }
