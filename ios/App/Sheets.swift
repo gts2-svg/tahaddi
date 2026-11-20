@@ -58,8 +58,8 @@ struct TeamEditSheet: View {
                 }
                 .frame(maxWidth: .infinity)
                 HStack(spacing: 10 * k) {
-                    Button("حفظ") { m.editTeam(i, name: name, delta: delta); dismiss() }.buttonStyle(PrimaryStyle(k: k))
-                    Button("إلغاء") { dismiss() }.buttonStyle(GhostStyle(k: k))
+                    Button("حفظ") { m.editTeam(i, name: name, delta: delta); dismiss() }.buttonStyle(PrimaryStyle(k: k)).fixedSize()
+                    Button("إلغاء") { dismiss() }.buttonStyle(GhostStyle(k: k)).fixedSize()
                 }
                 .frame(maxWidth: .infinity).padding(.top, 8 * k)
             }
@@ -68,7 +68,7 @@ struct TeamEditSheet: View {
         .presentationDetents([.medium, .large])
     }
     func adj(_ d: Double) -> some View {
-        Button(d > 0 ? plusPts(d) : fmtPts(d)) { delta += d }.buttonStyle(GhostStyle(k: k)).frame(minWidth: 54 * k)
+        Button(d > 0 ? plusPts(d) : fmtPts(d)) { delta += d }.buttonStyle(GhostStyle(k: k)).frame(minWidth: 54 * k).fixedSize()
     }
 }
 
@@ -123,8 +123,8 @@ struct ReportSheet: View {
                 .overlay(RoundedRectangle(cornerRadius: 12 * k).stroke(Color(hex: "#D1D5DB"), lineWidth: 1))
                 .onAppear { note = prev?.note ?? "" }
                 HStack(spacing: 10 * k) {
-                    Button("حفظ") { m.saveReport(for: q, note: note); dismiss() }.buttonStyle(PrimaryStyle(k: k))
-                    Button("إلغاء") { dismiss() }.buttonStyle(GhostStyle(k: k))
+                    Button("حفظ") { m.saveReport(for: q, note: note); dismiss() }.buttonStyle(PrimaryStyle(k: k)).fixedSize()
+                    Button("إلغاء") { dismiss() }.buttonStyle(GhostStyle(k: k)).fixedSize()
                 }
                 .frame(maxWidth: .infinity)
             }
@@ -173,7 +173,7 @@ struct ReportsSheet: View {
                 .buttonStyle(PrimaryStyle(k: k))
             ShareLink(item: text) { Label("مشاركة", systemImage: "square.and.arrow.up") }
                 .buttonStyle(GhostStyle(k: k))
-            Button("مسح الكل") { confirmClear = true }.buttonStyle(GhostStyle(k: k, danger: true))
+            Button("مسح الكل") { confirmClear = true }.buttonStyle(GhostStyle(k: k, danger: true)).fixedSize()
         }
         .frame(maxWidth: .infinity)
     }
@@ -279,7 +279,7 @@ struct HistorySheet: View {
             HStack(spacing: 10 * k) {
                 Button { copyToPasteboard(code); m.showToast("تم النسخ") } label: { Label("نسخ", systemImage: "doc.on.doc") }.buttonStyle(PrimaryStyle(k: k))
                 ShareLink(item: code) { Label("مشاركة", systemImage: "square.and.arrow.up") }.buttonStyle(GhostStyle(k: k))
-                Button("رجوع") { mode = .main }.buttonStyle(GhostStyle(k: k))
+                Button("رجوع") { mode = .main }.buttonStyle(GhostStyle(k: k)).fixedSize()
             }
             .frame(maxWidth: .infinity)
         }
@@ -296,9 +296,9 @@ struct HistorySheet: View {
             .background(RoundedRectangle(cornerRadius: 12 * k).fill(Color(hex: "#F9FAFB")))
             .overlay(RoundedRectangle(cornerRadius: 12 * k).stroke(Color(hex: "#D1D5DB"), lineWidth: 1))
             HStack(spacing: 10 * k) {
-                Button("استيراد") { doImport(pasted) }.buttonStyle(PrimaryStyle(k: k))
+                Button("استيراد") { doImport(pasted) }.buttonStyle(PrimaryStyle(k: k)).fixedSize()
                 Button { pasted = UIPasteboard.general.string ?? "" } label: { Label("لصق", systemImage: "doc.on.clipboard") }.buttonStyle(GhostStyle(k: k))
-                Button("رجوع") { mode = .main }.buttonStyle(GhostStyle(k: k))
+                Button("رجوع") { mode = .main }.buttonStyle(GhostStyle(k: k)).fixedSize()
             }
             .frame(maxWidth: .infinity)
         }
