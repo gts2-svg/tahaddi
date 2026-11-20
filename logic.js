@@ -61,6 +61,8 @@
       const keys = [];
       if (p[7]) p[7].split(/[,،]/).map(normKey).filter(Boolean).forEach(k => { if (!keys.includes(k)) keys.push(k); });
       const q = p[1].replace(/\\n/g, '\n');
+      // أسئلة التلميحات خارج «من أنا؟» (مسيرة اللاعب بشعارات الأندية) يعرضها التطبيق الأصلي وحده
+      if (!clues && q.includes(';;')) return;
       const legacy = cat + ':' + hash(q + '|' + p[2]);
       const item = { id: sid ? cat + ':' + sid : legacy, legacy, cat, d, q, a: p[2], w: p.slice(3, 6), akey: na, keys };
       if (clues) {
