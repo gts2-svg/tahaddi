@@ -380,7 +380,11 @@ struct QBox: View {
     var body: some View {
         Group {
             if let clues = q.clues {
-                ClueList(clues: clues, shown: g.shown, open: open, compact: open || g.phase == .steal, cat: m.catByKey[q.cat])
+                if q.isCareer {
+                    CareerList(clues: clues, locked: q.lockedIndex, unlocked: g.shown >= 1 || open)
+                } else {
+                    ClueList(clues: clues, shown: g.shown, open: open, compact: open || g.phase == .steal, cat: m.catByKey[q.cat])
+                }
             } else {
                 let poem = q.q.contains("\n")
                 Text(q.q)
@@ -411,26 +415,14 @@ struct ClueList: View {
     let cat: Category?
 
     var body: some View {
-        let clubs = clues.allSatisfy { $0.hasPrefix("@") }
-        if clubs {
-            FlowLayout(spacing: 8 * k, rowSpacing: 8 * k) {
-                ForEach(clues.indices, id: \.self) { i in
-                    Group {
-                        if i < shown || open { ClubTile(n: i + 1, key: String(clues[i].dropFirst()), late: i >= shown) }
-                        else { LockedTile(n: i + 1) }
-                    }
-                    .frame(width: (wide ? 112 : (clues.count > 6 ? 82 : 98)) * k)
-                }
-            }
-            .frame(maxWidth: .infinity)
-        } else {
+        Group {
             VStack(spacing: (compact ? 5 : 8) * k) {
                 ForEach(clues.indices, id: \.self) { i in
                     if i < shown || open {
                         HStack(alignment: .top, spacing: 10 * k) {
                             num(i + 1, locked: false)
                             if clues[i].hasPrefix("@") {
-                                ClubInline(key: String(clues[i].dropFirst()))
+                                ClubInline(key: clubKey(clues[i]))
                             } else {
                                 Text(clues[i]).tf(compact ? 15 : (wide ? 20 : 18), .medium).foregroundColor(C.ink)
                                     .lineSpacing(4 * k).fixedSize(horizontal: false, vertical: true)
@@ -462,6 +454,36 @@ struct ClueList: View {
     }
 }
 
+/// مفتاح النادي من التلميح: «@مفتاح» أو «@!مفتاح» (المقفل)
+func clubKey(_ clue: String) -> String {
+    var s = Substring(clue)
+    if s.hasPrefix("@") { s = s.dropFirst() }
+    if s.hasPrefix("!") { s = s.dropFirst() }
+    return String(s).trimmingCharacters(in: .whitespaces).lowercased()
+}
+
+/// «مسيرة اللاعب» على طريقة «من أنا؟» في FIFA: الأندية كلها بترتيب المسيرة، عدا نادٍ واحد مقفل في موضعه
+struct CareerList: View {
+    @Environment(\.uiScale) var k
+    @Environment(\.wide) var wide
+    let clues: [String]
+    let locked: Int
+    let unlocked: Bool
+    var body: some View {
+        FlowLayout(spacing: 8 * k, rowSpacing: 8 * k) {
+            ForEach(clues.indices, id: \.self) { i in
+                Group {
+                    if i == locked && !unlocked { LockedTile(n: i + 1) }
+                    else { ClubTile(n: i + 1, key: clubKey(clues[i]), late: false, wasLocked: i == locked) }
+                }
+                .frame(width: (wide ? 112 : (clues.count > 6 ? 82 : 98)) * k)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .animation(.spring(response: 0.4, dampingFraction: 0.7), value: unlocked)
+    }
+}
+
 struct ClubBadge: View {
     @EnvironmentObject var m: AppModel
     @Environment(\.uiScale) var k
@@ -490,6 +512,7 @@ struct ClubTile: View {
     let n: Int
     let key: String
     let late: Bool
+    var wasLocked: Bool = false
     var body: some View {
         let club = m.clubs[key.lowercased()]
         VStack(spacing: 6 * k) {
@@ -499,7 +522,7 @@ struct ClubTile: View {
         .padding(.vertical, 10 * k).padding(.horizontal, 6 * k)
         .frame(maxWidth: .infinity, minHeight: 112 * k)
         .background(RoundedRectangle(cornerRadius: 16 * k).fill(Color(hex: "#F8FAFC")))
-        .overlay(RoundedRectangle(cornerRadius: 16 * k).stroke(Color(hex: club?.c1 ?? "#CBD5E1").opacity(0.45), lineWidth: 1.5))
+        .overlay(RoundedRectangle(cornerRadius: 16 * k).stroke(wasLocked ? C.goldD : Color(hex: club?.c1 ?? "#CBD5E1").opacity(0.45), lineWidth: wasLocked ? 3 : 1.5))
         .overlay(alignment: .topLeading) {
             Text("\(n)").tf(11, .bold).foregroundColor(.white).frame(width: 20 * k, height: 20 * k)
                 .background(Circle().fill(Color(hex: "#3D1FA3"))).padding(5 * k)
@@ -514,11 +537,21 @@ struct LockedTile: View {
     let n: Int
     var body: some View {
         VStack(spacing: 6 * k) {
-            Text("؟").tf(28, .bold).foregroundColor(Color(hex: "#5A3DB8"))
-            Text("نادٍ \(n)").tf(12).foregroundColor(Color(hex: "#5A3DB8"))
+            Image(systemName: "lock.fill").font(.system(size: 22 * k, weight: .bold)).foregroundColor(.white)
+                .frame(width: 54 * k, height: 54 * k)
+                .background(Circle().fill(LinearGradient(colors: [Color(hex: "#475569"), Color(hex: "#1E293B")], startPoint: .topLeading, endPoint: .bottomTrailing)))
+            Text("نادٍ مقفل").tf(13, .bold).foregroundColor(Color(hex: "#334155"))
         }
+        .padding(.vertical, 10 * k).padding(.horizontal, 6 * k)
         .frame(maxWidth: .infinity, minHeight: 112 * k)
-        .overlay(RoundedRectangle(cornerRadius: 16 * k).strokeBorder(Color(hex: "#CFC3F2"), style: StrokeStyle(lineWidth: 2, dash: [6, 4])))
+        .background(RoundedRectangle(cornerRadius: 16 * k).fill(Color(hex: "#E2E8F0")))
+        .overlay(RoundedRectangle(cornerRadius: 16 * k).strokeBorder(Color(hex: "#94A3B8"), style: StrokeStyle(lineWidth: 2, dash: [6, 4])))
+        .overlay(alignment: .topLeading) {
+            Text("\(n)").tf(11, .bold).foregroundColor(.white).frame(width: 20 * k, height: 20 * k)
+                .background(Circle().fill(Color(hex: "#3D1FA3"))).padding(5 * k)
+        }
+        .transition(.scale(scale: 0.9).combined(with: .opacity))
+        .accessibilityLabel("نادٍ مقفل في المسيرة")
     }
 }
 
@@ -685,7 +718,12 @@ struct ToolsRow: View {
                     .buttonStyle(GhostStyle(k: k, small: true)).fixedSize()
                     .disabled(!team.fifty || !g.gone.isEmpty || g.paused).opacity(!team.fifty || !g.gone.isEmpty ? 0.4 : 1)
             }
-            if let c = q.clues, g.shown < c.count, !g.timedOut {
+            if q.isCareer {
+                if g.shown < 1 && !g.timedOut {
+                    Button { m.moreClue() } label: { Label("اكشف النادي المقفل (تنقص نقطة)", systemImage: "lock.open") }
+                        .buttonStyle(GhostStyle(k: k, small: true)).fixedSize().disabled(g.paused)
+                }
+            } else if let c = q.clues, g.shown < c.count, !g.timedOut {
                 Button { m.moreClue() } label: { Label("تلميح آخر (تنقص نقطة)", systemImage: "lightbulb") }
                     .buttonStyle(GhostStyle(k: k, small: true)).fixedSize().disabled(g.paused)
             }

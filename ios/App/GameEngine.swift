@@ -132,7 +132,8 @@ extension AppModel {
         let qq = q(id)
         s.qid = id; s.phase = .q; s.order = TL.shuffle([0, 1, 2, 3]); s.gone = []; s.pick = nil
         s.stealer = nil; s.stealPick = nil; s.res = nil
-        s.shown = qq?.clues != nil ? 1 : 0
+        // «مسيرة اللاعب» تبدأ والنادي مقفل (0)، وأسئلة التلميحات النصية بأول تلميح (1)
+        s.shown = qq?.clues != nil ? (qq?.isCareer == true ? 0 : 1) : 0
         s.optsShown = false; s.timedOut = false; s.statDone = false; s.paused = false
         s.timer = s.settings.timer > 0 ? TL.tNew(s.settings.timer) : nil
         if !s.seen.contains(id) { s.seen.append(id) }
@@ -382,7 +383,7 @@ extension AppModel {
         persist()
     }
     func moreClue() {
-        guard let s = game, s.phase == .q, !s.paused, let qq = q(s.qid), let c = qq.clues, s.shown < c.count else { return }
+        guard let s = game, s.phase == .q, !s.paused, let qq = q(s.qid), let c = qq.clues, s.shown < (qq.isCareer ? 1 : c.count) else { return }
         mutate { $0.shown += 1 }; persist()
         Sound.shared.play(.clue, on: s.settings.sound)
     }

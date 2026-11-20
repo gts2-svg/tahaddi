@@ -77,7 +77,11 @@ enum SelfCheck {
             L.check(r.problems.contains { $0.msg.contains("بلا معرّف") }, "no id warn")
             let r2 = TL.parseBank(cat: "football", text: "1|@sporting ;; @manutd ;; @realmadrid ;; @juventus ;; @alnassr|كريستيانو رونالدو|ليونيل ميسي|نيمار|كريم بنزيما|f0001")
             L.check(r2.items.first?.clues?.count == 5, "clue detection in any category")
-            L.check(r2.items.first.map { TL.basePoints($0, shown: 1) } == 5, "career points")
+            L.check(r2.items.first.map { TL.basePoints($0, shown: 0) } == 2 && r2.items.first.map { TL.basePoints($0, shown: 1) } == 1, "career points: level+1 locked, level after unlock")
+            L.check(r2.items.first?.isCareer == true && r2.items.first?.lockedIndex == 4, "career default lock = last club")
+            let r3 = TL.parseBank(cat: "football", text: "3|@sporting ;; @!manutd ;; @realmadrid|كريستيانو رونالدو|ناني|نيمار|كريم بنزيما|f0002\n2|لعبتُ مع أ ;; لعبتُ مع ب ;; لعبتُ مع ج|س|ص|ع|ل|f0003")
+            L.check(r3.items.first?.lockedIndex == 1 && r3.items.first.map { TL.basePoints($0, shown: 0) } == 4, "career @! lock")
+            L.check(r3.items.count == 2 && r3.items[1].isCareer == false && TL.basePoints(r3.items[1], shown: 1) == 4, "teammate clues stay progressive")
         }
 
         // ---------- التوزيع بالجولات ----------

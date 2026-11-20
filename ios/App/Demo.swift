@@ -65,6 +65,8 @@ enum Shot {
         try? out.write(to: docs.appendingPathComponent("selfcheck.txt"), atomically: true, encoding: .utf8)
     }
 
+    static func clueKeyDemo(_ c: String) -> String { String(c.drop { $0 == "@" || $0 == "!" }) }
+
     @MainActor static func firstQ(_ m: AppModel, _ cat: String, _ d: Int, _ ok: (Question) -> Bool = { _ in true }) -> Question? {
         (m.bank[cat] ?? []).first { $0.d == d && ok($0) } ?? (m.bank[cat] ?? []).first
     }
@@ -149,10 +151,13 @@ enum Shot {
             // سؤال «مسيرة اللاعب» حقيقي من قسم كرة القدم، بشعارات الأندية من data/clubs.json
             m.settings.cats = ["football", "history", "geography", "poetry"].filter { m.catByKey[$0] != nil }
             let career = (m.bank["football"] ?? []).filter { q in (q.clues?.count ?? 0) >= 5 && (q.clues ?? []).allSatisfy { $0.hasPrefix("@") } }
-            if let q = career.first(where: { $0.d == 1 }) ?? career.first {
-                var g = seqGame(m, q, teams: two)
-                g.shown = min(4, q.clues?.count ?? 1)
-                m.beginGame(g)
+            if let base = career.first(where: { $0.d == 1 }) ?? career.first, var clues = base.clues {
+                // عيّنة DEBUG: يُقفل النادي الثالث بالصيغة «@!مفتاح» لتجربة القفل من البيانات (وإلا يُقفل الأخير)
+                if !clues.contains(where: { $0.hasPrefix("@!") }) && clues.count >= 3 { clues[2] = "@!" + clueKeyDemo(clues[2]) }
+                let q = Question(id: base.id, legacy: base.legacy, cat: base.cat, d: base.d, q: clues.joined(separator: " ;; "),
+                                 a: base.a, w: base.w, akey: base.akey, keys: base.keys, clues: clues)
+                m.index.byId[q.id] = q
+                m.beginGame(seqGame(m, q, teams: two))
             }
         case "board":
             m.settings.mode = 1

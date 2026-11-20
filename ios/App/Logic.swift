@@ -31,6 +31,13 @@ struct Question: Hashable {
     let clues: [String]?
 
     var sid: String { id.split(separator: ":", maxSplits: 1).count == 2 ? String(id.split(separator: ":", maxSplits: 1)[1]) : id }
+    /// «مسيرة اللاعب»: كل التلميحات أندية «@مفتاح» — تظهر كلها عدا نادٍ واحد مقفل
+    var isCareer: Bool { guard let c = clues, !c.isEmpty else { return false }; return c.allSatisfy { $0.hasPrefix("@") } }
+    /// موضع النادي المقفل: التلميح المكتوب «@!مفتاح»، وإلا آخر نادٍ
+    var lockedIndex: Int {
+        guard let c = clues, !c.isEmpty else { return 0 }
+        return c.firstIndex { $0.hasPrefix("@!") } ?? (c.count - 1)
+    }
     /// نص السؤال للعرض في البلاغات
     var display: String {
         if let c = clues { return c.enumerated().map { "\($0.offset + 1)) \($0.element)" }.joined(separator: "\n") }
@@ -369,7 +376,9 @@ enum TL {
     static func halfFloor(_ x: Double) -> Double { (x * 2 + 1e-9).rounded(.down) / 2 }
     static func halve(_ p: Double) -> Double { max(0.5, halfFloor(p / 2)) }
     /// نقاط السؤال: الصعوبة، وأسئلة التلميحات تزيد نقطة عن كل تلميح لم يُكشف
+    /// «مسيرة اللاعب»: shown = 0 والنادي مقفل (المستوى + 1)، و1 بعد كشفه (المستوى وحده)
     static func basePoints(_ q: Question, shown: Int = 1) -> Double {
+        if q.isCareer { return Double(q.d + (shown < 1 ? 1 : 0)) }
         if let c = q.clues { return Double(q.d + max(0, c.count - shown)) }
         return Double(q.d)
     }
