@@ -1,0 +1,1746 @@
+{
+ "acmilan": {
+  "ar": "ميلان",
+  "en": "AC Milan",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/wvspur1448806617.png",
+  "c1": "#FB090B",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/team/133667-ac-milan"
+ },
+ "ajax": {
+  "ar": "أياكس",
+  "en": "AFC Ajax",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/zg9tii1755495289.png/medium",
+  "c1": "#D2122E",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4337"
+ },
+ "alahli": {
+  "ar": "الأهلي",
+  "en": "Al-Ahli Saudi FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/1bbtgb1755192301.png/medium",
+  "c1": "#00843D",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4668"
+ },
+ "alahlidubai": {
+  "ar": "الأهلي دبي",
+  "en": "Al Ahli Dubai",
+  "badge": "",
+  "c1": "#C8102E",
+  "c2": "#000000",
+  "src": ""
+ },
+ "alahly": {
+  "ar": "الأهلي المصري",
+  "en": "Al Ahly SC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/x8753q1751421890.png/small",
+  "c1": "#C8102E",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Al-Ahly"
+ },
+ "alarabi": {
+  "ar": "العربي",
+  "en": "Al-Arabi SC (Qatar)",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/9tudph1693026180.png/small",
+  "c1": "#D52B1E",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Al-Arabi"
+ },
+ "alaves": {
+  "ar": "ألافيس",
+  "en": "Deportivo Alavés",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/mfn99h1734673842.png/tiny",
+  "c1": "#0054A6",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4335-Spanish-La-Liga"
+ },
+ "aldiriyah": {
+  "ar": "الدرعية",
+  "en": "Al-Diriyah FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/0m7ub31782452735.png/medium",
+  "c1": "#7A1E3A",
+  "c2": "#C9A227",
+  "src": "https://www.thesportsdb.com/league/4668"
+ },
+ "alduhail": {
+  "ar": "الدحيل",
+  "en": "Al-Duhail SC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/n1vtjm1577985347.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Al-Duhail"
+ },
+ "alettifaq": {
+  "ar": "الاتفاق",
+  "en": "Al-Ettifaq FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/m272h51694761970.png/medium",
+  "c1": "#00843D",
+  "c2": "#E30613",
+  "src": "https://www.thesportsdb.com/league/4668"
+ },
+ "alfateh": {
+  "ar": "الفتح",
+  "en": "Al-Fateh SC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/a5cjf41662659789.png/medium",
+  "c1": "#0F7A3E",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4668"
+ },
+ "algharafa": {
+  "ar": "الغرافة",
+  "en": "Al-Gharafa SC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/yan4hx1617909550.png/small",
+  "c1": "#FFD200",
+  "c2": "#0057B8",
+  "src": "https://www.thesportsdb.com/search.php?s=Al-Gharafa"
+ },
+ "alhilal": {
+  "ar": "الهلال",
+  "en": "Al-Hilal SFC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/w0b80d1661656916.png/medium",
+  "c1": "#0047AB",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4668"
+ },
+ "alianzalima": {
+  "ar": "أليانزا ليما",
+  "en": "Alianza Lima",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/y5wov41580040189.png/small",
+  "c1": "#1B2A5B",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Alianza%20Lima"
+ },
+ "alittihad": {
+  "ar": "الاتحاد",
+  "en": "Al-Ittihad Club",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/8n1t1j1755192418.png/medium",
+  "c1": "#FFD100",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4668"
+ },
+ "aljazira": {
+  "ar": "الجزيرة",
+  "en": "Al Jazira Club",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/uknsoq1642708421.png/small",
+  "c1": "#D52B1E",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/search.php?s=Al-Jazira"
+ },
+ "almeria": {
+  "ar": "ألميريا",
+  "en": "UD Almería",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/yswsww1473503818.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4400"
+ },
+ "almokawloon": {
+  "ar": "المقاولون العرب",
+  "en": "Al Mokawloon Al Arab",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/gi170k1589807275.png/small",
+  "c1": "#FFD200",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/search.php?s=Mokawloon"
+ },
+ "alnassr": {
+  "ar": "النصر",
+  "en": "Al-Nassr FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/84yvqi1748524565.png/medium",
+  "c1": "#FFD100",
+  "c2": "#1A3A8F",
+  "src": "https://www.thesportsdb.com/league/4668"
+ },
+ "alqadsiah": {
+  "ar": "القادسية",
+  "en": "Al-Qadsiah FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/ok63wb1719134839.png/medium",
+  "c1": "#D71920",
+  "c2": "#FFD100",
+  "src": "https://www.thesportsdb.com/league/4668"
+ },
+ "alrayyan": {
+  "ar": "الريان",
+  "en": "Al-Rayyan SC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/hvb3r41653090047.png/small",
+  "c1": "#E30613",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/search.php?s=Al-Rayyan"
+ },
+ "alsadd": {
+  "ar": "السد",
+  "en": "Al Sadd SC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/908a011774579337.png/small",
+  "c1": "#FFFFFF",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/search.php?s=Al-Sadd"
+ },
+ "alshabab": {
+  "ar": "الشباب",
+  "en": "Al-Shabab FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/zbums21755192520.png/medium",
+  "c1": "#FFFFFF",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4668"
+ },
+ "alshamal": {
+  "ar": "الشمال",
+  "en": "Al-Shamal SC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/qghkxn1720532526.png/small",
+  "c1": "#0057B8",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Al-Shamal"
+ },
+ "anderlecht": {
+  "ar": "أندرلخت",
+  "en": "RSC Anderlecht",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/auindn1771129464.png/small",
+  "c1": "#4B2582",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Anderlecht"
+ },
+ "argentinos": {
+  "ar": "أرجنتينوس جونيورز",
+  "en": "Argentinos Juniors",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/uqfjuo1769234850.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4406"
+ },
+ "arsenal": {
+  "ar": "أرسنال",
+  "en": "Arsenal",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/uyhbfe1612467038.png",
+  "c1": "#EF0107",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/team/133604-arsenal"
+ },
+ "atalanta": {
+  "ar": "أتالانتا",
+  "en": "Atalanta",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/qix5ku1780561327.png/medium",
+  "c1": "#1E71B8",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4332-Italian-Serie-A"
+ },
+ "athletic": {
+  "ar": "أتلتيك بلباو",
+  "en": "Athletic Club",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/68w7fe1639408210.png/tiny",
+  "c1": "#EE2523",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4335-Spanish-La-Liga"
+ },
+ "atletico": {
+  "ar": "أتلتيكو مدريد",
+  "en": "Atlético Madrid",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/0ulh3q1719984315.png/tiny",
+  "c1": "#CB3524",
+  "c2": "#272E61",
+  "src": "https://www.thesportsdb.com/league/4335-Spanish-La-Liga"
+ },
+ "bahia": {
+  "ar": "باهيا",
+  "en": "EC Bahia",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/xuvtsv1473539308.png/tiny",
+  "c1": "#0055A4",
+  "c2": "#E30613",
+  "src": "https://www.thesportsdb.com/league/4351"
+ },
+ "baniyas": {
+  "ar": "بني ياس",
+  "en": "Baniyas Club",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/ps3a4d1578859691.png/small",
+  "c1": "#000000",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Baniyas"
+ },
+ "barcelona": {
+  "ar": "برشلونة",
+  "en": "FC Barcelona",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/wq9sir1639406443.png",
+  "c1": "#A50044",
+  "c2": "#004D98",
+  "src": "https://www.thesportsdb.com/team/133739-barcelona"
+ },
+ "basaksehir": {
+  "ar": "إسطنبول باشاك شهير",
+  "en": "İstanbul Başakşehir",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/895mqt1685993958.png/medium",
+  "c1": "#F36F21",
+  "c2": "#1B2A5B",
+  "src": "https://www.thesportsdb.com/league/4339"
+ },
+ "basel": {
+  "ar": "بازل",
+  "en": "FC Basel",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/xppxwr1473791183.png/small",
+  "c1": "#E30613",
+  "c2": "#003DA5",
+  "src": "https://www.thesportsdb.com/search.php?s=Basel"
+ },
+ "bastia": {
+  "ar": "باستيا",
+  "en": "SC Bastia",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/mv09b91754278549.png/small",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Bastia"
+ },
+ "bayern": {
+  "ar": "بايرن ميونخ",
+  "en": "FC Bayern Munich",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/01ogkh1716960412.png",
+  "c1": "#DC052D",
+  "c2": "#0066B2",
+  "src": "https://www.thesportsdb.com/api/v1/json/123/search_all_teams.php?l=German%20Bundesliga"
+ },
+ "bellmare": {
+  "ar": "بيلماري هيراتسوكا",
+  "en": "Bellmare Hiratsuka",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/mnfxtl1578239658.png/small",
+  "c1": "#00A04A",
+  "c2": "#0062AE",
+  "src": "https://www.thesportsdb.com/search.php?s=Bellmare"
+ },
+ "benfica": {
+  "ar": "بنفيكا",
+  "en": "SL Benfica",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/s5kxf01794325225.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4344"
+ },
+ "besiktas": {
+  "ar": "بشكتاش",
+  "en": "Beşiktaş",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/svo05k1776827439.png/medium",
+  "c1": "#000000",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4339"
+ },
+ "beveren": {
+  "ar": "بيفيرين",
+  "en": "KSK Beveren",
+  "badge": "",
+  "c1": "#FFD100",
+  "c2": "#0055A4",
+  "src": ""
+ },
+ "boca": {
+  "ar": "بوكا جونيورز",
+  "en": "Boca Juniors",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/bm7krb1775741582.png/medium",
+  "c1": "#003C82",
+  "c2": "#FDB913",
+  "src": "https://www.thesportsdb.com/league/4406"
+ },
+ "bologna": {
+  "ar": "بولونيا",
+  "en": "Bologna",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/2qi1u31655592366.png/medium",
+  "c1": "#A21C26",
+  "c2": "#1A2F48",
+  "src": "https://www.thesportsdb.com/league/4332-Italian-Serie-A"
+ },
+ "bolton": {
+  "ar": "بولتون واندررز",
+  "en": "Bolton Wanderers",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/yvxxrv1448808301.png/medium",
+  "c1": "#FFFFFF",
+  "c2": "#263C7E",
+  "src": "https://www.thesportsdb.com/league/4329"
+ },
+ "bordeaux": {
+  "ar": "بوردو",
+  "en": "Girondins de Bordeaux",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/u45vc51627132724.png/small",
+  "c1": "#0A1E3C",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Bordeaux"
+ },
+ "botafogo": {
+  "ar": "بوتافوغو",
+  "en": "Botafogo",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/bs5mbw1733004596.png/tiny",
+  "c1": "#000000",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4351"
+ },
+ "boulogne": {
+  "ar": "بولوني",
+  "en": "US Boulogne",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/c7p39l1754278109.png/medium",
+  "c1": "#E30613",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4401"
+ },
+ "brentford": {
+  "ar": "برينتفورد",
+  "en": "Brentford",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/grv1aw1546453779.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4328-English-Premier-League"
+ },
+ "brescia": {
+  "ar": "بريشيا",
+  "en": "Brescia",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/k0qhbd1566756266.png/small",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Brescia"
+ },
+ "bryne": {
+  "ar": "برين",
+  "en": "Bryne FK",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/e3t5fg1690695712.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Bryne"
+ },
+ "burnley": {
+  "ar": "بيرنلي",
+  "en": "Burnley",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/ql7nl31686893820.png/medium",
+  "c1": "#6C1D45",
+  "c2": "#99D6EA",
+  "src": "https://www.thesportsdb.com/league/4329"
+ },
+ "caen": {
+  "ar": "كاين",
+  "en": "SM Caen",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/416kon1784484564.png/small",
+  "c1": "#003DA5",
+  "c2": "#E30613",
+  "src": "https://www.thesportsdb.com/search.php?s=Caen"
+ },
+ "cannes": {
+  "ar": "كان",
+  "en": "AS Cannes",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/1120tb1690570715.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Cannes"
+ },
+ "celta": {
+  "ar": "سيلتا فيغو",
+  "en": "RC Celta",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/xfjtku1690436219.png/tiny",
+  "c1": "#8AC3EE",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4335-Spanish-La-Liga"
+ },
+ "cesena": {
+  "ar": "تشيزينا",
+  "en": "Cesena",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/9l00zr1677256723.png/medium",
+  "c1": "#FFFFFF",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4394"
+ },
+ "chelsea": {
+  "ar": "تشيلسي",
+  "en": "Chelsea",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/pbf4ul1782638263.png",
+  "c1": "#034694",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/api/v1/json/123/search_all_teams.php?l=English%20Premier%20League"
+ },
+ "chicagofire": {
+  "ar": "شيكاغو فاير",
+  "en": "Chicago Fire FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/8xuc781639493166.png/medium",
+  "c1": "#C8102E",
+  "c2": "#0A174A",
+  "src": "https://www.thesportsdb.com/league/4346"
+ },
+ "chmelblsany": {
+  "ar": "خميل بلشاني",
+  "en": "FK Chmel Blšany",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/xj8i4t1651340167.png/small",
+  "c1": "#FFD100",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/search.php?s=Chmel"
+ },
+ "clermont": {
+  "ar": "كليرمون",
+  "en": "Clermont Foot",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/4os8c01788968260.png/medium",
+  "c1": "#E30613",
+  "c2": "#003DA5",
+  "src": "https://www.thesportsdb.com/league/4401"
+ },
+ "como": {
+  "ar": "كومو",
+  "en": "Como 1907",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/02x81t1627405841.png/medium",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4332-Italian-Serie-A"
+ },
+ "corinthians": {
+  "ar": "كورينثيانز",
+  "en": "SC Corinthians",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/vvuvps1473538042.png/tiny",
+  "c1": "#000000",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4351"
+ },
+ "coventry": {
+  "ar": "كوفنتري سيتي",
+  "en": "Coventry City",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/uxyqys1424033798.png",
+  "c1": "#59CBE8",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/api/v1/json/123/search_all_teams.php?l=English%20Premier%20League"
+ },
+ "cremonese": {
+  "ar": "كريمونيزي",
+  "en": "US Cremonese",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/6ng2vy1579708291.png/medium",
+  "c1": "#A8112D",
+  "c2": "#9AA0A6",
+  "src": "https://www.thesportsdb.com/league/4394"
+ },
+ "cruzeiro": {
+  "ar": "كروزيرو",
+  "en": "Cruzeiro",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/upsvvu1473538059.png/tiny",
+  "c1": "#2A3B8F",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4351"
+ },
+ "dalian": {
+  "ar": "داليان ييفانغ",
+  "en": "Dalian Yifang",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/4gv9fe1583004521.png/small",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Dalian"
+ },
+ "danubio": {
+  "ar": "دانوبيو",
+  "en": "Danubio FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/vtryqv1473541135.png/small",
+  "c1": "#FFFFFF",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/search.php?s=Danubio"
+ },
+ "dcunited": {
+  "ar": "دي سي يونايتد",
+  "en": "D.C. United",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/uwvsyt1467462609.png/medium",
+  "c1": "#000000",
+  "c2": "#EF3E42",
+  "src": "https://www.thesportsdb.com/league/4346"
+ },
+ "delhidynamos": {
+  "ar": "دلهي ديناموز",
+  "en": "Delhi Dynamos",
+  "badge": "",
+  "c1": "#E30613",
+  "c2": "#0A1E3C",
+  "src": ""
+ },
+ "deltawarsaw": {
+  "ar": "دلتا وارسو",
+  "en": "Delta Warsaw",
+  "badge": "",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": ""
+ },
+ "denbosch": {
+  "ar": "دن بوش",
+  "en": "FC Den Bosch",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/3ftbir1489836926.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Den%20Bosch"
+ },
+ "derby": {
+  "ar": "ديربي كاونتي",
+  "en": "Derby County",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/jioo4z1557155744.png/medium",
+  "c1": "#FFFFFF",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4329"
+ },
+ "dinamozagreb": {
+  "ar": "دينامو زغرب",
+  "en": "GNK Dinamo Zagreb",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/zcb6f61784988620.png/small",
+  "c1": "#0057B8",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Dinamo%20Zagreb"
+ },
+ "dortmund": {
+  "ar": "بوروسيا دورتموند",
+  "en": "Borussia Dortmund",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/tqo8ge1716960353.png",
+  "c1": "#FDE100",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/api/v1/json/123/search_all_teams.php?l=German%20Bundesliga"
+ },
+ "dragovoljac": {
+  "ar": "هرفاتسكي دراغوفولياتس",
+  "en": "NK Hrvatski Dragovoljac",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/ic8qp31596550601.png/small",
+  "c1": "#0057B8",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Dragovoljac"
+ },
+ "dynamokyiv": {
+  "ar": "دينامو كييف",
+  "en": "Dynamo Kyiv",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/ktbncx1781158762.png/small",
+  "c1": "#FFFFFF",
+  "c2": "#0057B8",
+  "src": "https://www.thesportsdb.com/search.php?s=Dynamo%20Kyiv"
+ },
+ "eibar": {
+  "ar": "إيبار",
+  "en": "SD Eibar",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/hccive1680933599.png/medium",
+  "c1": "#0055A4",
+  "c2": "#A6192E",
+  "src": "https://www.thesportsdb.com/league/4400"
+ },
+ "eintracht": {
+  "ar": "آينتراخت فرانكفورت",
+  "en": "Eintracht Frankfurt",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/rurwpy1473453269.png",
+  "c1": "#E1000F",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/api/v1/json/123/search_all_teams.php?l=German%20Bundesliga"
+ },
+ "emiratesclub": {
+  "ar": "نادي الإمارات",
+  "en": "Emirates Club",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/t7k92p1625755733.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Emirates"
+ },
+ "empoli": {
+  "ar": "إمبولي",
+  "en": "Empoli",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/c1ie6b1622561483.png/medium",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4394"
+ },
+ "estudiantes": {
+  "ar": "إستوديانتس",
+  "en": "Estudiantes de La Plata",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/pf08dq1760634366.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4406"
+ },
+ "everton": {
+  "ar": "إيفرتون",
+  "en": "Everton",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/eqayrf1523184794.png",
+  "c1": "#003399",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/api/v1/json/123/search_all_teams.php?l=English%20Premier%20League"
+ },
+ "farul": {
+  "ar": "فارول كونستانتسا",
+  "en": "FC Farul Constanța",
+  "badge": "",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": ""
+ },
+ "fenerbahce": {
+  "ar": "فنربخشة",
+  "en": "Fenerbahçe",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/twxxvs1448199691.png/medium",
+  "c1": "#FFED00",
+  "c2": "#004B93",
+  "src": "https://www.thesportsdb.com/league/4339"
+ },
+ "feyenoord": {
+  "ar": "فينورد",
+  "en": "Feyenoord",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/uturtx1473534803.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4337"
+ },
+ "figueirense": {
+  "ar": "فيغيرينسي",
+  "en": "Figueirense FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/yvvyps1473538067.png/small",
+  "c1": "#000000",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Figueirense"
+ },
+ "fiorentina": {
+  "ar": "فيورنتينا",
+  "en": "ACF Fiorentina",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/hc8nhu1656098030.png/medium",
+  "c1": "#482E92",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4332-Italian-Serie-A"
+ },
+ "fleetwood": {
+  "ar": "فليتوود تاون",
+  "en": "Fleetwood Town",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/txwuwp1424032712.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Fleetwood"
+ },
+ "fluminense": {
+  "ar": "فلومينينسي",
+  "en": "Fluminense",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/stvvwp1473538082.png/tiny",
+  "c1": "#7A0026",
+  "c2": "#006341",
+  "src": "https://www.thesportsdb.com/league/4351"
+ },
+ "fulham": {
+  "ar": "فولهام",
+  "en": "Fulham",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/xwwvyt1448811086.png",
+  "c1": "#FFFFFF",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/api/v1/json/123/search_all_teams.php?l=English%20Premier%20League"
+ },
+ "galatasaray": {
+  "ar": "غلطة سراي",
+  "en": "Galatasaray",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/io7jk21767941298.png/medium",
+  "c1": "#A90432",
+  "c2": "#FDB912",
+  "src": "https://www.thesportsdb.com/league/4339"
+ },
+ "genk": {
+  "ar": "غنك",
+  "en": "KRC Genk",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/ijp86h1788968480.png/small",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Genk"
+ },
+ "genoa": {
+  "ar": "جنوى",
+  "en": "Genoa",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/52s8dn1655553600.png/medium",
+  "c1": "#A6192E",
+  "c2": "#002D62",
+  "src": "https://www.thesportsdb.com/league/4332-Italian-Serie-A"
+ },
+ "girona": {
+  "ar": "جيرونا",
+  "en": "Girona FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/kfu7zu1659897499.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4400"
+ },
+ "granada": {
+  "ar": "غرناطة",
+  "en": "Granada CF",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/f9iss11677472689.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4400"
+ },
+ "groningen": {
+  "ar": "خرونينغن",
+  "en": "FC Groningen",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/f36qnp1666107447.png/medium",
+  "c1": "#00A651",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4337"
+ },
+ "guangzhou": {
+  "ar": "غوانزو إيفرغراند",
+  "en": "Guangzhou Evergrande",
+  "badge": "",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": ""
+ },
+ "haarlem": {
+  "ar": "هارلم",
+  "en": "HFC Haarlem",
+  "badge": "",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": ""
+ },
+ "halifax": {
+  "ar": "هاليفاكس تاون",
+  "en": "FC Halifax Town",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/s11p8q1689067978.png/small",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Halifax"
+ },
+ "hamburg": {
+  "ar": "هامبورغ",
+  "en": "Hamburger SV",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/tvtppt1473453296.png",
+  "c1": "#0A3F86",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/api/v1/json/123/search_all_teams.php?l=German%20Bundesliga"
+ },
+ "hebei": {
+  "ar": "هيبي تشاينا فورتشن",
+  "en": "Hebei China Fortune",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/7oltnf1622562306.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Hebei"
+ },
+ "heerenveen": {
+  "ar": "هيرينفين",
+  "en": "SC Heerenveen",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/surtsx1473534841.png/medium",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4337"
+ },
+ "hoffenheim": {
+  "ar": "هوفنهايم",
+  "en": "TSG Hoffenheim",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/9hwvb21621593919.png",
+  "c1": "#1961B5",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/api/v1/json/123/search_all_teams.php?l=German%20Bundesliga"
+ },
+ "independiente": {
+  "ar": "إنديبندينتي",
+  "en": "Independiente",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/eki4nd1580842605.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4406"
+ },
+ "instituto": {
+  "ar": "إنستيتوتو",
+  "en": "Instituto de Córdoba",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/jup59w1578825794.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4406"
+ },
+ "inter": {
+  "ar": "إنتر ميلان",
+  "en": "Inter Milan",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/ryhu6d1617113103.png",
+  "c1": "#0068A8",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/team/133681-inter-milan"
+ },
+ "intermiami": {
+  "ar": "إنتر ميامي",
+  "en": "Inter Miami CF",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/m4it3e1602103647.png/medium",
+  "c1": "#F7B5CD",
+  "c2": "#231F20",
+  "src": "https://www.thesportsdb.com/league/4346"
+ },
+ "internacional": {
+  "ar": "إنترناسيونال",
+  "en": "SC Internacional",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/yprvxx1473538097.png/tiny",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4351"
+ },
+ "interzapresic": {
+  "ar": "إنتر زابريشيتش",
+  "en": "NK Inter Zaprešić",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/1h7ogx1578830504.png/small",
+  "c1": "#FFD100",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/search.php?s=Zapre%C5%A1i%C4%87"
+ },
+ "ismaily": {
+  "ar": "الإسماعيلي",
+  "en": "Ismaily SC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/1g46qo1589807617.png/small",
+  "c1": "#FFD100",
+  "c2": "#0055A4",
+  "src": "https://www.thesportsdb.com/search.php?s=Ismaily"
+ },
+ "juventus": {
+  "ar": "يوفنتوس",
+  "en": "Juventus",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/uxf0gr1742983727.png",
+  "c1": "#000000",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/team/133676-juventus"
+ },
+ "laaztecs": {
+  "ar": "لوس أنجلوس أزتيكس",
+  "en": "Los Angeles Aztecs",
+  "badge": "",
+  "c1": "#E30613",
+  "c2": "#FFD100",
+  "src": ""
+ },
+ "lafc": {
+  "ar": "لوس أنجلوس إف سي",
+  "en": "Los Angeles FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/7nbj2a1602103638.png/medium",
+  "c1": "#000000",
+  "c2": "#C39E6D",
+  "src": "https://www.thesportsdb.com/league/4346"
+ },
+ "lagalaxy": {
+  "ar": "لوس أنجلوس غالاكسي",
+  "en": "LA Galaxy",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/ysyysr1420227188.png/medium",
+  "c1": "#00245D",
+  "c2": "#FFD200",
+  "src": "https://www.thesportsdb.com/league/4346"
+ },
+ "lazio": {
+  "ar": "لاتسيو",
+  "en": "SS Lazio",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/rwqyvs1448806608.png/medium",
+  "c1": "#87D8F7",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4332-Italian-Serie-A"
+ },
+ "lechpoznan": {
+  "ar": "ليخ بوزنان",
+  "en": "Lech Poznań",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/8zfxyx1685597440.png/small",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Lech%20Poznan"
+ },
+ "leganes": {
+  "ar": "ليغانيس",
+  "en": "CD Leganés",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/tm0adr1616443898.png/medium",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4400"
+ },
+ "lehavre": {
+  "ar": "لوهافر",
+  "en": "Le Havre AC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/aikowk1546475003.png/medium",
+  "c1": "#87CEEB",
+  "c2": "#00205B",
+  "src": "https://www.thesportsdb.com/league/4334-French-Ligue-1"
+ },
+ "leicester": {
+  "ar": "ليستر سيتي",
+  "en": "Leicester City",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/xtxwtu1448813356.png/small",
+  "c1": "#003090",
+  "c2": "#FDBE11",
+  "src": "https://www.thesportsdb.com/search.php?s=Leicester"
+ },
+ "lens": {
+  "ar": "لانس",
+  "en": "RC Lens",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/3pxoum1598797195.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFD100",
+  "src": "https://www.thesportsdb.com/league/4334-French-Ligue-1"
+ },
+ "levadiakos": {
+  "ar": "ليفادياكوس",
+  "en": "Levadiakos",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/csu6c61659016057.png/small",
+  "c1": "#00A651",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Levadiakos"
+ },
+ "levante": {
+  "ar": "ليفانتي",
+  "en": "Levante UD",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/xwtxsx1473503739.png/tiny",
+  "c1": "#00418F",
+  "c2": "#B4053F",
+  "src": "https://www.thesportsdb.com/league/4335-Spanish-La-Liga"
+ },
+ "leverkusen": {
+  "ar": "باير ليفركوزن",
+  "en": "Bayer Leverkusen",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/3x9k851726760113.png",
+  "c1": "#E32221",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/api/v1/json/123/search_all_teams.php?l=German%20Bundesliga"
+ },
+ "leytonorient": {
+  "ar": "لايتون أورينت",
+  "en": "Leyton Orient",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/g4d9bi1688678797.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Leyton%20Orient"
+ },
+ "lille": {
+  "ar": "ليل",
+  "en": "Lille OSC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/2giize1534005340.png/medium",
+  "c1": "#E01E13",
+  "c2": "#20325F",
+  "src": "https://www.thesportsdb.com/league/4334-French-Ligue-1"
+ },
+ "liverpool": {
+  "ar": "ليفربول",
+  "en": "Liverpool",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/kfaher1737969724.png",
+  "c1": "#C8102E",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/team/133602-liverpool"
+ },
+ "lokomotiva": {
+  "ar": "لوكوموتيفا زغرب",
+  "en": "NK Lokomotiva Zagreb",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/vzl3cy1578830545.png/small",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Lokomotiva"
+ },
+ "lyon": {
+  "ar": "ليون",
+  "en": "Olympique Lyonnais",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/blk9771656932845.png/medium",
+  "c1": "#FFFFFF",
+  "c2": "#1B2A5B",
+  "src": "https://www.thesportsdb.com/league/4334-French-Ligue-1"
+ },
+ "malaga": {
+  "ar": "ملقة",
+  "en": "Málaga CF",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/upqyvr1473502952.png/tiny",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4335-Spanish-La-Liga"
+ },
+ "mancity": {
+  "ar": "مانشستر سيتي",
+  "en": "Manchester City",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/vwpvry1467462651.png",
+  "c1": "#6CABDD",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/team/133613-manchester-city"
+ },
+ "manutd": {
+  "ar": "مانشستر يونايتد",
+  "en": "Manchester United",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/xzqdr11517660252.png",
+  "c1": "#DA291C",
+  "c2": "#FBE122",
+  "src": "https://www.thesportsdb.com/team/133612-manchester-united"
+ },
+ "metalurh": {
+  "ar": "ميتالورغ دونيتسك",
+  "en": "Metalurh Donetsk",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/gsch9r1590158298.png/small",
+  "c1": "#0055A4",
+  "c2": "#FFD100",
+  "src": "https://www.thesportsdb.com/search.php?s=Metalurh"
+ },
+ "metz": {
+  "ar": "ميتز",
+  "en": "FC Metz",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/1iuew61688452857.png/medium",
+  "c1": "#8E1B3A",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4401"
+ },
+ "millwall": {
+  "ar": "ميلوول",
+  "en": "Millwall",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/5p1z5k1537208888.png/medium",
+  "c1": "#001D5E",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4329"
+ },
+ "molde": {
+  "ar": "مولده",
+  "en": "Molde FK",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/apziyg1534866527.png/small",
+  "c1": "#003DA5",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Molde"
+ },
+ "monaco": {
+  "ar": "موناكو",
+  "en": "AS Monaco",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/exjf5l1678808044.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4334-French-Ligue-1"
+ },
+ "monterrey": {
+  "ar": "مونتيري",
+  "en": "CF Monterrey",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/yglj911721542561.png/small",
+  "c1": "#002D72",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Monterrey"
+ },
+ "montpellier": {
+  "ar": "مونبلييه",
+  "en": "Montpellier HSC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/8wn9x31750879448.png/medium",
+  "c1": "#0055A4",
+  "c2": "#F36F21",
+  "src": "https://www.thesportsdb.com/league/4401"
+ },
+ "nancy": {
+  "ar": "نانسي",
+  "en": "AS Nancy Lorraine",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/ve39pj1547899643.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4401"
+ },
+ "napoli": {
+  "ar": "نابولي",
+  "en": "SSC Napoli",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/l8qyxv1742982541.png/medium",
+  "c1": "#12A0D7",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4332-Italian-Serie-A"
+ },
+ "neom": {
+  "ar": "نيوم",
+  "en": "Neom SC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/4luwe11737685220.png/medium",
+  "c1": "#1B2A5B",
+  "c2": "#C9A227",
+  "src": "https://www.thesportsdb.com/league/4668"
+ },
+ "newcastle": {
+  "ar": "نيوكاسل يونايتد",
+  "en": "Newcastle United",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/kwaz8w1793219401.png/medium",
+  "c1": "#241F20",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4328-English-Premier-League"
+ },
+ "newells": {
+  "ar": "نيولز أولد بويز",
+  "en": "Newell's Old Boys",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/23aftf1580842633.png/medium",
+  "c1": "#E30613",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4406"
+ },
+ "nice": {
+  "ar": "نيس",
+  "en": "OGC Nice",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/msy7ly1621593859.png/medium",
+  "c1": "#E30613",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4334-French-Ligue-1"
+ },
+ "norwich": {
+  "ar": "نوريتش سيتي",
+  "en": "Norwich City",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/pabczm1679951464.png/medium",
+  "c1": "#FFF200",
+  "c2": "#00A650",
+  "src": "https://www.thesportsdb.com/league/4329"
+ },
+ "novara": {
+  "ar": "نوفارا",
+  "en": "Novara",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/urbkrr1675352937.png/small",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Novara"
+ },
+ "nycfc": {
+  "ar": "نيويورك سيتي",
+  "en": "New York City FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/m9vis71735140655.png/medium",
+  "c1": "#6CACE4",
+  "c2": "#041E42",
+  "src": "https://www.thesportsdb.com/league/4346"
+ },
+ "nycosmos": {
+  "ar": "نيويورك كوزموس",
+  "en": "New York Cosmos",
+  "badge": "",
+  "c1": "#00A651",
+  "c2": "#FFD100",
+  "src": ""
+ },
+ "nyredbulls": {
+  "ar": "نيويورك ريد بولز",
+  "en": "New York Red Bulls",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/suytvy1473536462.png/medium",
+  "c1": "#ED1E36",
+  "c2": "#23326A",
+  "src": "https://www.thesportsdb.com/league/4346"
+ },
+ "olympiacos": {
+  "ar": "أولمبياكوس",
+  "en": "Olympiacos",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/xckasq1721291508.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Olympiacos"
+ },
+ "orlandocity": {
+  "ar": "أورلاندو سيتي",
+  "en": "Orlando City SC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/qyppxw1423832326.png/medium",
+  "c1": "#633492",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4346"
+ },
+ "padova": {
+  "ar": "بادوفا",
+  "en": "Calcio Padova",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/hklo0i1579724992.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4394"
+ },
+ "palermo": {
+  "ar": "باليرمو",
+  "en": "Palermo",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/zi1tb01579708939.png/medium",
+  "c1": "#F6A2C0",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4394"
+ },
+ "parma": {
+  "ar": "بارما",
+  "en": "Parma",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/6yiaxs1627406063.png/medium",
+  "c1": "#FFD100",
+  "c2": "#0055A4",
+  "src": "https://www.thesportsdb.com/league/4332-Italian-Serie-A"
+ },
+ "partizan": {
+  "ar": "بارتيزان",
+  "en": "FK Partizan",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/xe41k11781157208.png/small",
+  "c1": "#000000",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Partizan"
+ },
+ "penarol": {
+  "ar": "بينارول",
+  "en": "Peñarol",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/uuwpux1473541171.png/small",
+  "c1": "#FFD100",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/search.php?s=Penarol"
+ },
+ "perugia": {
+  "ar": "بيروجيا",
+  "en": "Perugia",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/7e4l2k1603811720.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Perugia"
+ },
+ "pisa": {
+  "ar": "بيزا",
+  "en": "Pisa SC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/2eso9w1579708309.png/medium",
+  "c1": "#000000",
+  "c2": "#0055A4",
+  "src": "https://www.thesportsdb.com/league/4394"
+ },
+ "porto": {
+  "ar": "بورتو",
+  "en": "FC Porto",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/xu47rb1628855600.png/medium",
+  "c1": "#003DA5",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4344"
+ },
+ "preston": {
+  "ar": "بريستون نورث إند",
+  "en": "Preston North End",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/wqtwvw1448811512.png/medium",
+  "c1": "#FFFFFF",
+  "c2": "#0A1E5A",
+  "src": "https://www.thesportsdb.com/league/4329"
+ },
+ "psg": {
+  "ar": "باريس سان جيرمان",
+  "en": "Paris Saint-Germain",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/rwqrrq1473504808.png",
+  "c1": "#004170",
+  "c2": "#DA291C",
+  "src": "https://www.thesportsdb.com/team/133714-paris-sg"
+ },
+ "psv": {
+  "ar": "آيندهوفن",
+  "en": "PSV Eindhoven",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/xfsz6i1721297428.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4337"
+ },
+ "qingdao": {
+  "ar": "تشينغداو هوانغهاي",
+  "en": "Qingdao Huanghai",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/jady551580929089.png/small",
+  "c1": "#F36F21",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Qingdao"
+ },
+ "quimper": {
+  "ar": "كيمبر",
+  "en": "Quimper Cornouaille",
+  "badge": "",
+  "c1": "#E30613",
+  "c2": "#FFD100",
+  "src": ""
+ },
+ "racing": {
+  "ar": "راسينغ كلوب",
+  "en": "Racing Club",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/vi4mu41695734959.png/medium",
+  "c1": "#6CACE4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4406"
+ },
+ "realmadrid": {
+  "ar": "ريال مدريد",
+  "en": "Real Madrid",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/vwvwrw1473502969.png",
+  "c1": "#FFFFFF",
+  "c2": "#FEBE10",
+  "src": "https://www.thesportsdb.com/team/133738-real-madrid"
+ },
+ "realsociedad": {
+  "ar": "ريال سوسيداد",
+  "en": "Real Sociedad",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/vptvpr1473502986.png/tiny",
+  "c1": "#0067B1",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4335-Spanish-La-Liga"
+ },
+ "reggina": {
+  "ar": "ريجينا",
+  "en": "Reggina",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/5zh7bz1603170133.png/small",
+  "c1": "#8E1B3A",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Reggina"
+ },
+ "rennes": {
+  "ar": "رين",
+  "en": "Stade Rennais",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/ypturx1473504818.png/medium",
+  "c1": "#E30613",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4334-French-Ligue-1"
+ },
+ "river": {
+  "ar": "ريفر بليت",
+  "en": "River Plate",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/03dmi31645539717.png/medium",
+  "c1": "#FFFFFF",
+  "c2": "#E30613",
+  "src": "https://www.thesportsdb.com/league/4406"
+ },
+ "roma": {
+  "ar": "روما",
+  "en": "AS Roma",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/jwro2s1760820674.png/medium",
+  "c1": "#8E1F2F",
+  "c2": "#F0BC42",
+  "src": "https://www.thesportsdb.com/league/4332-Italian-Serie-A"
+ },
+ "sagantosu": {
+  "ar": "ساغان توسو",
+  "en": "Sagan Tosu",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/jsepp91578250937.png/small",
+  "c1": "#3BA6E0",
+  "c2": "#E95098",
+  "src": "https://www.thesportsdb.com/search.php?s=Sagan%20Tosu"
+ },
+ "saintetienne": {
+  "ar": "سانت إتيان",
+  "en": "AS Saint-Étienne",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/m4ej831656423694.png/medium",
+  "c1": "#009A44",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4401"
+ },
+ "salzburg": {
+  "ar": "ريد بول سالزبورغ",
+  "en": "Red Bull Salzburg",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/nc2cua1781541639.png/small",
+  "c1": "#FFFFFF",
+  "c2": "#D50032",
+  "src": "https://www.thesportsdb.com/search.php?s=Salzburg"
+ },
+ "sampdoria": {
+  "ar": "سامبدوريا",
+  "en": "Sampdoria",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/pr6co21655592769.png/medium",
+  "c1": "#1B5497",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4394"
+ },
+ "santos": {
+  "ar": "سانتوس",
+  "en": "Santos FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/j8xk9g1679447486.png/tiny",
+  "c1": "#FFFFFF",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4351"
+ },
+ "saopaulo": {
+  "ar": "ساو باولو",
+  "en": "São Paulo FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/sxpupx1473538135.png/tiny",
+  "c1": "#E30613",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4351"
+ },
+ "schalke": {
+  "ar": "شالكه",
+  "en": "FC Schalke 04",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/hnci291621593978.png/small",
+  "c1": "#004D9D",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Schalke"
+ },
+ "sevilla": {
+  "ar": "إشبيلية",
+  "en": "Sevilla FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/vpsqqx1473502977.png/tiny",
+  "c1": "#FFFFFF",
+  "c2": "#D81E05",
+  "src": "https://www.thesportsdb.com/league/4335-Spanish-La-Liga"
+ },
+ "shanghaishenhua": {
+  "ar": "شنغهاي شينهوا",
+  "en": "Shanghai Shenhua",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/p0r1bj1654266974.png/small",
+  "c1": "#0055A4",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Shanghai%20Shenhua"
+ },
+ "southampton": {
+  "ar": "ساوثهامبتون",
+  "en": "Southampton",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/ggqtd01621593274.png/medium",
+  "c1": "#D71920",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4329"
+ },
+ "spartaprague": {
+  "ar": "سبارتا براغ",
+  "en": "AC Sparta Prague",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/j00qct1718287150.png/small",
+  "c1": "#8E1B3A",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Sparta%20Prague"
+ },
+ "sporting": {
+  "ar": "سبورتنغ لشبونة",
+  "en": "Sporting CP",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/5hiuk71783137875.png/medium",
+  "c1": "#008057",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4344"
+ },
+ "sportul": {
+  "ar": "سبورتول ستودينتسك",
+  "en": "Sportul Studențesc",
+  "badge": "",
+  "c1": "#000000",
+  "c2": "#FFFFFF",
+  "src": ""
+ },
+ "steaua": {
+  "ar": "ستيوا بوخارست",
+  "en": "Steaua București",
+  "badge": "",
+  "c1": "#E30613",
+  "c2": "#0055A4",
+  "src": ""
+ },
+ "stellaclub": {
+  "ar": "ستيلا أبيدجان",
+  "en": "Stella Club d'Adjamé",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/r1nxzq1790005509.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Stella"
+ },
+ "stocksbridge": {
+  "ar": "ستوكسبريدج بارك ستيلز",
+  "en": "Stocksbridge Park Steels",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/g4zw1w1714867026.png/small",
+  "c1": "#FFD100",
+  "c2": "#0055A4",
+  "src": "https://www.thesportsdb.com/search.php?s=Stocksbridge"
+ },
+ "stoke": {
+  "ar": "ستوك سيتي",
+  "en": "Stoke City",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/lz89v21781718914.png/medium",
+  "c1": "#E03A3E",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4329"
+ },
+ "stpauli": {
+  "ar": "سانت باولي",
+  "en": "FC St. Pauli",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/5qupxa1608237013.png/medium",
+  "c1": "#6A3E1E",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4399"
+ },
+ "stuttgart": {
+  "ar": "شتوتغارت",
+  "en": "VfB Stuttgart",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/yppyux1473454085.png/small",
+  "c1": "#FFFFFF",
+  "c2": "#E32219",
+  "src": "https://www.thesportsdb.com/search.php?s=Stuttgart"
+ },
+ "sunderland": {
+  "ar": "سندرلاند",
+  "en": "Sunderland",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/tprtus1448813498.png/medium",
+  "c1": "#EB172B",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4328-English-Premier-League"
+ },
+ "swansea": {
+  "ar": "سوانزي سيتي",
+  "en": "Swansea City",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/474rco1686920744.png/medium",
+  "c1": "#FFFFFF",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4329"
+ },
+ "sydneyfc": {
+  "ar": "سيدني إف سي",
+  "en": "Sydney FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/utgq8z1546110747.png/small",
+  "c1": "#6CACE4",
+  "c2": "#0A1E5A",
+  "src": "https://www.thesportsdb.com/search.php?s=Sydney%20FC"
+ },
+ "tersana": {
+  "ar": "الترسانة",
+  "en": "Tersana SC",
+  "badge": "",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": ""
+ },
+ "toronto": {
+  "ar": "تورونتو إف سي",
+  "en": "Toronto FC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/rsxyrr1473536512.png/medium",
+  "c1": "#B81137",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4346"
+ },
+ "tottenham": {
+  "ar": "توتنهام",
+  "en": "Tottenham Hotspur",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/dfyfhl1604094109.png",
+  "c1": "#FFFFFF",
+  "c2": "#132257",
+  "src": "https://www.thesportsdb.com/team/133616-tottenham-hotspur"
+ },
+ "trabzonspor": {
+  "ar": "طرابزون سبور",
+  "en": "Trabzonspor",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/96s34o1776827629.png/medium",
+  "c1": "#7A1E3A",
+  "c2": "#6CACE4",
+  "src": "https://www.thesportsdb.com/league/4339"
+ },
+ "twente": {
+  "ar": "تفينتي",
+  "en": "FC Twente",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/rsrxrt1473534783.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4337"
+ },
+ "udinese": {
+  "ar": "أودينيزي",
+  "en": "Udinese",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/vwvstr1448806811.png/medium",
+  "c1": "#000000",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4332-Italian-Serie-A"
+ },
+ "valencia": {
+  "ar": "فالنسيا",
+  "en": "Valencia CF",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/dm8l6o1655594864.png/tiny",
+  "c1": "#FFFFFF",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4335-Spanish-La-Liga"
+ },
+ "velez": {
+  "ar": "فيليز سارسفيلد",
+  "en": "Vélez Sarsfield",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/jo98m71517769587.png/medium",
+  "c1": "#FFFFFF",
+  "c2": "#0055A4",
+  "src": "https://www.thesportsdb.com/league/4406"
+ },
+ "vicenza": {
+  "ar": "فيتشنزا",
+  "en": "Vicenza",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/fj8twm1569164066.png/medium",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4394"
+ },
+ "villarreal": {
+  "ar": "فياريال",
+  "en": "Villarreal CF",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/vrypqy1473503073.png/tiny",
+  "c1": "#FFE667",
+  "c2": "#005187",
+  "src": "https://www.thesportsdb.com/league/4335-Spanish-La-Liga"
+ },
+ "visselkobe": {
+  "ar": "فيسل كوبي",
+  "en": "Vissel Kobe",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/2axjch1578239819.png/small",
+  "c1": "#8E1B3A",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/search.php?s=Vissel%20Kobe"
+ },
+ "vitoriasc": {
+  "ar": "فيتوريا غيماريش",
+  "en": "Vitória SC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/af52z61628855707.png/medium",
+  "c1": "#FFFFFF",
+  "c2": "#000000",
+  "src": "https://www.thesportsdb.com/league/4344"
+ },
+ "vojvodina": {
+  "ar": "فويفودينا",
+  "en": "FK Vojvodina",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/adh59u1703173053.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Vojvodina"
+ },
+ "wadidegla": {
+  "ar": "وادي دجلة",
+  "en": "Wadi Degla SC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/2rchzz1589807440.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Wadi%20Degla"
+ },
+ "washingtondiplomats": {
+  "ar": "واشنطن دبلومات",
+  "en": "Washington Diplomats",
+  "badge": "",
+  "c1": "#E30613",
+  "c2": "#0055A4",
+  "src": ""
+ },
+ "watford": {
+  "ar": "واتفورد",
+  "en": "Watford",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/rsuswy1448813519.png/medium",
+  "c1": "#FBEE23",
+  "c2": "#ED2127",
+  "src": "https://www.thesportsdb.com/league/4329"
+ },
+ "werder": {
+  "ar": "فيردر بريمن",
+  "en": "Werder Bremen",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/tkvqan1716960454.png/small",
+  "c1": "#1D9053",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Werder"
+ },
+ "westbrom": {
+  "ar": "وست بروميتش ألبيون",
+  "en": "West Bromwich Albion",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/rsvuxw1448813527.png/medium",
+  "c1": "#122F67",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4329"
+ },
+ "westham": {
+  "ar": "وست هام يونايتد",
+  "en": "West Ham United",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/yutyxs1467459956.png/medium",
+  "c1": "#7A263A",
+  "c2": "#1BB1E7",
+  "src": "https://www.thesportsdb.com/league/4329"
+ },
+ "wolfsburg": {
+  "ar": "فولفسبورغ",
+  "en": "VfL Wolfsburg",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/ci9trv1778399557.png/medium",
+  "c1": "#65B32E",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/league/4399"
+ },
+ "wolves": {
+  "ar": "وولفرهامبتون",
+  "en": "Wolverhampton Wanderers",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/u9qr031621593327.png/medium",
+  "c1": "#FDB913",
+  "c2": "#231F20",
+  "src": "https://www.thesportsdb.com/league/4329"
+ },
+ "wydad": {
+  "ar": "الوداد",
+  "en": "Wydad AC",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/vio4271750784379.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Wydad"
+ },
+ "zaragoza": {
+  "ar": "سرقسطة",
+  "en": "Real Zaragoza",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/sxpwxs1473503702.png/small",
+  "c1": "#FFFFFF",
+  "c2": "#0055A4",
+  "src": "https://www.thesportsdb.com/search.php?s=Zaragoza"
+ },
+ "zenit": {
+  "ar": "زينيت",
+  "en": "Zenit Saint Petersburg",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/t20z2n1782186629.png/small",
+  "c1": "#0091D2",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Zenit"
+ },
+ "znicz": {
+  "ar": "زنيتش بروشكوف",
+  "en": "Znicz Pruszków",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/lm3ts01698554359.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Znicz"
+ },
+ "zrinjski": {
+  "ar": "زرينيسكي موستار",
+  "en": "HŠK Zrinjski Mostar",
+  "badge": "https://r2.thesportsdb.com/images/media/team/badge/sursuu1436260214.png/small",
+  "c1": "#E30613",
+  "c2": "#FFFFFF",
+  "src": "https://www.thesportsdb.com/search.php?s=Zrinjski"
+ }
+}
