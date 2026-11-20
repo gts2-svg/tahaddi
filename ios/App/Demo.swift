@@ -17,7 +17,7 @@ enum Shot {
         guard let n = name else { return }
         if UIDevice.current.userInterfaceIdiom == .pad { rotate(0) }
         setup(m, n)
-        let wait: Double = ["splash": 1.2, "answered": 3.4, "steal": 3.4, "result": 1.5, "home": 2.5, "settings": 2.5, "teams": 2.5][n] ?? 2.2
+        let wait: Double = ["splash": 1.2, "answered": 3.4, "steal": 3.4, "host": 3.4, "sheet": 3.4, "result": 1.5, "home": 2.5, "settings": 2.5, "teams": 2.5][n] ?? 2.2
         Task { @MainActor in
             try? await Task.sleep(nanoseconds: UInt64(wait * 1_000_000_000))
             let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -113,6 +113,23 @@ enum Shot {
                 Task { @MainActor in
                     try? await Task.sleep(nanoseconds: 1_600_000_000)
                     if let i = m.game?.order.firstIndex(where: { $0 != 0 }) { m.answer(i) }
+                }
+            }
+        case "host":
+            m.settings.host = true
+            if let q = firstQ(m, "geography", 3, short) {
+                m.beginGame(seqGame(m, q, teams: two))
+                Task { @MainActor in
+                    try? await Task.sleep(nanoseconds: 1_600_000_000)
+                    m.hostReveal()
+                }
+            }
+        case "sheet":
+            if let q = firstQ(m, "geography", 1, short) {
+                m.beginGame(seqGame(m, q, teams: two))
+                Task { @MainActor in
+                    try? await Task.sleep(nanoseconds: 1_600_000_000)
+                    m.open(.team(0))
                 }
             }
         case "poem":

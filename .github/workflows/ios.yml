@@ -21,7 +21,7 @@ jobs:
     runs-on: macos-15-intel
     timeout-minutes: 60
     env:
-      SHOTS: "home settings teams splash question answered steal whoami clubs poem board result"
+      SHOTS: "home settings teams splash question answered steal host whoami clubs poem board sheet result"
     steps:
       - uses: actions/checkout@v4
 
@@ -104,6 +104,13 @@ jobs:
               if ! ps -p "$PID" > /dev/null 2>&1; then echo "::error::$1 $s: the app quit"; echo "$1 $s crashed" >> "$RUNNER_TEMP/problems.txt"; fi
             done
             echo "orientation log: $(cat "$DOCS/orient.txt" 2>/dev/null)"
+            if [ "$1" = ipad ]; then
+              # المحاكي يحفظ الصورة بإطار الجهاز العمودي؛ نديرها لتظهر أفقية كما يراها اللاعب
+              for f in "$RUNNER_TEMP"/shots/ipad-*.png; do
+                W=$(sips -g pixelWidth "$f" | awk '/pixelWidth/{print $2}'); H=$(sips -g pixelHeight "$f" | awk '/pixelHeight/{print $2}')
+                if [ "$W" -lt "$H" ]; then sips -r 270 "$f" > /dev/null; fi
+              done
+            fi
             xcrun simctl shutdown "$U" || true
           }
           shoot iphone

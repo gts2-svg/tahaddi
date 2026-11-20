@@ -116,7 +116,8 @@ struct FlowLayout: Layout {
             let h = r.map { $0.1.height }.max() ?? 0
             var x = bounds.minX + (bounds.width - w) / 2
             for (s, sz) in r {
-                s.place(at: CGPoint(x: x, y: y + (h - sz.height) / 2), proposal: ProposedViewSize(sz))
+                // +1 حتى لا يلتف النص بسبب كسور التقريب
+                s.place(at: CGPoint(x: x, y: y + (h - sz.height) / 2), proposal: ProposedViewSize(width: sz.width + 1, height: sz.height))
                 x += sz.width + spacing
             }
             y += h + rowSpacing
