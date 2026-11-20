@@ -67,9 +67,9 @@ struct ResultView: View {
                             Button("مباراة جديدة بنفس الفرق") { m.playAgain() }
                                 .buttonStyle(PrimaryStyle(k: k, big: true))
                                 .layoutPriority(1)
-                            Button("الرئيسية") { m.goHome() }
+                            Button { m.goHome() } label: { Text("الرئيسية").frame(width: 92 * k, height: 50 * k) }
                                 .buttonStyle(GhostStyle(k: k))
-                                .frame(minHeight: 64 * k)
+                                .fixedSize()
                         }
                         .padding(.top, 22 * k)
                     }

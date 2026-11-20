@@ -255,8 +255,10 @@ enum SelfCheck {
         for c in cats {
             guard let key = c["key"] as? String, let file = c["file"] as? String,
                   let text = try? String(contentsOf: dataDir.appendingPathComponent((file as NSString).lastPathComponent), encoding: .utf8) else { continue }
-            let r = TL.parseBank(cat: key, text: text, clues: (c["clues"] as? Bool) ?? false)
-            for q in r.items { out.append([q.id, q.legacy, String(q.d), q.akey, q.keys.joined(separator: ","), String(q.clues?.count ?? 0)].joined(separator: "\t")) }
+            let catClues = (c["clues"] as? Bool) ?? false
+            let r = TL.parseBank(cat: key, text: text, clues: catClues)
+            // نسخة الويب تتخطى أسئلة التلميحات خارج الأقسام الموسومة clues (يعرضها التطبيق الأصلي وحده)
+            for q in r.items where catClues || q.clues == nil { out.append([q.id, q.legacy, String(q.d), q.akey, q.keys.joined(separator: ","), String(q.clues?.count ?? 0)].joined(separator: "\t")) }
             for p in r.problems { out.append(["P", p.cat, String(p.line), p.level].joined(separator: "\t")) }
         }
         return out.joined(separator: "\n")

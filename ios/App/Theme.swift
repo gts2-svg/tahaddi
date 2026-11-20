@@ -90,11 +90,14 @@ enum Fonts {
 
 private struct UIScaleKey: EnvironmentKey { static let defaultValue: CGFloat = 0.8 }
 private struct WideKey: EnvironmentKey { static let defaultValue: Bool = false }
+private struct RoomyKey: EnvironmentKey { static let defaultValue: Bool = false }
 extension EnvironmentValues {
     /// مضاعف الأحجام: «حجم الخط» في الإعدادات (0.7–1.0) × 1.3 في الآيباد
     var uiScale: CGFloat { get { self[UIScaleKey.self] } set { self[UIScaleKey.self] = newValue } }
     /// شاشة عريضة (الآيباد) تستحق تخطيطاً بعمودين
     var wide: Bool { get { self[WideKey.self] } set { self[WideKey.self] = newValue } }
+    /// عرض كبير جداً (الآيباد أفقياً): الرئيسية بعمودين
+    var roomy: Bool { get { self[RoomyKey.self] } set { self[RoomyKey.self] = newValue } }
 }
 
 struct TF: ViewModifier {

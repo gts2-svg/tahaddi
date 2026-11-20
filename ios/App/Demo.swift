@@ -12,23 +12,34 @@ enum Shot {
     static var selfcheck: Bool { ProcessInfo.processInfo.arguments.contains("-selfcheck") }
 
     #if DEBUG
-    /// عيّنة أندية للتجربة فقط (ليست بيانات اللعب): شعار واحد بصورة من الشبكة لتجربة التحميل، والبقية بألوان النادي
-    static let sampleClubs: [String: Club] = [
-        "sporting": Club(key: "sporting", ar: "سبورتينغ لشبونة", en: "Sporting CP", badge: "", c1: "#008057", c2: "#0B3D2E"),
-        "manutd": Club(key: "manutd", ar: "مانشستر يونايتد", en: "Manchester United", badge: "", c1: "#DA291C", c2: "#7A0E08"),
-        "realmadrid": Club(key: "realmadrid", ar: "ريال مدريد", en: "Real Madrid", badge: "https://images.unsplash.com/photo-1699455309844-788aec77fe8a?auto=format&fit=crop&w=160&q=60", c1: "#FEBE10", c2: "#00529F"),
-        "juventus": Club(key: "juventus", ar: "يوفنتوس", en: "Juventus", badge: "", c1: "#111111", c2: "#555555"),
-        "alnassr": Club(key: "alnassr", ar: "النصر", en: "Al Nassr", badge: "", c1: "#F5C400", c2: "#1D3E8C"),
-    ]
-
     @MainActor static func afterLaunch(_ m: AppModel) {
         if selfcheck { runSelfCheck() }
         guard let n = name else { return }
-        if UIDevice.current.userInterfaceIdiom == .pad,
-           let scene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).first {
-            scene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscapeRight)) { _ in }
-        }
+        if UIDevice.current.userInterfaceIdiom == .pad { rotate(0) }
         setup(m, n)
+        let wait: Double = ["splash": 1.2, "answered": 3.4, "steal": 3.4, "result": 1.5, "home": 2.5, "settings": 2.5, "teams": 2.5][n] ?? 2.2
+        Task { @MainActor in
+            try? await Task.sleep(nanoseconds: UInt64(wait * 1_000_000_000))
+            let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+            try? "ready \(n)".write(to: docs.appendingPathComponent("shot-ready.txt"), atomically: true, encoding: .utf8)
+        }
+    }
+
+    /// الآيباد أفقياً للتصوير (يُعاد الطلب حتى يصير المشهد نشطاً)
+    @MainActor static func rotate(_ attempt: Int) {
+        let docs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        guard let scene = UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }).first else { return }
+        if scene.interfaceOrientation.isLandscape { return }
+        scene.windows.first?.rootViewController?.setNeedsUpdateOfSupportedInterfaceOrientations()
+        scene.requestGeometryUpdate(.iOS(interfaceOrientations: .landscape)) { err in
+            try? "attempt \(attempt): \(err.localizedDescription)".write(to: docs.appendingPathComponent("orient.txt"), atomically: true, encoding: .utf8)
+        }
+        if attempt < 4 {
+            Task { @MainActor in
+                try? await Task.sleep(nanoseconds: 500_000_000)
+                rotate(attempt + 1)
+            }
+        }
     }
 
     @MainActor static func runSelfCheck() {
@@ -114,15 +125,14 @@ enum Shot {
                 m.beginGame(g)
             }
         case "clubs":
-            m.clubs = sampleClubs
-            let clues = ["@sporting", "@manutd", "@realmadrid", "@juventus", "@alnassr"]
-            let q = Question(id: "sports:demo1", legacy: "sports:demo1", cat: "sports", d: 1, q: clues.joined(separator: " ;; "),
-                             a: "كريستيانو رونالدو", w: ["ليونيل ميسي", "نيمار", "كريم بنزيما"], akey: "كريستيانو رونالدو", keys: [], clues: clues)
-            m.index.byId[q.id] = q
-            m.settings.cats = ["sports", "history", "geography", "poetry"]
-            var g = seqGame(m, q, teams: two)
-            g.shown = 3
-            m.beginGame(g)
+            // سؤال «مسيرة اللاعب» حقيقي من قسم كرة القدم، بشعارات الأندية من data/clubs.json
+            m.settings.cats = ["football", "history", "geography", "poetry"].filter { m.catByKey[$0] != nil }
+            let career = (m.bank["football"] ?? []).filter { q in (q.clues?.count ?? 0) >= 5 && (q.clues ?? []).allSatisfy { $0.hasPrefix("@") } }
+            if let q = career.first(where: { $0.d == 1 }) ?? career.first {
+                var g = seqGame(m, q, teams: two)
+                g.shown = min(4, q.clues?.count ?? 1)
+                m.beginGame(g)
+            }
         case "board":
             m.settings.mode = 1
             let b = TL.buildBoard(bank: m.bank, cats: m.settings.cats, nTeams: 2, ctx: m.ctx(), rng: seededRNG(5))

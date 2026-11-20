@@ -71,6 +71,18 @@ jobs:
             xcrun simctl boot "$U"; xcrun simctl bootstatus "$U" -b > /dev/null
             xcrun simctl status_bar "$U" override --time "9:41" --batteryState charged --batteryLevel 100 --wifiBars 3
             xcrun simctl install "$U" "$APP"
+            # بلا شاشة تعريف «الكتابة بالسحب» فوق لوحة المفاتيح
+            for d in com.apple.Preferences com.apple.keyboard.preferences; do
+              xcrun simctl spawn "$U" defaults write $d DidShowContinuousPathIntroduction -bool true || true
+            done
+            if [ "$1" = ipad ]; then
+              # احتياط إن لم يستجب التطبيق لطلب الوضع الأفقي: تدوير الجهاز من قائمة المحاكي
+              open -a Simulator --args -CurrentDeviceUDID "$U" || true
+              sleep 8
+              osascript -e 'tell application "System Events" to tell process "Simulator" to click menu item "Rotate Left" of menu "Device" of menu bar 1' || echo "osascript rotate failed"
+              sleep 3
+            fi
+            DOCS="$(xcrun simctl get_app_container "$U" com.gts2svg.tahaddi data)/Documents"
             if [ "$1" = iphone ]; then
               xcrun simctl launch "$U" com.gts2svg.tahaddi -selfcheck > /dev/null
               sleep 10
@@ -82,12 +94,17 @@ jobs:
             for s in $SHOTS; do
               i=$((i+1))
               xcrun simctl terminate "$U" com.gts2svg.tahaddi > /dev/null 2>&1 || true
+              rm -f "$DOCS/shot-ready.txt"
               PID=$(xcrun simctl launch "$U" com.gts2svg.tahaddi -shot "$s" | awk '{print $NF}')
-              if [ $i -eq 1 ]; then sleep 14; else sleep 7; fi
+              # ينتظر علامة الجاهزية التي يكتبها التطبيق بعد تجهيز الشاشة (حتى 45 ثانية)
+              for w in $(seq 1 90); do [ -f "$DOCS/shot-ready.txt" ] && break; sleep 0.5; done
+              [ -f "$DOCS/shot-ready.txt" ] || echo "::warning::$1 $s: no ready marker"
+              if [ $i -eq 1 ]; then sleep 10; else sleep 1.5; fi
               F="$RUNNER_TEMP/shots/$1-$(printf %02d $i)-$s.png"
               xcrun simctl io "$U" screenshot "$F" > /dev/null
               if ! ps -p "$PID" > /dev/null 2>&1; then echo "::error::$1 $s: the app quit"; echo "$1 $s crashed" >> "$RUNNER_TEMP/problems.txt"; fi
             done
+            echo "orientation log: $(cat "$DOCS/orient.txt" 2>/dev/null)"
             xcrun simctl shutdown "$U" || true
           }
           shoot iphone

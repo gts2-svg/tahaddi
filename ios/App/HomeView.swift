@@ -6,6 +6,7 @@ struct HomeView: View {
     @EnvironmentObject var m: AppModel
     @Environment(\.uiScale) var k
     @Environment(\.wide) var wide
+    @Environment(\.roomy) var roomy
     @FocusState private var focused: Int?
 
     var body: some View {
@@ -15,7 +16,7 @@ struct HomeView: View {
                     Hero()
                     if m.game != nil { ResumeBox().padding(.top, 12 * k) }
                     if !m.failed.isEmpty { LoadErrorBox().padding(.top, 12 * k) }
-                    if wide {
+                    if roomy {
                         HStack(alignment: .top, spacing: 22 * k) {
                             VStack(alignment: .leading, spacing: 0) {
                                 teamsSection
@@ -30,7 +31,7 @@ struct HomeView: View {
                         }
                     } else {
                         teamsSection
-                        catsSection(cols: 2)
+                        catsSection(cols: wide ? 4 : 2)
                         SettingsCard().id("settings").padding(.top, 14 * k)
                         FooterLinks()
                     }

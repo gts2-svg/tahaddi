@@ -246,8 +246,13 @@ struct QuestionStage: View {
             .safeAreaInset(edge: .bottom) {
                 if !wide && !inQ {
                     AfterPanel(g: g, q: q)
-                        .padding(.horizontal, 14 * k).padding(.top, 14 * k).padding(.bottom, 6 * k)
-                        .background(LinearGradient(colors: [C.bg.opacity(0), C.bg.opacity(0.97)], startPoint: .top, endPoint: UnitPoint(x: 0.5, y: 0.12)).ignoresSafeArea())
+                        .padding(.horizontal, 14 * k).padding(.top, 12 * k).padding(.bottom, 4 * k)
+                        .background(
+                            RoundedRectangle(cornerRadius: 24 * k, style: .continuous).fill(Color.white)
+                                .shadow(color: .black.opacity(0.14), radius: 14 * k, x: 0, y: -2 * k)
+                                .ignoresSafeArea(edges: .bottom)
+                        )
+                        .padding(.horizontal, 8 * k)
                 }
             }
             .onChange(of: m.fx) { f in
@@ -408,12 +413,16 @@ struct ClueList: View {
     var body: some View {
         let clubs = clues.allSatisfy { $0.hasPrefix("@") }
         if clubs {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: (wide ? 104 : 92) * k), spacing: 10 * k)], spacing: 10 * k) {
+            FlowLayout(spacing: 8 * k, rowSpacing: 8 * k) {
                 ForEach(clues.indices, id: \.self) { i in
-                    if i < shown || open { ClubTile(n: i + 1, key: String(clues[i].dropFirst()), late: i >= shown) }
-                    else { LockedTile(n: i + 1) }
+                    Group {
+                        if i < shown || open { ClubTile(n: i + 1, key: String(clues[i].dropFirst()), late: i >= shown) }
+                        else { LockedTile(n: i + 1) }
+                    }
+                    .frame(width: (wide ? 112 : (clues.count > 6 ? 82 : 98)) * k)
                 }
             }
+            .frame(maxWidth: .infinity)
         } else {
             VStack(spacing: (compact ? 5 : 8) * k) {
                 ForEach(clues.indices, id: \.self) { i in

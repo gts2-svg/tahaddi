@@ -95,6 +95,7 @@ struct RootView: View {
             }
             .environment(\.uiScale, k)
             .environment(\.wide, wide)
+            .environment(\.roomy, geo.size.width >= 1000)
             .animation(.easeInOut(duration: 0.25), value: m.screen)
             .alert(m.alert?.title ?? "", isPresented: Binding(get: { m.alert != nil }, set: { if !$0 { m.alert = nil } }), presenting: m.alert) { a in
                 ForEach(a.buttons) { b in
