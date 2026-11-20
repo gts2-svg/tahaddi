@@ -391,119 +391,119 @@
 # إلكاي غوندوغان، جانلويجي دوناروما، ممفيس ديباي، ساندرو تونالي، بيدرو، ألفارو موراتا
 
 ## مسيرة اللاعب
-1|@sporting ;; @manutd ;; @realmadrid ;; @juventus ;; @alnassr|كريستيانو رونالدو|ناني|ريكاردو كواريزما|جواو موتينيو|f0313
-1|@barcelona ;; @psg ;; @intermiami|ليونيل ميسي|نيمار|لويس سواريز|سيرخيو بوسكيتس|f0314
-1|@santos ;; @barcelona ;; @psg ;; @alhilal|نيمار|روبينيو|فيليبي كوتينيو|رودريغو|f0315
-1|@lyon ;; @realmadrid ;; @alittihad ;; @alhilal|كريم بنزيما|هوسم عوار|ألكسندر لاكازيت|نبيل فقير|f0316
-1|@almokawloon ;; @basel ;; @chelsea ;; @fiorentina ;; @roma ;; @liverpool ;; @trabzonspor|محمد صلاح|محمد النني|عمر مرموش|مصطفى محمد|f0317
-1|@monaco ;; @psg ;; @realmadrid|كيليان مبابي|عثمان ديمبيلي|أنتوني مارسيال|توماس ليمار|f0318
-1|@manutd ;; @preston ;; @realmadrid ;; @lagalaxy ;; @acmilan ;; @psg|ديفيد بيكهام|مايكل أوين|بول سكولز|ستيفن جيرارد|f0319
-1|@cannes ;; @bordeaux ;; @juventus ;; @realmadrid|زين الدين زيدان|باتريك فييرا|كريستوف دوغاري|ديدييه ديشان|f0320
-1|@cruzeiro ;; @psv ;; @barcelona ;; @inter ;; @realmadrid ;; @acmilan ;; @corinthians|رونالدو نازاريو|روماريو|ريفالدو|أدريانو|f0321
-1|@monaco ;; @juventus ;; @arsenal ;; @barcelona ;; @nyredbulls|تييري هنري|ديفيد تريزيغيه|نيكولا أنيلكا|روبير بيريس|f0322
-1|@dinamozagreb ;; @zrinjski ;; @interzapresic ;; @tottenham ;; @realmadrid ;; @acmilan|لوكا مودريتش|ماتيو كوفاتشيتش|إيفان راكيتيتش|ماريو ماندزوكيتش|f0323
-1|@deltawarsaw ;; @znicz ;; @lechpoznan ;; @dortmund ;; @bayern ;; @barcelona ;; @chicagofire|روبرت ليفاندوفسكي|ياكوب بواشتشيكوفسكي|لوكاش بيشتشيك|أركاديوش ميليك|f0324
-1|@bryne ;; @molde ;; @salzburg ;; @dortmund ;; @mancity|إيرلينغ هالاند|مارتن أوديغارد|ألكسندر سورلوث|جادون سانشو|f0325
-1|@metz ;; @salzburg ;; @southampton ;; @liverpool ;; @bayern ;; @alnassr|ساديو ماني|نابي كيتا|كاليدو كوليبالي|إدريسا غاي|f0326
-1|@boulogne ;; @caen ;; @leicester ;; @chelsea ;; @alittihad ;; @fenerbahce|نغولو كانتي|رياض محرز|تيموي باكايوكو|إدوارد ميندي|f0327
-1|@everton ;; @manutd ;; @dcunited ;; @derby|واين روني|مايكل أوين|روس باركلي|روميلو لوكاكو|f0328
-1|@saopaulo ;; @acmilan ;; @realmadrid ;; @orlandocity|كاكا|رونالدينيو|روبينيو|ألكسندر باتو|f0329
-1|@southampton ;; @tottenham ;; @realmadrid ;; @lafc|غاريث بيل|هوغو لوريس|لوكا مودريتش|ثيو والكوت|f0330
-1|@sevilla ;; @realmadrid ;; @psg ;; @monterrey|سيرخيو راموس|خيسوس نافاس|رافائيل فاران|بيبي|f0331
-1|@schalke ;; @werder ;; @realmadrid ;; @arsenal ;; @fenerbahce ;; @basaksehir|مسعود أوزيل|يوليان دراكسلر|سامي خضيرة|لوكاس بودولسكي|f0332
-1|@argentinos ;; @boca ;; @barcelona ;; @napoli ;; @sevilla ;; @newells|دييغو مارادونا|خوان رومان ريكيلمي|غابرييل باتيستوتا|كلاوديو كانيجيا|f0333
-1|@parma ;; @juventus ;; @psg|جانلويجي بوفون|فابيو كانافارو|ليليان تورام|جانلويجي دوناروما|f0334
-1|@sporting ;; @barcelona ;; @realmadrid ;; @inter|لويس فيغو|ريكاردو كواريزما|روبرتو كارلوس|ديكو|f0335
-1|@manutd ;; @juventus ;; @monaco|بول بوغبا|باتريس إيفرا|أنتوني مارسيال|أدريان رابيو|f0336
-1|@barcelona ;; @visselkobe ;; @emiratesclub|أندريس إنييستا|ديفيد فيا|تشافي|سيرخيو بوسكيتس|f0337
-1|@lille ;; @chelsea ;; @realmadrid|إيدين هازارد|تيبو كورتوا|خوان ماتا|أوليفييه جيرو|f0338
-1|@realsociedad ;; @atletico ;; @barcelona ;; @orlandocity|أنطوان غريزمان|كارلوس فيلا|ألفارو موراتا|عثمان ديمبيلي|f0339
-2|@quimper ;; @lehavre ;; @leicester ;; @mancity ;; @alahli ;; @alshamal|رياض محرز|نغولو كانتي|إسلام سليماني|سفيان فيغولي|f0340
-2|@realmadrid ;; @dortmund ;; @inter ;; @psg|أشرف حكيمي|نصير مزراوي|إبراهيم دياز|ثيو هيرنانديز|f0341
-2|@figueirense ;; @hoffenheim ;; @liverpool ;; @alahli ;; @alsadd|روبرتو فيرمينو|فيليبي كوتينيو|فابينيو|مالكوم|f0342
-2|@heerenveen ;; @twente ;; @ajax ;; @chelsea ;; @galatasaray ;; @alduhail ;; @wydad|حكيم زياش|نصير مزراوي|سفيان أمرابط|يوسف النصيري|f0343
-2|@ajax ;; @barcelona ;; @laaztecs ;; @washingtondiplomats ;; @levante ;; @feyenoord|يوهان كرويف|يوهان نيسكنز|رود خوليت|ماركو فان باستن|f0344
-2|@brescia ;; @inter ;; @reggina ;; @acmilan ;; @juventus ;; @nycfc|أندريا بيرلو|روبرتو باجيو|كلارنس سيدورف|فرانك لامبارد|f0345
-2|@padova ;; @juventus ;; @sydneyfc ;; @delhidynamos|أليساندرو ديل بييرو|فرانشيسكو توتي|روبرتو باجيو|فيليبو إنزاغي|f0346
-2|@vicenza ;; @fiorentina ;; @juventus ;; @acmilan ;; @bologna ;; @inter ;; @brescia|روبرتو باجيو|جانفرانكو زولا|أليساندرو ديل بييرو|كريستيان فييري|f0347
-2|@atletico ;; @liverpool ;; @chelsea ;; @acmilan ;; @sagantosu|فرناندو توريس|ديفيد فيا|دييغو كوستا|لويس سواريز|f0348
-2|@westham ;; @swansea ;; @chelsea ;; @mancity ;; @nycfc|فرانك لامبارد|ريو فرديناند|جو كول|ستيفن جيرارد|f0349
-2|@cannes ;; @acmilan ;; @arsenal ;; @juventus ;; @inter ;; @mancity|باتريك فييرا|زين الدين زيدان|ليليان تورام|إيمانويل بوتي|f0350
-2|@groningen ;; @psv ;; @chelsea ;; @realmadrid ;; @bayern|آريين روبن|رود فان نيستلروي|ويسلي شنايدر|رافائيل فان دير فارت|f0351
-2|@feyenoord ;; @arsenal ;; @manutd ;; @fenerbahce|روبن فان بيرسي|ديرك كاوت|رود فان نيستلروي|جيوفاني فان برونكهورست|f0352
-2|@independiente ;; @atletico ;; @mancity ;; @barcelona|سيرخيو أغويرو|كارلوس تيفيز|دييغو فورلان|خوليان ألفاريز|f0353
-2|@instituto ;; @palermo ;; @juventus ;; @roma|باولو ديبالا|إدينسون كافاني|خافيير باستوري|غونزالو هيغواين|f0354
-2|@dynamokyiv ;; @acmilan ;; @chelsea|أندريه شيفتشينكو|هيرنان كريسبو|فيليبو إنزاغي|ديدييه دروغبا|f0355
-2|@liverpool ;; @realmadrid ;; @newcastle ;; @manutd ;; @stoke|مايكل أوين|ستيف مكمانامان|روبي فاولر|بيتر كراوتش|f0356
-2|@genk ;; @chelsea ;; @werder ;; @wolfsburg ;; @mancity ;; @napoli|كيفن دي بروين|تيبو كورتوا|دريس ميرتنز|إيدين هازارد|f0357
-2|@tottenham ;; @leytonorient ;; @millwall ;; @norwich ;; @leicester ;; @bayern|هاري كين|جيرمين ديفو|ديلي آلي|كايل ووكر|f0358
-2|@bayern ;; @leverkusen ;; @realmadrid|توني كروس|ميشائيل بالاك|سامي خضيرة|يوشوا كيميتش|f0359
-2|@bayern ;; @manutd ;; @chicagofire|باستيان شفاينشتايغر|فيليب لام|توماس مولر|أوين هارغريفز|f0360
-2|@arsenal ;; @barcelona ;; @chelsea ;; @monaco ;; @como|سيسك فابريغاس|ألكسندر هليب|بيدرو|تشافي|f0361
-2|@manutd ;; @zaragoza ;; @barcelona|جيرارد بيكيه|جوردي ألبا|كارليس بويول|سيرخيو بوسكيتس|f0362
-2|@saopaulo ;; @realmadrid ;; @porto ;; @manutd ;; @intermiami|كاسيميرو|إيدير ميليتاو|فابينيو|فريد|f0363
-2|@hamburg ;; @leverkusen ;; @tottenham ;; @lafc|سون هيونغ مين|هاكان تشالهانوغلو|هوغو لوريس|غاريث بيل|f0364
-2|@novara ;; @udinese ;; @sampdoria ;; @sporting ;; @manutd|برونو فيرنانديز|جواو موتينيو|برناردو سيلفا|ناني|f0365
-2|@benfica ;; @atletico ;; @chelsea ;; @barcelona ;; @acmilan ;; @alnassr|جواو فيليكس|برناردو سيلفا|روبن دياز|جواو كانسيلو|f0366
-2|@ajax ;; @inter ;; @arsenal|دينيس بيركامب|مارك أوفرمارس|باتريك كلويفرت|رود خوليت|f0367
-2|@realmadrid ;; @schalke ;; @alsadd ;; @nycosmos|راؤول غونزاليس|تشافي|فرناندو مورينتس|غوتي|f0368
-2|@boca ;; @corinthians ;; @westham ;; @manutd ;; @mancity ;; @juventus ;; @shanghaishenhua|كارلوس تيفيز|خافيير ماسكيرانو|سيرخيو أغويرو|دييغو فورلان|f0369
-2|@benfica ;; @monaco ;; @mancity ;; @realmadrid|برناردو سيلفا|جواو كانسيلو|روبن دياز|جواو موتينيو|f0370
-2|@wydad ;; @zaragoza ;; @girona ;; @sevilla ;; @alhilal|ياسين بونو|منير المحمدي|يوسف النصيري|إدوارد ميندي|f0371
-2|@fluminense ;; @realmadrid ;; @olympiacos|مارسيلو|تياغو سيلفا|روبرتو كارلوس|دانيلو|f0372
-3|@sunderland ;; @coventry ;; @liverpool ;; @alettifaq ;; @ajax ;; @brentford ;; @chelsea|جوردان هندرسون|جورجينيو فينالدوم|جيمس ميلنر|آدم لالانا|f0373
-3|@partizan ;; @anderlecht ;; @newcastle ;; @fulham ;; @alhilal ;; @alrayyan|ألكسندر ميتروفيتش|سيرغي ميلينكوفيتش سافيتش|دوشان فلاهوفيتش|دوشان تاديتش|f0374
-3|@vojvodina ;; @genk ;; @lazio ;; @alhilal|سيرغي ميلينكوفيتش سافيتش|كاليدو كوليبالي|لويس ألبيرتو|دوشان تاديتش|f0375
-3|@metz ;; @genk ;; @napoli ;; @chelsea ;; @alhilal|كاليدو كوليبالي|ساديو ماني|سيرغي ميلينكوفيتش سافيتش|إدوارد ميندي|f0376
-3|@porto ;; @wolves ;; @alhilal|روبن نيفيز|جواو موتينيو|دانيلو بيريرا|ماتيوس نونيس|f0377
-3|@corinthians ;; @bordeaux ;; @barcelona ;; @zenit ;; @alhilal ;; @aljazira|مالكوم|هولك|كلاودينيو|ويليان|f0378
-3|@alaves ;; @realmadrid ;; @realsociedad ;; @acmilan ;; @alhilal|ثيو هيرنانديز|لوكاس هيرنانديز|فيرلاند ميندي|ألفارو أودريوزولا|f0379
-3|@penarol ;; @almeria ;; @benfica ;; @liverpool ;; @alhilal ;; @aldiriyah|داروين نونيز|فيديريكو فالفيردي|إدينسون كافاني|ماركوس ليوناردو|f0380
-3|@psg ;; @juventus ;; @bayern ;; @alnassr|كينغسلي كومان|أدريان رابيو|سيرج غنابري|ساديو ماني|f0381
-3|@napoli ;; @parma ;; @inter ;; @juventus ;; @realmadrid ;; @alahlidubai|فابيو كانافارو|أليساندرو نيستا|ليليان تورام|ماركو ماتيراتزي|f0382
-3|@ajax ;; @sampdoria ;; @realmadrid ;; @inter ;; @acmilan ;; @botafogo|كلارنس سيدورف|إدغار دافيدز|ويسلي شنايدر|رود خوليت|f0383
-3|@ajax ;; @realmadrid ;; @inter ;; @galatasaray ;; @nice ;; @algharafa|ويسلي شنايدر|رافائيل فان دير فارت|كلارنس سيدورف|آريين روبن|f0384
-3|@denbosch ;; @heerenveen ;; @psv ;; @manutd ;; @realmadrid ;; @hamburg ;; @malaga|رود فان نيستلروي|روبن فان بيرسي|باتريك كلويفرت|رافائيل فان دير فارت|f0385
-3|@newells ;; @river ;; @boca ;; @fiorentina ;; @roma ;; @inter ;; @alarabi|غابرييل باتيستوتا|هيرنان كريسبو|كلاوديو كانيجيا|دييغو سيميوني|f0386
-3|@river ;; @realmadrid ;; @napoli ;; @juventus ;; @acmilan ;; @chelsea ;; @intermiami|غونزالو هيغواين|إدينسون كافاني|هيرنان كريسبو|باولو ديبالا|f0387
-3|@danubio ;; @palermo ;; @napoli ;; @psg ;; @manutd ;; @valencia ;; @boca|إدينسون كافاني|لويس سواريز|زلاتان إبراهيموفيتش|خافيير باستوري|f0388
-3|@realsociedad ;; @eibar ;; @liverpool ;; @realmadrid ;; @bayern|تشابي ألونسو|ميكيل أرتيتا|ألفارو أربيلوا|توني كروس|f0389
-3|@chmelblsany ;; @spartaprague ;; @rennes ;; @chelsea ;; @arsenal|بيتر تشيك|تيبو كورتوا|إدوين فان دير سار|ينس ليمان|f0390
-3|@beveren ;; @metalurh ;; @olympiacos ;; @monaco ;; @barcelona ;; @mancity ;; @qingdao|يايا توريه|كولو توريه|إيمانويل إيبويه|سيدو كيتا|f0391
-3|@stocksbridge ;; @halifax ;; @fleetwood ;; @leicester ;; @cremonese ;; @burnley|جيمي فاردي|داني إنغز|ريكي لامبرت|شينجي أوكازاكي|f0392
-3|@haarlem ;; @feyenoord ;; @psv ;; @acmilan ;; @sampdoria ;; @chelsea|رود خوليت|فرانك ريكارد|ماركو فان باستن|رونالد كومان|f0393
-3|@boca ;; @barcelona ;; @villarreal ;; @argentinos|خوان رومان ريكيلمي|دييغو فورلان|دييغو مارادونا|خافيير سافيولا|f0394
-3|@river ;; @corinthians ;; @westham ;; @liverpool ;; @barcelona ;; @hebei ;; @estudiantes|خافيير ماسكيرانو|كارلوس تيفيز|إيزيكيل لافيتزي|خوان سيباستيان فيرون|f0395
-3|@tersana ;; @alahly ;; @baniyas|محمد أبو تريكة|محمد بركات|عماد متعب|حسام غالي|f0396
-3|@ajax ;; @bayern ;; @manutd|نصير مزراوي|ماتيس دي ليخت|حكيم زياش|ريان خرافنبرخ|f0397
-3|@realmadrid ;; @monaco ;; @liverpool ;; @alittihad ;; @trabzonspor|فابينيو|كاسيميرو|جورجينيو فينالدوم|نغولو كانتي|f0398
-3|@malaga ;; @leganes ;; @sevilla ;; @fenerbahce ;; @alittihad|يوسف النصيري|أيوب الكعبي|منير الحدادي|حكيم زياش|f0399
-3|@wadidegla ;; @wolfsburg ;; @stpauli ;; @stuttgart ;; @eintracht ;; @mancity ;; @tottenham|عمر مرموش|محمد صلاح|محمد النني|مصطفى محمد|f0400
-3|@nancy ;; @saintetienne ;; @juventus|ميشيل بلاتيني|زين الدين زيدان|جان تيغانا|آلان جيريس|f0401
-3|@bayern ;; @nycosmos ;; @hamburg|فرانز بكنباور|غيرد مولر|كارل هاينز رومينيغه|بيليه|f0402
-4|@dragovoljac ;; @lokomotiva ;; @dinamozagreb ;; @inter ;; @alnassr|مارسيلو بروزوفيتش|ماتيو كوفاتشيتش|إيفان بيريشيتش|إيفان راكيتيتش|f0403
-4|@bahia ;; @benfica ;; @besiktas ;; @guangzhou ;; @alnassr ;; @fenerbahce|أندرسون تاليسكا|باولينيو|أليكس تيليس|ويليان|f0404
-4|@juventus ;; @empoli ;; @parma ;; @toronto ;; @alhilal ;; @sampdoria|سيباستيان جوفينكو|فيديريكو برنارديسكي|لورينزو إنسيني|تشيرو إيموبيلي|f0405
-4|@alianzalima ;; @sporting ;; @benfica ;; @watford ;; @alhilal ;; @alqadsiah ;; @corinthians|أندريه كاريو|باولو غيريرو|جيفرسون فارفان|كريستيان كويفا|f0406
-4|@corinthians ;; @fluminense ;; @alhilal|ريفيلينو|جيرزينيو|توستاو|زيكو|f0407
-4|@realsociedad ;; @athletic ;; @barcelona ;; @alnassr|إينييغو مارتينيز|إيمريك لابورت|ميكيل ميرينو|ألفارو أودريوزولا|f0408
-4|@alnassr ;; @alfateh ;; @alahli|فراس البريكان|عبدالله الحمدان|صالح الشهري|هتان باهبري|f0409
-4|@alittihad ;; @alhilal ;; @roma ;; @lens|سعود عبدالحميد|ياسر الشهراني|محمد البريك|علي البليهي|f0410
-4|@ismaily ;; @fiorentina ;; @perugia ;; @alahly ;; @westbrom ;; @alittihad ;; @neom|أحمد حجازي|محمد النني|رامي ربيعة|محمد عبدالمنعم|f0411
-4|@almokawloon ;; @basel ;; @arsenal ;; @besiktas ;; @aljazira ;; @levadiakos|محمد النني|محمد صلاح|غرانيت تشاكا|عمر مرموش|f0412
-4|@internacional ;; @porto ;; @vitoriasc ;; @alnassr ;; @alqadsiah|أوتافيو|أليكس تيليس|ياسين براهيمي|خيسوس كورونا|f0413
-4|@monaco ;; @atletico ;; @dalian ;; @alshabab|يانيك كاراسكو|توماس ليمار|أكسيل فيتسل|إيفر بانيغا|f0414
-4|@celta ;; @alahli ;; @porto|غابري فيغا|ياغو أسباس|برايس منديز|أوتافيو|f0415
-4|@santos ;; @benfica ;; @alhilal ;; @ajax|ماركوس ليوناردو|رودريغو|داروين نونيز|غابرييل باربوسا|f0416
-4|@alittihad ;; @levante ;; @alshabab|فهد المولد|يحيى الشهري|سالم الدوسري|هتان باهبري|f0417
-4|@rennes ;; @clermont ;; @granada ;; @porto ;; @alrayyan ;; @algharafa|ياسين براهيمي|سفيان فيغولي|رياض محرز|إسلام سليماني|f0418
-4|@bastia ;; @bordeaux ;; @sunderland ;; @rennes ;; @saintetienne ;; @montpellier|وهبي الخزري|يوسف المساكني|نعيم السليتي|حنبعل المجبري|f0419
-4|@velez ;; @pisa ;; @sevilla ;; @atletico ;; @inter ;; @lazio ;; @racing|دييغو سيميوني|خوان سيباستيان فيرون|ماوريسيو بوتشيتينو|ماتياس ألميدا|f0420
-4|@river ;; @parma ;; @lazio ;; @inter ;; @chelsea ;; @acmilan ;; @genoa|هيرنان كريسبو|غابرييل باتيستوتا|دييغو ميليتو|خوليو كروز|f0421
-4|@bellmare ;; @perugia ;; @roma ;; @parma ;; @bologna ;; @fiorentina ;; @bolton|هيديتوشي ناكاتا|شونسوكي ناكامورا|كيسوكي هوندا|شينجي كاغاوا|f0422
-4|@farul ;; @sportul ;; @steaua ;; @realmadrid ;; @brescia ;; @barcelona ;; @galatasaray|غيورغي هاجي|هريستو ستويتشكوف|هاكان شوكور|مايكل لاودروب|f0423
-4|@stellaclub ;; @atalanta ;; @cesena ;; @acmilan ;; @barcelona ;; @alahli|فرانك كيسيه|يايا توريه|إسماعيل بن ناصر|سيكو فوفانا|f0424
-4|@athletic ;; @mancity ;; @alnassr|إيمريك لابورت|إينييغو مارتينيز|جون ستونز|ناتشو فرنانديز|f0425
+1|@sporting ;; @manutd ;; @!realmadrid ;; @juventus ;; @alnassr|كريستيانو رونالدو|ناني|ريكاردو كواريزما|جواو موتينيو|f0313
+1|@!barcelona ;; @psg ;; @intermiami|ليونيل ميسي|نيمار|لويس سواريز|سيرخيو بوسكيتس|f0314
+1|@santos ;; @!barcelona ;; @psg ;; @alhilal|نيمار|روبينيو|فيليبي كوتينيو|رودريغو|f0315
+1|@lyon ;; @!realmadrid ;; @alittihad ;; @alhilal|كريم بنزيما|هوسم عوار|ألكسندر لاكازيت|نبيل فقير|f0316
+1|@almokawloon ;; @basel ;; @chelsea ;; @fiorentina ;; @roma ;; @!liverpool ;; @trabzonspor|محمد صلاح|محمد النني|عمر مرموش|مصطفى محمد|f0317
+1|@monaco ;; @!psg ;; @realmadrid|كيليان مبابي|عثمان ديمبيلي|أنتوني مارسيال|توماس ليمار|f0318
+1|@!manutd ;; @preston ;; @realmadrid ;; @lagalaxy ;; @acmilan ;; @psg|ديفيد بيكهام|مايكل أوين|بول سكولز|ستيفن جيرارد|f0319
+1|@cannes ;; @bordeaux ;; @juventus ;; @!realmadrid|زين الدين زيدان|باتريك فييرا|كريستوف دوغاري|ديدييه ديشان|f0320
+1|@cruzeiro ;; @psv ;; @barcelona ;; @inter ;; @!realmadrid ;; @acmilan ;; @corinthians|رونالدو نازاريو|روماريو|ريفالدو|أدريانو|f0321
+1|@monaco ;; @juventus ;; @!arsenal ;; @barcelona ;; @nyredbulls|تييري هنري|ديفيد تريزيغيه|نيكولا أنيلكا|روبير بيريس|f0322
+1|@dinamozagreb ;; @zrinjski ;; @interzapresic ;; @tottenham ;; @!realmadrid ;; @acmilan|لوكا مودريتش|ماتيو كوفاتشيتش|إيفان راكيتيتش|ماريو ماندزوكيتش|f0323
+1|@deltawarsaw ;; @znicz ;; @lechpoznan ;; @dortmund ;; @!bayern ;; @barcelona ;; @chicagofire|روبرت ليفاندوفسكي|ياكوب بواشتشيكوفسكي|لوكاش بيشتشيك|أركاديوش ميليك|f0324
+1|@bryne ;; @molde ;; @salzburg ;; @dortmund ;; @!mancity|إيرلينغ هالاند|مارتن أوديغارد|ألكسندر سورلوث|جادون سانشو|f0325
+1|@metz ;; @salzburg ;; @southampton ;; @!liverpool ;; @bayern ;; @alnassr|ساديو ماني|نابي كيتا|كاليدو كوليبالي|إدريسا غاي|f0326
+1|@boulogne ;; @caen ;; @leicester ;; @!chelsea ;; @alittihad ;; @fenerbahce|نغولو كانتي|رياض محرز|تيموي باكايوكو|إدوارد ميندي|f0327
+1|@everton ;; @!manutd ;; @dcunited ;; @derby|واين روني|مايكل أوين|روس باركلي|روميلو لوكاكو|f0328
+1|@saopaulo ;; @!acmilan ;; @realmadrid ;; @orlandocity|كاكا|رونالدينيو|روبينيو|ألكسندر باتو|f0329
+1|@southampton ;; @tottenham ;; @!realmadrid ;; @lafc|غاريث بيل|هوغو لوريس|لوكا مودريتش|ثيو والكوت|f0330
+1|@sevilla ;; @!realmadrid ;; @psg ;; @monterrey|سيرخيو راموس|خيسوس نافاس|رافائيل فاران|بيبي|f0331
+1|@schalke ;; @werder ;; @realmadrid ;; @!arsenal ;; @fenerbahce ;; @basaksehir|مسعود أوزيل|يوليان دراكسلر|سامي خضيرة|لوكاس بودولسكي|f0332
+1|@argentinos ;; @boca ;; @barcelona ;; @!napoli ;; @sevilla ;; @newells|دييغو مارادونا|خوان رومان ريكيلمي|غابرييل باتيستوتا|كلاوديو كانيجيا|f0333
+2|@parma ;; @!juventus ;; @psg|جانلويجي بوفون|فابيو كانافارو|ليليان تورام|جانلويجي دوناروما|f0334
+2|@sporting ;; @barcelona ;; @!realmadrid ;; @inter|لويس فيغو|ريكاردو كواريزما|روبرتو كارلوس|ديكو|f0335
+2|@manutd ;; @!juventus ;; @monaco|بول بوغبا|باتريس إيفرا|أنتوني مارسيال|أدريان رابيو|f0336
+2|@!barcelona ;; @visselkobe ;; @emiratesclub|أندريس إنييستا|ديفيد فيا|تشافي|سيرخيو بوسكيتس|f0337
+2|@lille ;; @!chelsea ;; @realmadrid|إيدين هازارد|تيبو كورتوا|خوان ماتا|أوليفييه جيرو|f0338
+2|@realsociedad ;; @!atletico ;; @barcelona ;; @orlandocity|أنطوان غريزمان|كارلوس فيلا|ألفارو موراتا|عثمان ديمبيلي|f0339
+2|@quimper ;; @lehavre ;; @!leicester ;; @mancity ;; @alahli ;; @alshamal|رياض محرز|نغولو كانتي|إسلام سليماني|سفيان فيغولي|f0340
+2|@realmadrid ;; @dortmund ;; @inter ;; @!psg|أشرف حكيمي|نصير مزراوي|إبراهيم دياز|ثيو هيرنانديز|f0341
+2|@figueirense ;; @hoffenheim ;; @!liverpool ;; @alahli ;; @alsadd|روبرتو فيرمينو|فيليبي كوتينيو|فابينيو|مالكوم|f0342
+2|@heerenveen ;; @twente ;; @!ajax ;; @chelsea ;; @galatasaray ;; @alduhail ;; @wydad|حكيم زياش|نصير مزراوي|سفيان أمرابط|يوسف النصيري|f0343
+2|@!ajax ;; @barcelona ;; @laaztecs ;; @washingtondiplomats ;; @levante ;; @feyenoord|يوهان كرويف|يوهان نيسكنز|رود خوليت|ماركو فان باستن|f0344
+2|@brescia ;; @inter ;; @reggina ;; @!acmilan ;; @juventus ;; @nycfc|أندريا بيرلو|روبرتو باجيو|كلارنس سيدورف|فرانك لامبارد|f0345
+2|@padova ;; @!juventus ;; @sydneyfc ;; @delhidynamos|أليساندرو ديل بييرو|فرانشيسكو توتي|روبرتو باجيو|فيليبو إنزاغي|f0346
+2|@vicenza ;; @fiorentina ;; @!juventus ;; @acmilan ;; @bologna ;; @inter ;; @brescia|روبرتو باجيو|جانفرانكو زولا|أليساندرو ديل بييرو|كريستيان فييري|f0347
+2|@atletico ;; @!liverpool ;; @chelsea ;; @acmilan ;; @sagantosu|فرناندو توريس|ديفيد فيا|دييغو كوستا|لويس سواريز|f0348
+2|@westham ;; @swansea ;; @!chelsea ;; @mancity ;; @nycfc|فرانك لامبارد|ريو فرديناند|جو كول|ستيفن جيرارد|f0349
+2|@cannes ;; @acmilan ;; @!arsenal ;; @juventus ;; @inter ;; @mancity|باتريك فييرا|زين الدين زيدان|ليليان تورام|إيمانويل بوتي|f0350
+2|@groningen ;; @psv ;; @chelsea ;; @realmadrid ;; @!bayern|آريين روبن|رود فان نيستلروي|ويسلي شنايدر|رافائيل فان دير فارت|f0351
+2|@feyenoord ;; @!arsenal ;; @manutd ;; @fenerbahce|روبن فان بيرسي|ديرك كاوت|رود فان نيستلروي|جيوفاني فان برونكهورست|f0352
+2|@independiente ;; @atletico ;; @!mancity ;; @barcelona|سيرخيو أغويرو|كارلوس تيفيز|دييغو فورلان|خوليان ألفاريز|f0353
+2|@instituto ;; @palermo ;; @!juventus ;; @roma|باولو ديبالا|إدينسون كافاني|خافيير باستوري|غونزالو هيغواين|f0354
+2|@dynamokyiv ;; @!acmilan ;; @chelsea|أندريه شيفتشينكو|هيرنان كريسبو|فيليبو إنزاغي|ديدييه دروغبا|f0355
+2|@!liverpool ;; @realmadrid ;; @newcastle ;; @manutd ;; @stoke|مايكل أوين|ستيف مكمانامان|روبي فاولر|بيتر كراوتش|f0356
+2|@genk ;; @chelsea ;; @werder ;; @wolfsburg ;; @!mancity ;; @napoli|كيفن دي بروين|تيبو كورتوا|دريس ميرتنز|إيدين هازارد|f0357
+2|@!tottenham ;; @leytonorient ;; @millwall ;; @norwich ;; @leicester ;; @bayern|هاري كين|جيرمين ديفو|ديلي آلي|كايل ووكر|f0358
+2|@bayern ;; @leverkusen ;; @!realmadrid|توني كروس|ميشائيل بالاك|سامي خضيرة|يوشوا كيميتش|f0359
+2|@!bayern ;; @manutd ;; @chicagofire|باستيان شفاينشتايغر|فيليب لام|توماس مولر|أوين هارغريفز|f0360
+2|@!arsenal ;; @barcelona ;; @chelsea ;; @monaco ;; @como|سيسك فابريغاس|ألكسندر هليب|بيدرو|تشافي|f0361
+2|@manutd ;; @zaragoza ;; @!barcelona|جيرارد بيكيه|جوردي ألبا|كارليس بويول|سيرخيو بوسكيتس|f0362
+2|@saopaulo ;; @!realmadrid ;; @porto ;; @manutd ;; @intermiami|كاسيميرو|إيدير ميليتاو|فابينيو|فريد|f0363
+2|@hamburg ;; @leverkusen ;; @!tottenham ;; @lafc|سون هيونغ مين|هاكان تشالهانوغلو|هوغو لوريس|غاريث بيل|f0364
+2|@novara ;; @udinese ;; @sampdoria ;; @sporting ;; @!manutd|برونو فيرنانديز|جواو موتينيو|برناردو سيلفا|ناني|f0365
+2|@benfica ;; @!atletico ;; @chelsea ;; @barcelona ;; @acmilan ;; @alnassr|جواو فيليكس|برناردو سيلفا|روبن دياز|جواو كانسيلو|f0366
+2|@ajax ;; @inter ;; @!arsenal|دينيس بيركامب|مارك أوفرمارس|باتريك كلويفرت|رود خوليت|f0367
+2|@!realmadrid ;; @schalke ;; @alsadd ;; @nycosmos|راؤول غونزاليس|تشافي|فرناندو مورينتس|غوتي|f0368
+2|@boca ;; @corinthians ;; @westham ;; @manutd ;; @!mancity ;; @juventus ;; @shanghaishenhua|كارلوس تيفيز|خافيير ماسكيرانو|سيرخيو أغويرو|دييغو فورلان|f0369
+2|@benfica ;; @monaco ;; @!mancity ;; @realmadrid|برناردو سيلفا|جواو كانسيلو|روبن دياز|جواو موتينيو|f0370
+2|@wydad ;; @zaragoza ;; @girona ;; @!sevilla ;; @alhilal|ياسين بونو|منير المحمدي|يوسف النصيري|إدوارد ميندي|f0371
+2|@fluminense ;; @!realmadrid ;; @olympiacos|مارسيلو|تياغو سيلفا|روبرتو كارلوس|دانيلو|f0372
+2|@sunderland ;; @coventry ;; @!liverpool ;; @alettifaq ;; @ajax ;; @brentford ;; @chelsea|جوردان هندرسون|جورجينيو فينالدوم|جيمس ميلنر|آدم لالانا|f0373
+2|@partizan ;; @anderlecht ;; @newcastle ;; @fulham ;; @!alhilal ;; @alrayyan|ألكسندر ميتروفيتش|سيرغي ميلينكوفيتش سافيتش|دوشان فلاهوفيتش|دوشان تاديتش|f0374
+3|@vojvodina ;; @genk ;; @!lazio ;; @alhilal|سيرغي ميلينكوفيتش سافيتش|كاليدو كوليبالي|لويس ألبيرتو|دوشان تاديتش|f0375
+2|@metz ;; @genk ;; @!napoli ;; @chelsea ;; @alhilal|كاليدو كوليبالي|ساديو ماني|سيرغي ميلينكوفيتش سافيتش|إدوارد ميندي|f0376
+2|@porto ;; @!wolves ;; @alhilal|روبن نيفيز|جواو موتينيو|دانيلو بيريرا|ماتيوس نونيس|f0377
+3|@corinthians ;; @bordeaux ;; @barcelona ;; @zenit ;; @!alhilal ;; @aljazira|مالكوم|هولك|كلاودينيو|ويليان|f0378
+2|@alaves ;; @realmadrid ;; @realsociedad ;; @!acmilan ;; @alhilal|ثيو هيرنانديز|لوكاس هيرنانديز|فيرلاند ميندي|ألفارو أودريوزولا|f0379
+2|@penarol ;; @almeria ;; @benfica ;; @!liverpool ;; @alhilal ;; @aldiriyah|داروين نونيز|فيديريكو فالفيردي|إدينسون كافاني|ماركوس ليوناردو|f0380
+2|@psg ;; @juventus ;; @!bayern ;; @alnassr|كينغسلي كومان|أدريان رابيو|سيرج غنابري|ساديو ماني|f0381
+2|@napoli ;; @parma ;; @inter ;; @!juventus ;; @realmadrid ;; @alahlidubai|فابيو كانافارو|أليساندرو نيستا|ليليان تورام|ماركو ماتيراتزي|f0382
+2|@ajax ;; @sampdoria ;; @realmadrid ;; @inter ;; @!acmilan ;; @botafogo|كلارنس سيدورف|إدغار دافيدز|ويسلي شنايدر|رود خوليت|f0383
+2|@ajax ;; @realmadrid ;; @!inter ;; @galatasaray ;; @nice ;; @algharafa|ويسلي شنايدر|رافائيل فان دير فارت|كلارنس سيدورف|آريين روبن|f0384
+2|@denbosch ;; @heerenveen ;; @psv ;; @!manutd ;; @realmadrid ;; @hamburg ;; @malaga|رود فان نيستلروي|روبن فان بيرسي|باتريك كلويفرت|رافائيل فان دير فارت|f0385
+2|@newells ;; @river ;; @boca ;; @!fiorentina ;; @roma ;; @inter ;; @alarabi|غابرييل باتيستوتا|هيرنان كريسبو|كلاوديو كانيجيا|دييغو سيميوني|f0386
+2|@river ;; @!realmadrid ;; @napoli ;; @juventus ;; @acmilan ;; @chelsea ;; @intermiami|غونزالو هيغواين|إدينسون كافاني|هيرنان كريسبو|باولو ديبالا|f0387
+2|@danubio ;; @palermo ;; @napoli ;; @!psg ;; @manutd ;; @valencia ;; @boca|إدينسون كافاني|لويس سواريز|زلاتان إبراهيموفيتش|خافيير باستوري|f0388
+2|@realsociedad ;; @eibar ;; @!liverpool ;; @realmadrid ;; @bayern|تشابي ألونسو|ميكيل أرتيتا|ألفارو أربيلوا|توني كروس|f0389
+2|@chmelblsany ;; @spartaprague ;; @rennes ;; @!chelsea ;; @arsenal|بيتر تشيك|تيبو كورتوا|إدوين فان دير سار|ينس ليمان|f0390
+2|@beveren ;; @metalurh ;; @olympiacos ;; @monaco ;; @barcelona ;; @!mancity ;; @qingdao|يايا توريه|كولو توريه|إيمانويل إيبويه|سيدو كيتا|f0391
+3|@stocksbridge ;; @halifax ;; @fleetwood ;; @!leicester ;; @cremonese ;; @burnley|جيمي فاردي|داني إنغز|ريكي لامبرت|شينجي أوكازاكي|f0392
+3|@haarlem ;; @feyenoord ;; @psv ;; @!acmilan ;; @sampdoria ;; @chelsea|رود خوليت|فرانك ريكارد|ماركو فان باستن|رونالد كومان|f0393
+3|@!boca ;; @barcelona ;; @villarreal ;; @argentinos|خوان رومان ريكيلمي|دييغو فورلان|دييغو مارادونا|خافيير سافيولا|f0394
+2|@river ;; @corinthians ;; @westham ;; @liverpool ;; @!barcelona ;; @hebei ;; @estudiantes|خافيير ماسكيرانو|كارلوس تيفيز|إيزيكيل لافيتزي|خوان سيباستيان فيرون|f0395
+3|@tersana ;; @!alahly ;; @baniyas|محمد أبو تريكة|محمد بركات|عماد متعب|حسام غالي|f0396
+3|@!ajax ;; @bayern ;; @manutd|نصير مزراوي|ماتيس دي ليخت|حكيم زياش|ريان خرافنبرخ|f0397
+2|@realmadrid ;; @monaco ;; @!liverpool ;; @alittihad ;; @trabzonspor|فابينيو|كاسيميرو|جورجينيو فينالدوم|نغولو كانتي|f0398
+2|@malaga ;; @leganes ;; @!sevilla ;; @fenerbahce ;; @alittihad|يوسف النصيري|أيوب الكعبي|منير الحدادي|حكيم زياش|f0399
+2|@wadidegla ;; @wolfsburg ;; @stpauli ;; @stuttgart ;; @!eintracht ;; @mancity ;; @tottenham|عمر مرموش|محمد صلاح|محمد النني|مصطفى محمد|f0400
+3|@nancy ;; @saintetienne ;; @!juventus|ميشيل بلاتيني|زين الدين زيدان|جان تيغانا|آلان جيريس|f0401
+3|@!bayern ;; @nycosmos ;; @hamburg|فرانز بكنباور|غيرد مولر|كارل هاينز رومينيغه|بيليه|f0402
+3|@dragovoljac ;; @lokomotiva ;; @dinamozagreb ;; @!inter ;; @alnassr|مارسيلو بروزوفيتش|ماتيو كوفاتشيتش|إيفان بيريشيتش|إيفان راكيتيتش|f0403
+3|@bahia ;; @benfica ;; @besiktas ;; @guangzhou ;; @!alnassr ;; @fenerbahce|أندرسون تاليسكا|باولينيو|أليكس تيليس|ويليان|f0404
+3|@juventus ;; @empoli ;; @parma ;; @!toronto ;; @alhilal ;; @sampdoria|سيباستيان جوفينكو|فيديريكو برنارديسكي|لورينزو إنسيني|تشيرو إيموبيلي|f0405
+3|@alianzalima ;; @sporting ;; @benfica ;; @watford ;; @!alhilal ;; @alqadsiah ;; @corinthians|أندريه كاريو|باولو غيريرو|جيفرسون فارفان|كريستيان كويفا|f0406
+3|@!corinthians ;; @fluminense ;; @alhilal|ريفيلينو|جيرزينيو|توستاو|زيكو|f0407
+3|@realsociedad ;; @!athletic ;; @barcelona ;; @alnassr|إينييغو مارتينيز|إيمريك لابورت|ميكيل ميرينو|ألفارو أودريوزولا|f0408
+3|@alnassr ;; @!alfateh ;; @alahli|فراس البريكان|عبدالله الحمدان|صالح الشهري|هتان باهبري|f0409
+3|@alittihad ;; @alhilal ;; @!roma ;; @lens|سعود عبدالحميد|ياسر الشهراني|محمد البريك|علي البليهي|f0410
+3|@ismaily ;; @fiorentina ;; @perugia ;; @alahly ;; @westbrom ;; @!alittihad ;; @neom|أحمد حجازي|محمد النني|رامي ربيعة|محمد عبدالمنعم|f0411
+3|@almokawloon ;; @basel ;; @!arsenal ;; @besiktas ;; @aljazira ;; @levadiakos|محمد النني|محمد صلاح|غرانيت تشاكا|عمر مرموش|f0412
+3|@internacional ;; @!porto ;; @vitoriasc ;; @alnassr ;; @alqadsiah|أوتافيو|أليكس تيليس|ياسين براهيمي|خيسوس كورونا|f0413
+3|@monaco ;; @!atletico ;; @dalian ;; @alshabab|يانيك كاراسكو|توماس ليمار|أكسيل فيتسل|إيفر بانيغا|f0414
+4|@celta ;; @!alahli ;; @porto|غابري فيغا|ياغو أسباس|برايس منديز|أوتافيو|f0415
+3|@santos ;; @benfica ;; @!alhilal ;; @ajax|ماركوس ليوناردو|رودريغو|داروين نونيز|غابرييل باربوسا|f0416
+3|@!alittihad ;; @levante ;; @alshabab|فهد المولد|يحيى الشهري|سالم الدوسري|هتان باهبري|f0417
+3|@rennes ;; @clermont ;; @granada ;; @!porto ;; @alrayyan ;; @algharafa|ياسين براهيمي|سفيان فيغولي|رياض محرز|إسلام سليماني|f0418
+4|@bastia ;; @bordeaux ;; @sunderland ;; @rennes ;; @!saintetienne ;; @montpellier|وهبي الخزري|يوسف المساكني|نعيم السليتي|حنبعل المجبري|f0419
+3|@velez ;; @pisa ;; @sevilla ;; @!atletico ;; @inter ;; @lazio ;; @racing|دييغو سيميوني|خوان سيباستيان فيرون|ماوريسيو بوتشيتينو|ماتياس ألميدا|f0420
+3|@river ;; @!parma ;; @lazio ;; @inter ;; @chelsea ;; @acmilan ;; @genoa|هيرنان كريسبو|غابرييل باتيستوتا|دييغو ميليتو|خوليو كروز|f0421
+3|@bellmare ;; @!perugia ;; @roma ;; @parma ;; @bologna ;; @fiorentina ;; @bolton|هيديتوشي ناكاتا|شونسوكي ناكامورا|كيسوكي هوندا|شينجي كاغاوا|f0422
+3|@farul ;; @sportul ;; @steaua ;; @realmadrid ;; @brescia ;; @barcelona ;; @!galatasaray|غيورغي هاجي|هريستو ستويتشكوف|هاكان شوكور|مايكل لاودروب|f0423
+3|@stellaclub ;; @atalanta ;; @cesena ;; @!acmilan ;; @barcelona ;; @alahli|فرانك كيسيه|يايا توريه|إسماعيل بن ناصر|سيكو فوفانا|f0424
+3|@athletic ;; @!mancity ;; @alnassr|إيمريك لابورت|إينييغو مارتينيز|جون ستونز|ناتشو فرنانديز|f0425
 
 ## الزميل المشترك
 2|لعبتُ مع بابلو أيمار ;; لعبتُ مع راداميل فالكاو ;; لعبتُ مع كيليان مبابي|أنخيل دي ماريا|خافيير باستوري|أندير هيريرا|لياندرو باريديس|f0426
@@ -555,3 +555,91 @@
 3|لعبتُ مع غرافيتي ;; لعبتُ مع محمد صلاح ;; لعبتُ مع لاوتارو مارتينيز|إدين دجيكو|روميلو لوكاكو|سيرخيو أغويرو|ستيفان الشعراوي|f0472
 4|لعبتُ مع فيكتور أوسيمين ;; لعبتُ مع روبرت ليفاندوفسكي ;; لعبتُ مع إيرلينغ هالاند|إلكاي غوندوغان|ليروي ساني|ماركو رويس|دريس ميرتنز|f0473
 3|لعبتُ مع زلاتان إبراهيموفيتش ;; لعبتُ مع ليونيل ميسي ;; لعبتُ مع إيرلينغ هالاند|جانلويجي دوناروما|كيلور نافاس|جانلويجي بوفون|إيدرسون|f0474
+
+
+## مسيرة اللاعب — أسئلة صعبة (طريقة فيفا)
+3|@dukla ;; @spartaprague ;; @lazio ;; @!juventus|بافل نيدفيد|توماس روسيكي|كارل بوبورسكي|يان كولر|f0475
+3|@hogaborg ;; @helsingborg ;; @feyenoord ;; @!celtic ;; @barcelona ;; @manutd|هنريك لارسون|زلاتان إبراهيموفيتش|يون دال توماسون|فريدريك ليونغبرغ|f0476
+3|@kyoto ;; @psv ;; @!manutd ;; @qpr|بارك جي سونغ|لي يونغ بيو|شينجي كاغاوا|كي سونغ يونغ|f0477
+3|@cerezo ;; @salzburg ;; @!liverpool ;; @southampton ;; @monaco|تاكومي مينامينو|شينجي كاغاوا|واتارو إندو|دايتشي كامادا|f0478
+3|@gyeongju ;; @jeonbuk ;; @beijingguoan ;; @fenerbahce ;; @!napoli ;; @bayern|كيم مين جاي|هوانغ هي تشان|كي سونغ يونغ|لي كانغ إن|f0479
+3|@!leeds ;; @liverpool ;; @galatasaray ;; @melbournevictory ;; @algharafa ;; @melbournecity|هاري كيويل|مارك فيدوكا|تيم كاهيل|مارك بريشيانو|f0480
+3|@arsenal ;; @brentford ;; @roma ;; @!juventus ;; @barcelona|فويتشيك شتشيسني|لوكاش فابيانسكي|أليسون بيكر|بيرند لينو|f0481
+3|@galatasaray ;; @manisaspor ;; @!atletico ;; @barcelona ;; @basaksehir|أردا توران|إمره بيلوزوغلو|نهاد قهوجي|هاكان تشالهانوغلو|f0482
+3|@gladsaxe ;; @hvidovre ;; @brondby ;; @!manutd ;; @sporting ;; @astonvilla ;; @mancity|بيتر شمايكل|إدوين فان دير سار|فابيان بارتيز|توماس سورنسن|f0483
+3|@perugia ;; @rangers ;; @salernitana ;; @!acmilan ;; @sion|جينارو غاتوزو|ماسيمو أمبروزيني|دانييلي دي روسي|أندريا بيرلو|f0484
+3|@bari ;; @!roma ;; @realmadrid ;; @sampdoria ;; @acmilan ;; @inter ;; @parma|أنطونيو كاسانو|جانباولو باتزيني|أنطونيو دي ناتالي|ماريو بالوتيلي|f0485
+3|@pescara ;; @!psg ;; @alarabi ;; @alduhail|ماركو فيراتي|لورينزو إنسيني|تشيرو إيموبيلي|أدريان رابيو|f0486
+3|@valladolid ;; @!realmadrid ;; @alrayyan ;; @bolton|فرناندو هييرو|فرناندو مورينتس|إيفان كامبو|ميتشل سالغادو|f0487
+3|@valencia ;; @eibar ;; @celta ;; @!mancity ;; @realsociedad|ديفيد سيلفا|خوان ماتا|سانتي كازورلا|ديفيد فيا|f0488
+3|@nantes ;; @marseille ;; @!acmilan ;; @chelsea ;; @algharafa ;; @qatarsc|مارسيل ديسايي|ديدييه ديشان|كلود ماكيليلي|فرانك لوبوف|f0489
+3|@troyes ;; @saintetienne ;; @!psg ;; @juventus ;; @intermiami|بليز ماتويدي|أدريان رابيو|ماركو فيراتي|ميراليم بيانيتش|f0490
+3|@excelsior ;; @nantes ;; @saintetienne ;; @lille ;; @!marseille ;; @westham ;; @vasco|ديميتري باييت|فلوريان توفان|ماتيو فالبوينا|سمير نصري|f0491
+3|@marseille ;; @arsenal ;; @!mancity ;; @sevilla ;; @antalyaspor ;; @westham ;; @anderlecht|سمير نصري|ماتيو فالبوينا|حاتم بن عرفة|ديميتري باييت|f0492
+3|@anderlecht ;; @hamburg ;; @!mancity|فينسنت كومباني|يان فيرتونخن|توماس فيرمالين|جيروم بواتينغ|f0493
+3|@standard ;; @everton ;; @!manutd ;; @shandong|مروان فيلايني|أكسيل فيتسل|يوري تيليمانس|ناصر الشاذلي|f0494
+3|@tottenham ;; @!arsenal ;; @portsmouth ;; @nottscounty ;; @newcastle|سول كامبل|ريو فرديناند|جون تيري|ليدلي كينغ|f0495
+3|@mancity ;; @chelsea ;; @bolton ;; @!liverpool ;; @westbrom ;; @trabzonspor ;; @perthglory|دانييل ستوريدج|رحيم ستيرلينغ|بيتر كراوتش|ثيو والكوت|f0496
+3|@cobh ;; @forest ;; @!manutd ;; @celtic|روي كين|روبي كين|ستيوارت بيرس|بول سكولز|f0497
+3|@argentinos ;; @brighton ;; @boca ;; @!liverpool|أليكسيس ماك أليستر|إنزو فرنانديز|مويسيس كايسيدو|لياندرو باريديس|f0498
+3|@sportrecife ;; @vasco ;; @!lyon ;; @algharafa ;; @nyredbulls|جونينيو بيرنامبوكانو|إلانو|إدميلسون|جيلبرتو سيلفا|f0499
+3|@palmeiras ;; @!mancity ;; @arsenal ;; @barcelona|غابرييل جيسوس|رافينيا|ريتشارليسون|روبينيو|f0500
+3|@sampdoria ;; @!inter ;; @psg ;; @galatasaray|ماورو إيكاردي|خواكين كوريا|لاوتارو مارتينيز|دييغو ميليتو|f0501
+3|@americamineiro ;; @fluminense ;; @watford ;; @everton ;; @!tottenham|ريتشارليسون|جواو بيدرو|غابرييل جيسوس|روبرتو فيرمينو|f0502
+3|@colocolo ;; @realsociedad ;; @!barcelona ;; @mancity ;; @betis|كلاوديو برافو|ويلي كاباييرو|إيدرسون|روي باتريسيو|f0503
+3|@pesquero ;; @alianzalima ;; @!werder ;; @bayern ;; @chelsea ;; @koln|كلاوديو بيزارو|باولو غيريرو|جيفرسون فارفان|أندريه كاريو|f0504
+3|@iwuanyanwu ;; @ajax ;; @inter ;; @!arsenal ;; @westbrom ;; @portsmouth|نوانكو كانو|فينيدي جورج|جاي جاي أوكوتشا|دانيال أموكاتشي|f0505
+3|@wolfsburg ;; @charleroi ;; @lille ;; @!napoli ;; @galatasaray|فيكتور أوسيمين|أديمولا لوكمان|صامويل تشوكويزي|فيكتور بونيفاس|f0506
+3|@dinamotbilisi ;; @rustavi ;; @lokomotivmoscow ;; @rubin ;; @dinamobatumi ;; @!napoli ;; @psg|خفيتشا كفاراتسخيليا|جورجي ميكاوتادزه|سردار آزمون|ألكسندر غولوفين|f0507
+3|@barranquilla ;; @junior ;; @porto ;; @!liverpool ;; @bayern|لويس دياز|خاميس رودريغيز|جاكسون مارتينيز|خوان كوادرادو|f0508
+3|@aik ;; @dortmund ;; @willem2 ;; @realsociedad ;; @!newcastle ;; @liverpool|ألكسندر إيساك|فيكتور يوكيريس|ديان كولوسيفسكي|ألكسندر سورلوث|f0509
+3|@brommapojkarna ;; @stpauli ;; @swansea ;; @coventry ;; @!sporting ;; @arsenal|فيكتور يوكيريس|ألكسندر إيساك|ديان كولوسيفسكي|إميل فورسبيرغ|f0510
+3|@leverkusen ;; @!chelsea ;; @arsenal|كاي هافيرتس|تيمو فيرنر|يوليان براندت|فلوريان فيرتز|f0511
+3|@bayern ;; @leverkusen ;; @!liverpool ;; @juventus ;; @dortmund|إمري جان|توني كروس|ماتس هوملز|سامي خضيرة|f0512
+3|@ajax ;; @inter ;; @!manutd ;; @trabzonspor|أندريه أونانا|سمير هاندانوفيتش|إدوارد ميندي|ياسين بونو|f0513
+3|@alfutowa ;; @qadsia ;; @!alahli ;; @alarabi ;; @alorobah ;; @wydad ;; @alhazem|عمر السومة|فراس الخطيب|عبدالرزاق حمدالله|عمر خريبين|f0514
+3|@!bayern ;; @hoffenheim ;; @realmadrid|ديفيد ألابا|نيكلاس زوله|أنطونيو روديغر|جيروم بواتينغ|f0515
+3|@atlas ;; @monaco ;; @!barcelona ;; @nyredbulls ;; @leon ;; @hellasverona|رافائيل ماركيز|أندريس غواردادو|خافيير هيرنانديز|كارلوس فيلا|f0516
+3|@!crystalpalace ;; @manutd ;; @cardiff ;; @galatasaray ;; @lyon ;; @charlotte|ويلفريد زاها|نيكولا بيبي|سيباستيان هالر|جيرفينيو|f0517
+3|@bayern ;; @!dortmund ;; @roma|ماتس هوملز|نيكلاس زوله|جيروم بواتينغ|أنطونيو روديغر|f0518
+4|@spartaprague ;; @dortmund ;; @!arsenal|توماس روسيكي|فلاديمير شميتسر|بافل نيدفيد|ميلان باروش|f0519
+4|@zenit ;; @!arsenal ;; @kuban ;; @kairat|أندريه أرشافين|ألكسندر كيرجاكوف|رومان بافليوتشينكو|يوري جيركوف|f0520
+4|@redstar ;; @lazio ;; @!inter|ديان ستانكوفيتش|بريدراغ مياتوفيتش|نيمانيا فيديتش|سيرغي ميلينكوفيتش سافيتش|f0521
+4|@!betis ;; @valencia ;; @malaga ;; @fiorentina|خواكين سانشيز|إيسكو|سوسو|فيتولو|f0522
+3|@willem2 ;; @ajax ;; @!barcelona|فرينكي دي يونغ|دوني فان دي بيك|ريان خرافنبرخ|ماتيس دي ليخت|f0523
+4|@atalanta ;; @parma ;; @juventus ;; @!tottenham|ديان كولوسيفسكي|فيديريكو كييزا|ألكسندر إيساك|أماد ديالو|f0524
+4|@bellmare ;; @urawa ;; @sinttruiden ;; @stuttgart ;; @!liverpool|واتارو إندو|تاكيهيرو تومياسو|تاكومي مينامينو|هيديتوشي ناكاتا|f0525
+4|@melbourneknights ;; @dinamozagreb ;; @celtic ;; @!leeds ;; @middlesbrough ;; @newcastle|مارك فيدوكا|هاري كيويل|تيم كاهيل|جون ألويزي|f0526
+4|@stuttgart ;; @!bayern ;; @fiorentina ;; @besiktas ;; @wolfsburg|ماريو غوميز|كيفن كوراني|ميروسلاف كلوزه|لوكاس بودولسكي|f0527
+4|@stuttgart ;; @!schalke ;; @dynamomoscow ;; @hoffenheim|كيفن كوراني|ماريو غوميز|كلاس يان هونتيلار|ميروسلاف كلوزه|f0528
+4|@udinese ;; @empoli ;; @!napoli ;; @inter|بيوتر زيلينسكي|أركاديوش ميليك|ماريك هامشيك|نيكولو باريلا|f0529
+4|@galatasaray ;; @inter ;; @newcastle ;; @!fenerbahce ;; @atletico ;; @basaksehir|إمره بيلوزوغلو|أردا توران|هاكان شوكور|نهاد قهوجي|f0530
+4|@clausenengen ;; @molde ;; @!manutd|أولي غونار سولشاير|توري أندريه فلو|ستيفن إيفرسن|يون كارو|f0531
+4|@desna ;; @!dynamokyiv ;; @dortmund ;; @westham ;; @alain|أندريه يارمولينكو|يفين كونوبليانكا|أولكسندر زينتشينكو|أندريه شيفتشينكو|f0532
+4|@dinamozagreb ;; @!acmilan ;; @bari ;; @celta|زفونيمير بوبان|روبرت بروسينيتشكي|ألين بوكشيتش|دافور شوكر|f0533
+4|@valencia ;; @getafe ;; @realmadrid ;; @!napoli ;; @villarreal ;; @pisa|راؤول ألبيول|خوسيه كاليخون|ناتشو فرنانديز|ألفارو أربيلوا|f0534
+4|@bordeaux ;; @athletic ;; @!bayern ;; @marseille|بيكسنتي ليزارازو|ويلي سانيول|إريك أبيدال|باتريس إيفرا|f0535
+4|@lille ;; @!newcastle ;; @psg ;; @crystalpalace ;; @alnasrdubai ;; @saintetienne|يوهان كاباي|ماتيو ديبوشي|حاتم بن عرفة|بليز ماتويدي|f0536
+4|@guingamp ;; @tours ;; @lorient ;; @!arsenal ;; @bordeaux|لوران كوسيلني|بكاري سانيا|مامادو ساكو|ماتيو ديبوشي|f0537
+4|@ajax ;; @rkc ;; @!arsenal ;; @barcelona ;; @roma ;; @visselkobe|توماس فيرمالين|يان فيرتونخن|توبي ألدرفيريلد|فينسنت كومباني|f0538
+4|@ajax ;; @rkc ;; @!tottenham ;; @benfica ;; @anderlecht|يان فيرتونخن|توماس فيرمالين|توبي ألدرفيريلد|فينسنت كومباني|f0539
+4|@barnsley ;; @burnley ;; @!tottenham ;; @atletico ;; @newcastle ;; @wolves|كيران تريبير|كايل ووكر|داني روز|لوك شو|f0540
+4|@sporting ;; @!tottenham ;; @bayern ;; @monaco|إريك داير|جواو بالينيا|هاري وينكس|كيران تريبير|f0541
+4|@talleres ;; @banfield ;; @!inter|خافيير زانيتي|والتر صامويل|إستيبان كامبياسو|خافيير ماسكيرانو|f0542
+4|@newells ;; @boca ;; @roma ;; @realmadrid ;; @!inter ;; @basel|والتر صامويل|غابرييل هاينزه|روبرتو أيالا|خافيير زانيتي|f0543
+4|@river ;; @roma ;; @!tottenham ;; @sevilla ;; @aek|إريك لاميلا|خافيير باستوري|إيفر بانيغا|باولو ديبالا|f0544
+4|@danubio ;; @nacional ;; @!inter ;; @venezia ;; @torino ;; @panionios|ألفارو ريكوبا|دييغو فورلان|سيباستيان أبرو|باولو مونتيرو|f0545
+4|@atleticoparanaense ;; @shakhtar ;; @!mancity|فرناندينيو|ويليان|دوغلاس كوستا|فريد|f0546
+4|@atleticonacional ;; @nice ;; @!arsenal ;; @napoli ;; @alnassr|ديفيد أوسبينا|بيبي رينا|كيلور نافاس|فويتشيك شتشيسني|f0547
+4|@universidaddechile ;; @river ;; @!lazio ;; @juventus|مارسيلو سالاس|إيفان زامورانو|هيرنان كريسبو|ديفيد تريزيغيه|f0548
+4|@atlas ;; @deportivo ;; @valencia ;; @leverkusen ;; @psv ;; @!betis ;; @leon|أندريس غواردادو|رافائيل ماركيز|إيرفينغ لوزانو|كارلوس فيلا|f0549
+4|@eupen ;; @sportinggijon ;; @!alsadd|أكرم عفيف|المعز علي|حسن الهيدوس|بغداد بونجاح|f0550
+4|@ghazl ;; @enppi ;; @sunderland ;; @!hull ;; @astonvilla|أحمد المحمدي|أحمد حجازي|محمد النني|محمود حسن تريزيغيه|f0551
+4|@angers ;; @lille ;; @!southampton ;; @celta ;; @alrayyan ;; @unionsg ;; @lehavre|سفيان بوفال|أمين حارث|سليم أملاح|عز الدين أوناحي|f0552
+4|@wydad ;; @nantes ;; @sporting ;; @!deportivo ;; @tottenham|نور الدين النيبت|مصطفى حجي|المهدي بنعطية|يوسف شيبو|f0553
+4|@reims ;; @!betis ;; @villarreal ;; @lille|عيسى ماندي|رامي بن سبعيني|رياض بودبوز|جمال بلعمري|f0554
+4|@paradou ;; @lierse ;; @montpellier ;; @rennes ;; @!gladbach ;; @dortmund|رامي بن سبعيني|عيسى ماندي|يوسف عطال|إسماعيل بن ناصر|f0555
+4|@montpellier ;; @!koln ;; @eintracht|إلياس السخيري|وهبي الخزري|علي معلول|عمر مرموش|f0556
+4|@alqadsiah ;; @!alittihad ;; @alhilal ;; @alshabab|سعود كريري|محمد نور|تيسير الجاسم|سلمان الفرج|f0557
+4|@vitesse ;; @tenerife ;; @!deportivo ;; @bayern ;; @feyenoord|روي ماكاي|بيير فان هويدونك|رود فان نيستلروي|باتريك كلويفرت|f0558
+4|@lyon ;; @westham ;; @tottenham ;; @!sevilla ;; @beijingguoan|فريدريك كانوتيه|سيدو كيتا|لويس فابيانو|ألفارو نيغريدو|f0559
