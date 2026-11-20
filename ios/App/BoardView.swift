@@ -17,7 +17,7 @@ struct BoardView: View {
                     }
                     BoardLegend(teams: g.teams.count)
                 }
-                .padding(.horizontal, wide ? 0 : 14 * k)
+                .padding(.horizontal, (wide ? 10 : 14) * k)
                 .padding(.bottom, 24 * k)
             }
         }
@@ -101,7 +101,7 @@ struct LevelGroupView: View {
         let cols = single ? min(group.cells.count, wide ? 8 : 4) : (wide ? min(teams, 4) : min(teams, 2))
         VStack(spacing: 6 * k) {
             HStack(spacing: 3 * k) {
-                Text(DIFF_NAME[d] ?? "").tf(wide ? 13 : 12, .bold).foregroundColor(.white).lineLimit(1).minimumScaleFactor(0.7)
+                Text(DIFF_NAME[d] ?? "").tf(13, .bold).foregroundColor(.white).lineLimit(1).minimumScaleFactor(0.7)
             }
             .padding(.horizontal, 6 * k).padding(.vertical, 3 * k)
             .frame(maxWidth: .infinity)
@@ -139,7 +139,7 @@ struct BoardCellView: View {
 
     var body: some View {
         let d = cell.d
-        let h = (wide ? 56 : 48) * k
+        let h = (wide ? 58 : 54) * k
         Button { m.openCell(r, gi, ci) } label: {
             ZStack {
                 if cell.used, let by = cell.by {

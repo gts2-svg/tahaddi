@@ -86,7 +86,7 @@ struct FlowLayout: Layout {
         var rows: [[CGSize]] = [[]]
         var rowW: CGFloat = 0
         for s in subviews {
-            let sz = s.sizeThatFits(ProposedViewSize(width: maxW, height: nil))
+            let sz = fit(s, maxW)
             if !rows[rows.count - 1].isEmpty && rowW + spacing + sz.width > maxW { rows.append([]); rowW = 0 }
             rowW += (rows[rows.count - 1].isEmpty ? 0 : spacing) + sz.width
             rows[rows.count - 1].append(sz)
@@ -95,11 +95,17 @@ struct FlowLayout: Layout {
         let w = rows.map { r in r.reduce(CGFloat(0)) { $0 + $1.width } + spacing * CGFloat(max(0, r.count - 1)) }.max() ?? 0
         return CGSize(width: proposal.width ?? w, height: h)
     }
+    /// المقاس الطبيعي للعنصر (بلا التفاف)، ولا يزيد على العرض المتاح
+    func fit(_ s: LayoutSubview, _ maxW: CGFloat) -> CGSize {
+        let ideal = s.sizeThatFits(.unspecified)
+        if ideal.width <= maxW { return ideal }
+        return s.sizeThatFits(ProposedViewSize(width: maxW, height: nil))
+    }
     func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
         var rows: [[(Subviews.Element, CGSize)]] = [[]]
         var rowW: CGFloat = 0
         for s in subviews {
-            let sz = s.sizeThatFits(ProposedViewSize(width: bounds.width, height: nil))
+            let sz = fit(s, bounds.width)
             if !rows[rows.count - 1].isEmpty && rowW + spacing + sz.width > bounds.width { rows.append([]); rowW = 0 }
             rowW += (rows[rows.count - 1].isEmpty ? 0 : spacing) + sz.width
             rows[rows.count - 1].append((s, sz))

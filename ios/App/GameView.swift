@@ -215,7 +215,7 @@ struct Stage: View {
                     TurnLine()
                     ChooserView()
                 }
-                .padding(.horizontal, wide ? 0 : 14 * k)
+                .padding(.horizontal, (wide ? 10 : 14) * k)
                 .padding(.bottom, 24 * k)
             }
         } else {
@@ -240,7 +240,7 @@ struct QuestionStage: View {
                     if inQ { ToolsRow(g: g, q: q).padding(.top, 12 * k) }
                     if wide && !inQ { AfterPanel(g: g, q: q).padding(.top, 10 * k) }
                 }
-                .padding(.horizontal, wide ? 0 : 14 * k)
+                .padding(.horizontal, (wide ? 10 : 14) * k)
                 .padding(.bottom, 20 * k)
             }
             .safeAreaInset(edge: .bottom) {
@@ -777,9 +777,11 @@ struct AfterPanel: View {
                 HStack(spacing: 10 * k) {
                     Button { m.next() } label: { Text(m.isLastQuestion ? "النتيجة" : (g.mode == 1 ? "إلى اللوحة" : "التالي")) }
                         .buttonStyle(PrimaryStyle(k: k))
+                        .fixedSize()
                         .keyboardShortcut(.return, modifiers: [])
                     Button { m.open(.report) } label: { Label("فيه خطأ", systemImage: "flag") }
                         .buttonStyle(GhostStyle(k: k, small: true))
+                        .fixedSize()
                 }
             }
         }

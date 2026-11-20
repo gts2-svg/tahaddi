@@ -75,7 +75,7 @@ struct HomeView: View {
                     .buttonStyle(GhostStyle(k: k, small: true)).disabled(m.settings.teams.count <= 1)
                     .opacity(m.settings.teams.count <= 1 ? 0.4 : 1)
             }
-            LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 10 * k), count: wide ? 4 : 2), spacing: 10 * k) {
+            LazyVGrid(columns: wide ? [GridItem(.adaptive(minimum: 200 * k), spacing: 10 * k)] : Array(repeating: GridItem(.flexible(), spacing: 10 * k), count: 2), spacing: 10 * k) {
                 ForEach(0..<m.settings.teams.count, id: \.self) { i in
                     TeamField(i: i, focus: $focused)
                 }

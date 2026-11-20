@@ -56,17 +56,21 @@ jobs:
           /usr/libexec/PlistBuddy -c "Add :UIRequiresFullScreen bool true" "$APP/Info.plist" || true
           mkdir -p "$RUNNER_TEMP/shots"
           : > "$RUNNER_TEMP/problems.txt"
+          xcrun simctl list devices available -j > "$RUNNER_TEMP/devs.json"
+          xcrun simctl list runtimes | grep -i ios || true
           pick() {
-            xcrun simctl list devices available -j | python3 -c "
+            cat "$RUNNER_TEMP/devs.json" | python3 -c "
           import json,sys
           want=sys.argv[1]
           c=[x for k,v in json.load(sys.stdin)['devices'].items() if 'iOS' in k for x in v]
           if want=='ipad':
-              m=[x for x in c if x['name']=='iPad (A16)'] or [x for x in c if x['name'].startswith('iPad') and 'Pro' not in x['name']] or [x for x in c if x['name'].startswith('iPad')]
+              # iPadOS 26 يضع التطبيق في نافذة ولا يقبل تدوير الواجهة برمجياً، فنفضّل محاكي iOS 18 إن وُجد
+              c18=[x for k,v in json.load(open(sys.argv[2]))['devices'].items() if 'iOS-18' in k for x in v]
+              m=[x for x in c18 if x['name'].startswith('iPad') and 'Pro' not in x['name']] or [x for x in c18 if x['name'].startswith('iPad')] or [x for x in c if x['name']=='iPad (A16)'] or [x for x in c if x['name'].startswith('iPad') and 'Pro' not in x['name']] or [x for x in c if x['name'].startswith('iPad')]
           else:
               m=[x for x in c if x['name'].startswith('iPhone') and 'Pro' in x['name'] and 'Max' not in x['name']]
           print(m[-1]['udid']+' '+m[-1]['name'])
-          " "$1"
+          " "$1" "$RUNNER_TEMP/devs.json"
           }
           shoot() {
             read U N <<< "$(pick $1)"; echo "== $1: $N"
