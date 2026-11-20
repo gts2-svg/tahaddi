@@ -1,6 +1,6 @@
 /* تحدّي — مسابقة ثقافية للفرق (الواجهة). منطق اللعب الخالص في logic.js */
 'use strict';
-const VERSION = '1.7.0';
+const VERSION = '1.7.1';
 const T = window.TL;
 
 /* ---------- الأيقونات (خطوط SVG على شبكة 24×24، بلا رموز تعبيرية) ---------- */
@@ -161,7 +161,7 @@ function ctx(matchIds) {
 const DEFAULTS = {
   teams: ['الفريق الأول', 'الفريق الثاني'],
   cats: ['religion', 'history', 'geography', 'poetry'], diffMode: 'mixed', level: 2, perTeam: 10, timer: 30, mode: 0,
-  steal: true, fifty: true, sound: true, host: false,
+  steal: true, fifty: true, sound: true, host: false, scale: 80,
 };
 const SAVED = load(LS.settings, {});
 let S = Object.assign({}, DEFAULTS, SAVED);
@@ -229,7 +229,15 @@ const modalOpen = () => !$('#modal').classList.contains('hidden');
 function confirmBox(html, yes, f, opts = {}) { modal(html, [{ t: yes, danger: true, f }, { t: 'إلغاء', primary: true }], opts); }
 
 /* ---------- الرئيسية ---------- */
+// حجم الخط: تكبير الواجهة كلها أو تصغيرها (الحقل scale بالنسبة المئوية)
+function applyScale() {
+  const v = [70, 80, 90, 100].includes(+S.scale) ? +S.scale : DEFAULTS.scale;
+  document.documentElement.style.zoom = v === 100 ? '' : String(v / 100);
+}
+applyScale();
+
 function renderHome() {
+  applyScale();
   const tl = $('#teams-list'); tl.innerHTML = '';
   S.teams.forEach((n, i) => {
     const row = el('div', 'team-input'); row.setAttribute('style', teamStyle(i));
