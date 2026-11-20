@@ -23,7 +23,7 @@ struct TahaddiApp: App {
                     #if DEBUG
                     Shot.afterLaunch(model)
                     #endif
-                    if Shot.name == nil { WebMigration.runIfNeeded(model) }
+                    if Shot.name == nil && !Shot.selfcheck { WebMigration.runIfNeeded(model) }
                 }
         }
         .onChange(of: scenePhase) { p in

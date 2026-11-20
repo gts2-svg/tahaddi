@@ -12,7 +12,11 @@ enum Shot {
     static var selfcheck: Bool { ProcessInfo.processInfo.arguments.contains("-selfcheck") }
 
     #if DEBUG
+    @MainActor static var launched = false
     @MainActor static func afterLaunch(_ m: AppModel) {
+        // يُستدعى مرة واحدة: تدوير الآيباد قد يعيد ظهور الواجهة فيُستدعى onAppear ثانية
+        if launched { return }
+        launched = true
         if selfcheck { runSelfCheck() }
         guard let n = name else { return }
         if UIDevice.current.userInterfaceIdiom == .pad { rotate(0) }

@@ -682,25 +682,25 @@ struct ToolsRow: View {
         FlowLayout(spacing: 8 * k, rowSpacing: 4 * k) {
             if g.settings.fifty && !hidden && !g.timedOut {
                 Button { m.useFifty() } label: { Label("حذف إجابتين", systemImage: "scissors") }
-                    .buttonStyle(GhostStyle(k: k, small: true))
+                    .buttonStyle(GhostStyle(k: k, small: true)).fixedSize()
                     .disabled(!team.fifty || !g.gone.isEmpty || g.paused).opacity(!team.fifty || !g.gone.isEmpty ? 0.4 : 1)
             }
             if let c = q.clues, g.shown < c.count, !g.timedOut {
                 Button { m.moreClue() } label: { Label("تلميح آخر (تنقص نقطة)", systemImage: "lightbulb") }
-                    .buttonStyle(GhostStyle(k: k, small: true)).disabled(g.paused)
+                    .buttonStyle(GhostStyle(k: k, small: true)).fixedSize().disabled(g.paused)
             }
             if !g.timedOut {
                 Button { m.swapQ() } label: { Label("تبديل السؤال", systemImage: "arrow.left.arrow.right") }
-                    .buttonStyle(GhostStyle(k: k, small: true))
+                    .buttonStyle(GhostStyle(k: k, small: true)).fixedSize()
                     .disabled(!team.swap || g.paused).opacity(team.swap ? 1 : 0.4)
             }
             if hidden && !g.timedOut {
                 Button { m.showOptions() } label: { Text("أظهر الخيارات (بنصف النقاط: \(fmtPts(TL.halve(TL.basePoints(q, shown: g.shown)))))") }
-                    .buttonStyle(GhostStyle(k: k, small: true))
+                    .buttonStyle(GhostStyle(k: k, small: true)).fixedSize()
             }
             if g.settings.host {
                 Button { m.hostReveal() } label: { Text("اكشف الإجابة") }
-                    .buttonStyle(PrimaryStyle(k: k))
+                    .buttonStyle(PrimaryStyle(k: k)).fixedSize()
             }
         }
     }
@@ -728,16 +728,16 @@ struct AfterPanel: View {
                             ForEach(0..<g.teams.count, id: \.self) { kk in
                                 if kk != ti {
                                     Button { m.chooseStealer(kk) } label: { Text(g.teams[kk].name).tf(15, .bold) }
-                                        .buttonStyle(FillStyle(k: k, top: C.team(kk), bottom: C.team2(kk), shadow: .black.opacity(0.25), minH: 48))
+                                        .buttonStyle(FillStyle(k: k, top: C.team(kk), bottom: C.team2(kk), shadow: .black.opacity(0.25), minH: 48)).fixedSize()
                                 }
                             }
-                            Button { m.noSteal() } label: { Text("لا أحد — اكشف الإجابة") }.buttonStyle(GhostStyle(k: k, small: true))
+                            Button { m.noSteal() } label: { Text("لا أحد — اكشف الإجابة") }.buttonStyle(GhostStyle(k: k, small: true)).fixedSize()
                         }
                     } else if let s = g.stealer {
                         Text("\(g.teams[s].name): اختاروا جوابكم من الخيارات (\(plusPts(sp)))").tf(15, .semibold).foregroundColor(C.text).multilineTextAlignment(.center)
                         FlowLayout(spacing: 8 * k, rowSpacing: 4 * k) {
-                            Button { m.chooseStealer(nil) } label: { Text("تغيير الفريق") }.buttonStyle(GhostStyle(k: k, small: true))
-                            Button { m.noSteal() } label: { Text("لا أحد — اكشف الإجابة") }.buttonStyle(GhostStyle(k: k, small: true))
+                            Button { m.chooseStealer(nil) } label: { Text("تغيير الفريق") }.buttonStyle(GhostStyle(k: k, small: true)).fixedSize()
+                            Button { m.noSteal() } label: { Text("لا أحد — اكشف الإجابة") }.buttonStyle(GhostStyle(k: k, small: true)).fixedSize()
                         }
                     }
                 }
@@ -753,7 +753,7 @@ struct AfterPanel: View {
                             ForEach(0..<g.teams.count, id: \.self) { kk in
                                 if kk != ti {
                                     Button { m.judge("steal", kk) } label: { Text("سرقة: \(g.teams[kk].name) \(plusPts(TL.stealPoints(p)))").tf(15, .bold) }
-                                        .buttonStyle(FillStyle(k: k, top: C.team(kk), bottom: C.team2(kk), shadow: .black.opacity(0.25), minH: 48))
+                                        .buttonStyle(FillStyle(k: k, top: C.team(kk), bottom: C.team2(kk), shadow: .black.opacity(0.25), minH: 48)).fixedSize()
                                 }
                             }
                         }
